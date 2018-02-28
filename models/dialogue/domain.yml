@@ -1,0 +1,71 @@
+action_factory: null
+action_names:
+- utter_greet
+- utter_cheer_up
+- utter_did_that_help
+- utter_happy
+- utter_goodbye
+actions:
+- utter_greet
+- utter_cheer_up
+- utter_did_that_help
+- utter_happy
+- utter_goodbye
+config:
+  store_entities_as_slots: true
+entities: []
+intents:
+- greet
+- goodbye
+- mood_affirm
+- mood_deny
+- mood_great
+- mood_unhappy
+slots: {}
+templates:
+  utter_cheer_up:
+  - buttons:
+    - actions:
+      - name: great
+        text: Great
+        type: button
+        value: great
+      - dialog:
+          elements:
+          - label: Pickup Location
+            name: loc_origin
+            type: text
+          - label: Dropoff Location
+            name: loc_destination
+            type: text
+          submit_label: Request
+          title: Request a Ride
+        name: sad
+        text: Sad
+        type: button
+        value: sad
+    text: Here is something to cheer you up
+  utter_did_that_help:
+  - text: Did that help you?
+  utter_goodbye:
+  - text: bye
+  utter_greet:
+  - buttons:
+    - actions:
+      - name: great
+        text: Great
+        type: button
+        value: great
+      - confirm:
+        - dismiss_text: No, thanks
+          ok_text: Thanks
+          text: Would you like to see some nice pics to cheer you up?
+          title: Oh that is too bad
+        name: sad
+        text: Sad
+        type: button
+        value: sad
+    text: Hey! How are you?
+  utter_happy:
+  - text: Great carry on!
+topics: []

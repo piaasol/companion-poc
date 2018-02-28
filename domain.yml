@@ -1,0 +1,69 @@
+intents:
+  - greet
+  - goodbye
+  - mood_affirm
+  - mood_deny
+  - mood_great
+  - mood_unhappy
+
+actions:
+- utter_greet
+- utter_cheer_up
+- utter_did_that_help
+- utter_happy
+- utter_goodbye
+
+templates:
+  utter_greet:
+    - text: "Hey! How are you?"
+      buttons:
+      - actions: 
+        - name : "great"
+          text : "Great"
+          type : "button"
+          value : "great"
+        - name : "sad"
+          text : "Sad"
+          type : "button"
+          value : "sad"
+          confirm :
+            - title : "Oh that is too bad"
+              text : "Would you like to see some nice pics to cheer you up?"
+              ok_text : "Thanks"
+              dismiss_text : "No, thanks"
+
+    
+  utter_cheer_up: 
+    - text : "Here is something to cheer you up"
+      buttons :
+          - actions: 
+            - name : "great"
+              text : "Great"
+              type : "button"
+              value : "great"
+            - name : "dialog"
+              text : "Good"
+              type : "button"
+              value : "dialog"
+              dialog :
+                  title : "Request a Ride"
+                  submit_label : "Request"
+                  elements : 
+                    - type : "text"
+                      label : "Pickup Location"
+                      name : "loc_origin"
+                    - type : "text"
+                      label: "Dropoff Location"
+                      name : "loc_destination"
+          
+        
+  utter_did_that_help: 
+    - text : "Did that help you?"
+     
+
+  utter_happy: 
+    - text : "Great carry on!"
+     
+
+  utter_goodbye: 
+    - text : "bye"
