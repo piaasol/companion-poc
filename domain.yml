@@ -17,7 +17,7 @@ templates:
   utter_greet:
     - text: "Hey! How are you?"
       buttons:
-      - actions: 
+       actions: 
         - name : "great"
           text : "Great"
           type : "button"
@@ -36,15 +36,7 @@ templates:
   utter_cheer_up: 
     - text : "Here is something to cheer you up"
       buttons :
-          - actions: 
-            - name : "great"
-              text : "Great"
-              type : "button"
-              value : "great"
-            - name : "dialog"
-              text : "Good"
-              type : "button"
-              value : "dialog"
+          actions: 
               dialog :
                   title : "Request a Ride"
                   submit_label : "Request"

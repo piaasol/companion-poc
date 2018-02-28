@@ -20,13 +20,13 @@ class SlackBot(SlackClient, OutputChannel):
 
     def __init__(self, token):
         super(SlackBot, self).__init__(token)
-        print("1")
+        print("SlackBot __init__")
 
     def send_text_message(self, recipient_id, message):
         super(SlackBot, self).api_call("chat.postMessage",
                                        channel=recipient_id,
                                        as_user=True, text=message)
-        print("2")
+        print("SlackBot.send_text_message")
 
     def send_image_url(self, recipient_id, image_url, message=""):
         image_attachment = [{"image_url": image_url,
@@ -35,66 +35,48 @@ class SlackBot(SlackClient, OutputChannel):
                                        channel=recipient_id,
                                        as_user=True,
                                        attachments=image_attachment)
-        print("3")
+        print("SlackBot.send_image_url")
 
     def _convert_to_slack_buttons(self, buttons):
         return [{"text": b['title'],
                  "name": b['payload'],
                  "type": "button"} for b in buttons]
-        print("4")
+        print("SlackBot._convert_to_slack_buttons")
 
     def send_text_with_buttons(self, recipient_id, message, buttons, **kwargs):
+        print("SlackBot.send_text_with_buttons")
         if len(buttons) > 5:
             logger.warn("Slack API currently allows only up to 5 buttons. "
                         "If you add more, all will be ignored.")
-            print("5-1")
+            print("if len(buttons) > 5")
             return self.send_text_message(recipient_id, message)
                
-        print("buttons check==>",buttons)
-        print("buttons in actions==>","actions" in buttons[0])
-        
-        if "actions" in buttons[0] :
-            for a in buttons[0].get('actions') :
-                print("action dialog check===>",a)
-                if "dialog" in a :
-                    a['dialog']['callback_id'] = message.replace(' ', '_')[:20]
-        
-            button_attachment = [{"fallback": message,
+       
+        if "actions" in buttons :
+           print("if actions in buttons")
+           button_attachment = [{"fallback": message,
                                  "callback_id": message.replace(' ', '_')[:20],
-                                 "actions":buttons[0].get('actions')
+                                 "actions":buttons.get('actions')
                                  }]
-            super(SlackBot, self).api_call("chat.postMessage",
+           super(SlackBot, self).api_call("chat.postMessage",
                                            channel=recipient_id,
                                            as_user=True,
                                            text=message,
                                            attachments=button_attachment)
         
-#        elif "dialog" in buttons[0] :
-#            actions = buttons[0]['dialog'][0].get("actions")
-#            print("dialog check=====>",actions)
-#            actions[0]['dialog'] = message.replace(' ', '_')[:20]
-#            button_attachment = [{
-#                                 "dialog":dialog[0]
-#                                 }]
-#            super(SlackBot, self).api_call("chat.postMessage",
-#                                           channel=recipient_id,
-#                                           as_user=True,
-#                                           text=message,
-#                                           attachments=button_attachment)
 
         else :
+            print("else actions in buttons")
             button_attachment = [{"fallback": message,
                                   "callback_id": message.replace(' ', '_')[:20],
                                   "actions": self._convert_to_slack_buttons(
                                       buttons)}]
-            print("5-2")
 
             super(SlackBot, self).api_call("chat.postMessage",
                                            channel=recipient_id,
                                            as_user=True,
                                            text=message,
                                            attachments=button_attachment)
-            print("5-3")
 
 
 class SlackInput(HttpInputComponent):
@@ -117,11 +99,11 @@ class SlackInput(HttpInputComponent):
         """
         self.slack_token = slack_token
         self.slack_channel = slack_channel
-        print("6")
+        print("SlackInput __init__")
 
     @staticmethod
     def _is_user_message(slack_event):
-        print("7")
+        print("SlackInput._is_user_message")
         return (slack_event.get('event') and
                 slack_event.get('event').get('type') == u'message' and
                 slack_event.get('event').get('text') and not
@@ -129,66 +111,66 @@ class SlackInput(HttpInputComponent):
 
     @staticmethod
     def _is_button_reply(slack_event):
-        print("8")
+        print("SlackInput._is_button_reply")
         return (slack_event.get('payload') and
                 slack_event['payload'][0] and
                 'name' in slack_event['payload'][0])
 
     @staticmethod
     def _get_button_reply(slack_event):
-        print("9")
+        print("SlackInput._get_button_reply")
         return json.loads(slack_event['payload'][0])['actions'][0]['name']
 
     def blueprint(self, on_new_message):
-        print("10")
+        print("SlackInput.blueprint")
         slack_webhook = Blueprint('slack_webhook', __name__)
 
         @slack_webhook.route("/", methods=['GET'])
         def health():
-            print("11")
+            print("SlackInput.health()")
             return jsonify({"status": "ok"})
 
         @slack_webhook.route("/webhook", methods=['GET', 'POST'])
         def webhook():
             request.get_data()
-            print("12")
+            print("SlackInput.webhook()")
             if request.json:
-                print("13")
+                print("if request.json")
                 output = request.json
                 print("output check==>",output)
                 if "challenge" in output:
-                    print("14")
+                    print("if challenge in output")
                     return make_response(output.get("challenge"), 200,
                                          {"content_type": "application/json"})
                 elif self._is_user_message(output):
-                    print("15")
+                    print("elif self._is_user_message")
                     text = output['event']['text']
                     sender_id = output.get('event').get('user')
                 else:
-                    print("16")
+                    print("else")
                     return make_response()
             elif request.form:
-                print("17")
+                print("elif request.form")
                 output = dict(request.form)
                 if self._is_button_reply(output):
-                    print("18")
+                    print("if self._is_button_reply")
                     text = self._get_button_reply(output)
                     sender_id = json.loads(output['payload'][0]).get(
                         'user').get('id')
                 else:
-                    print("19")
+                    print("else self._is_button_reply")
                     return make_response()
             else:
-                print("20")
+                print("else request.json")
                 return make_response()
 
             try:
-                print("21")
+                print("try webhook")
                 out_channel = SlackBot(self.slack_token)
                 user_msg = UserMessage(text, out_channel, sender_id)
                 on_new_message(user_msg)
             except Exception as e:
-                print("21-1")
+                print(" except Exception")
                 logger.error("Exception when trying to handle "
                              "message.{0}".format(e))
                 logger.error(e, exc_info=True)

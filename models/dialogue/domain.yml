@@ -25,12 +25,8 @@ slots: {}
 templates:
   utter_cheer_up:
   - buttons:
-    - actions:
-      - name: great
-        text: Great
-        type: button
-        value: great
-      - dialog:
+      actions:
+        dialog:
           elements:
           - label: Pickup Location
             name: loc_origin
@@ -40,10 +36,6 @@ templates:
             type: text
           submit_label: Request
           title: Request a Ride
-        name: sad
-        text: Sad
-        type: button
-        value: sad
     text: Here is something to cheer you up
   utter_did_that_help:
   - text: Did that help you?
@@ -51,7 +43,7 @@ templates:
   - text: bye
   utter_greet:
   - buttons:
-    - actions:
+      actions:
       - name: great
         text: Great
         type: button
