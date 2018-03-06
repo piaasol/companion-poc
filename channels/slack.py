@@ -53,9 +53,9 @@ class SlackBot(SlackClient, OutputChannel):
                
        
         if "actions" in buttons :
-           print("if actions in buttons")
+           print("if actions in buttons",buttons.get('actions'))
            button_attachment = [{"fallback": message,
-                                 "callback_id": message.replace(' ', '_')[:20],
+                                 "callback_id" : message.replace(' ', '_')[:20],
                                  "actions":buttons.get('actions')
                                  }]
            super(SlackBot, self).api_call("chat.postMessage",
@@ -65,6 +65,19 @@ class SlackBot(SlackClient, OutputChannel):
                                            attachments=button_attachment)
         
 
+        elif "dialog" in  buttons :
+            print("elif dialog in buttons")
+            dialog = buttons.get('dialog',buttons.get('dialog'))
+#            dialog['callback_id'] = message.replace(' ', '_')[:20]
+            dialog_attachment = [{"fallback": message,
+                                 "dialog":buttons.get('dialog')
+                                 }]
+            super(SlackBot, self).api_call("dialog.open",
+                                               channel=recipient_id,
+                                               as_user=True,
+                                               dialog=buttons.get('dialog')
+                                               )
+                
         else :
             print("else actions in buttons")
             button_attachment = [{"fallback": message,
@@ -124,11 +137,17 @@ class SlackInput(HttpInputComponent):
     def blueprint(self, on_new_message):
         print("SlackInput.blueprint")
         slack_webhook = Blueprint('slack_webhook', __name__)
+        message_actions = Blueprint('message_actions',__name__)
 
         @slack_webhook.route("/", methods=['GET'])
         def health():
             print("SlackInput.health()")
             return jsonify({"status": "ok"})
+        
+        @message_actions.route("/message_actions", methods=['POST'])
+        def message_actions():
+            message_action = json.loads(slack_event['payload'])
+            print("message action check===>",message_actions)
 
         @slack_webhook.route("/webhook", methods=['GET', 'POST'])
         def webhook():

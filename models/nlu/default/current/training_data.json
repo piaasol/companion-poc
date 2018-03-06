@@ -252,6 +252,586 @@
       {
         "intent": "mood_unhappy",
         "text": "so sad"
+      },
+      {
+        "intent": "comment_bad_symptom",
+        "text": "don't feel like eating"
+      },
+      {
+        "intent": "comment_bad_symptom",
+        "text": "can't eat"
+      },
+      {
+        "intent": "comment_bad_symptom",
+        "text": "don't wanna eat"
+      },
+      {
+        "intent": "comment_bad_symptom",
+        "text": "wanna skip meals"
+      },
+      {
+        "intent": "comment_bad_symptom",
+        "text": "hate eating"
+      },
+      {
+        "intent": "comment_bad_symptom",
+        "text": "don't think of eating"
+      },
+      {
+        "intent": "comment_bad_symptom",
+        "text": "can't swallow anything"
+      },
+      {
+        "intent": "comment_bad_symptom",
+        "text": "can't find anything to eat"
+      },
+      {
+        "intent": "comment_bad_symptom",
+        "text": "I have no appetite"
+      },
+      {
+        "intent": "comment_bad_symptom",
+        "text": "appetite is off"
+      },
+      {
+        "intent": "comment_bad_symptom",
+        "text": "bad"
+      },
+      {
+        "intent": "comment_bad_symptom",
+        "text": "I feel bad"
+      },
+      {
+        "intent": "comment_bad_symptom",
+        "text": "very bad"
+      },
+      {
+        "intent": "comment_bad_symptom",
+        "text": "I don't feel good"
+      },
+      {
+        "intent": "comment_bad_symptom",
+        "text": "I don't feel well"
+      },
+      {
+        "intent": "ask_food_recommendation",
+        "text": "Tell me what to eat"
+      },
+      {
+        "intent": "ask_food_recommendation",
+        "text": "What should I eat?"
+      },
+      {
+        "intent": "ask_food_recommendation",
+        "text": "Recommend food"
+      },
+      {
+        "intent": "ask_food_recommendation",
+        "text": "Don't know what to eat"
+      },
+      {
+        "intent": "ask_food_recommendation",
+        "text": "Food recommendation?"
+      },
+      {
+        "intent": "ask_food_recommendation",
+        "text": "Help me decide what to eat"
+      },
+      {
+        "intent": "ask_food_recommendation",
+        "text": "Recommend dish"
+      },
+      {
+        "intent": "ask_food_recommendation",
+        "text": "I have trouble deciding what to eat"
+      },
+      {
+        "intent": "ask_food_recommendation",
+        "text": "Recommend me a food"
+      },
+      {
+        "intent": "ask_food_recommendation",
+        "text": "Any food recommendation?"
+      },
+      {
+        "intent": "ask_food_recommendation",
+        "text": "Any good food to try?"
+      },
+      {
+        "intent": "ask_food_recommendation",
+        "text": "Show me your recommendation"
+      },
+      {
+        "intent": "ask_food_recommendation",
+        "text": "Food helps to lower blood pressure"
+      },
+      {
+        "intent": "ask_food_recommendation",
+        "text": "Blood pressure- lowering foods"
+      },
+      {
+        "intent": "ask_symtom_hip_pain_medical_advice",
+        "text": "I feel more pain on my hips. I need medical advice."
+      },
+      {
+        "intent": "ask_symtom_hip_pain_medical_advice",
+        "text": "Medical advice for my hip pain"
+      },
+      {
+        "intent": "ask_symtom_hip_pain_medical_advice",
+        "text": "Show me a medical advice for hip pain"
+      },
+      {
+        "intent": "ask_symtom_hip_pain_medical_advice",
+        "text": "Any medical suggestions for hip pain?"
+      },
+      {
+        "intent": "ask_symtom_hip_pain_medical_advice",
+        "text": "Hip pain is getting worse. Tell me some medical advice."
+      },
+      {
+        "intent": "ask_symtom_hip_pain_medical_advice",
+        "text": "Any medical informaion for bad hip pain?"
+      },
+      {
+        "intent": "ask_symtom_hip_pain_medical_advice",
+        "text": "Medical comment on serious hip pain"
+      },
+      {
+        "intent": "ask_symtom_hip_pain_medical_advice",
+        "text": "Could you help my hip pain with medical advice"
+      },
+      {
+        "intent": "ask_symtom_hip_pain_medical_advice",
+        "text": "Any mendical tips for my hip pain?"
+      },
+      {
+        "intent": "ask_symtom_hip_pain_medical_advice",
+        "text": "Counsel of doctors on hip pain"
+      },
+      {
+        "intent": "ask_symtom_hip_pain_medical_advice",
+        "text": "hip pain advice"
+      },
+      {
+        "intent": "ask_symtom_hip_pain_medical_advice",
+        "text": "hip pain"
+      },
+      {
+        "intent": "user_purchase",
+        "text": "Need more patches"
+      },
+      {
+        "intent": "user_purchase",
+        "text": "I need to buy patches"
+      },
+      {
+        "intent": "user_purchase",
+        "text": "I'm about to run out of patches"
+      },
+      {
+        "intent": "user_purchase",
+        "text": "Need to shop for patches"
+      },
+      {
+        "intent": "user_purchase",
+        "text": "Shopping for patches"
+      },
+      {
+        "intent": "user_purchase",
+        "text": "Buying patches"
+      },
+      {
+        "intent": "user_purchase",
+        "text": "Used up patches"
+      },
+      {
+        "intent": "user_purchase",
+        "text": "No more patches"
+      },
+      {
+        "intent": "user_purchase",
+        "text": "Runnig out of patches"
+      },
+      {
+        "intent": "user_purchase",
+        "text": "Patch shopping"
+      },
+      {
+        "intent": "user_bloom_question",
+        "text": "I think I felt contractions"
+      },
+      {
+        "intent": "user_bloom_question",
+        "text": "I got uterine contractions"
+      },
+      {
+        "intent": "user_bloom_question",
+        "text": "Feeing contractions"
+      },
+      {
+        "intent": "user_bloom_question",
+        "text": "The contractions were occurred"
+      },
+      {
+        "intent": "user_bloom_question",
+        "text": "Contractions occurring"
+      },
+      {
+        "intent": "user_bloom_question",
+        "text": "It might be contractions"
+      },
+      {
+        "intent": "user_bloom_question",
+        "text": "It seem to be contractions"
+      },
+      {
+        "intent": "user_bloom_question",
+        "text": "Contractions during week34"
+      },
+      {
+        "intent": "user_bloom_question",
+        "text": "Is it normal to feel contractions?"
+      },
+      {
+        "intent": "user_bloom_question",
+        "text": "No problem with feeling contractions?"
+      },
+      {
+        "intent": "user_device_question",
+        "text": "How long can I use a Bloom Belli patch?"
+      },
+      {
+        "intent": "user_device_question",
+        "text": "How many times can I use a Bloom patch?"
+      },
+      {
+        "intent": "user_device_question",
+        "text": "Bloom patch life"
+      },
+      {
+        "intent": "user_device_question",
+        "text": "How many days can I use a Bloom patch?"
+      },
+      {
+        "intent": "user_device_question",
+        "text": "What's the Bloom patch life?"
+      },
+      {
+        "intent": "user_device_question",
+        "text": "Tell me about Bloom patch life"
+      },
+      {
+        "intent": "user_device_question",
+        "text": "When is a Bloom patch life ended?"
+      },
+      {
+        "intent": "user_device_question",
+        "text": "Until when can I use a bllom patch?"
+      },
+      {
+        "intent": "user_device_question",
+        "text": "When should I throw a patch away?"
+      },
+      {
+        "intent": "user_device_question",
+        "text": "When should I change my Bloom patch?"
+      },
+      {
+        "intent": "user_set_reminder",
+        "text": "Remind me later"
+      },
+      {
+        "intent": "ask_symptom",
+        "text": "pre-eclampsia?"
+      },
+      {
+        "intent": "ask_symptom",
+        "text": "what is pre-eclampsia?"
+      },
+      {
+        "intent": "ask_symptom",
+        "text": "I would like to know what pre-eclampsia is"
+      },
+      {
+        "intent": "ask_symptom",
+        "text": "Tell me more about pre-eclampsia"
+      },
+      {
+        "intent": "ask_symptom",
+        "text": "Any explanation about pre-eclampsia?"
+      },
+      {
+        "intent": "ask_symptom",
+        "text": "More detalis about pre-eclampsia"
+      },
+      {
+        "intent": "ask_symptom",
+        "text": "Information about pre-eclampsia"
+      },
+      {
+        "intent": "ask_symptom",
+        "text": "Update me on pre-eclampsia"
+      },
+      {
+        "intent": "ask_symptom",
+        "text": "Let me know about pre-eclampsia"
+      },
+      {
+        "intent": "ask_symptom",
+        "text": "Provide additional details about pre-eclampsia"
+      },
+      {
+        "intent": "ask_doctors_appointment",
+        "text": "When is doctor's appointment?"
+      },
+      {
+        "intent": "ask_doctors_appointment",
+        "text": "Show me when my doctor's appointment is"
+      },
+      {
+        "intent": "ask_doctors_appointment",
+        "text": "What time do I have an doctor appointment?"
+      },
+      {
+        "intent": "ask_doctors_appointment",
+        "text": "What date do I have an doctor appointment?"
+      },
+      {
+        "intent": "ask_doctors_appointment",
+        "text": "Tell me when the doctor's appointment is"
+      },
+      {
+        "intent": "ask_doctors_appointment",
+        "text": "Tell me my doctor's appointment schedule"
+      },
+      {
+        "intent": "ask_doctors_appointment",
+        "text": "My doctor's appointment?"
+      },
+      {
+        "intent": "ask_doctors_appointment",
+        "text": "My schedule with doctor?"
+      },
+      {
+        "intent": "ask_doctors_appointment",
+        "text": "When am I going to see the doctor?"
+      },
+      {
+        "intent": "ask_doctors_appointment",
+        "text": "My appointment with doctor?"
+      },
+      {
+        "intent": "ask_food",
+        "text": "Can I eat pizza now?"
+      },
+      {
+        "intent": "ask_food",
+        "text": "Can I have some pizza?"
+      },
+      {
+        "intent": "ask_food",
+        "text": "Pizza is ok?"
+      },
+      {
+        "intent": "ask_food",
+        "text": "Eating pizza is fine?"
+      },
+      {
+        "intent": "ask_food",
+        "text": "No problem with eating pizza?"
+      },
+      {
+        "intent": "ask_food",
+        "text": "Am I allowed to have pizza?"
+      },
+      {
+        "intent": "ask_food",
+        "text": "Pizza ok?"
+      },
+      {
+        "intent": "ask_food",
+        "text": "What if I have pizza now"
+      },
+      {
+        "intent": "ask_food",
+        "text": "I'd like to have pizza now"
+      },
+      {
+        "intent": "ask_food",
+        "text": "I want to have pizza now. Is it ok?"
+      },
+      {
+        "intent": "ask_general",
+        "text": "Maternity leave?"
+      },
+      {
+        "intent": "ask_general",
+        "text": "Information on maternity leave"
+      },
+      {
+        "intent": "ask_general",
+        "text": "Tips for maternity leave"
+      },
+      {
+        "intent": "ask_general",
+        "text": "What is maternity leave?"
+      },
+      {
+        "intent": "ask_general",
+        "text": "Any advice on maternity leave?"
+      },
+      {
+        "intent": "ask_general",
+        "text": "Update me maternity leave"
+      },
+      {
+        "intent": "ask_general",
+        "text": "Taking maternity leave?"
+      },
+      {
+        "intent": "ask_general",
+        "text": "Maternity leave issue"
+      },
+      {
+        "intent": "ask_general",
+        "text": "Law about maternity leave"
+      },
+      {
+        "intent": "ask_general",
+        "text": "Submitting maternity leave"
+      },
+      {
+        "intent": "ask_general",
+        "text": "Lactation?"
+      },
+      {
+        "intent": "ask_general",
+        "text": "Breast-feeding?"
+      },
+      {
+        "intent": "ask_general",
+        "text": "Breast-feeding tips"
+      },
+      {
+        "intent": "ask_general",
+        "text": "Good Lactation?"
+      },
+      {
+        "intent": "ask_general",
+        "text": "Lactation guide"
+      },
+      {
+        "intent": "ask_general",
+        "text": "Breast-feeding guide"
+      },
+      {
+        "intent": "ask_general",
+        "text": "Breast-feeding preparations"
+      },
+      {
+        "intent": "ask_general",
+        "text": "All about lactacion"
+      },
+      {
+        "intent": "ask_general",
+        "text": "Breast-feeding information"
+      },
+      {
+        "intent": "ask_general",
+        "text": "Breastfeed my baby"
+      },
+      {
+        "intent": "ask_advice",
+        "text": "ask advice"
+      },
+      {
+        "intent": "ask_advice",
+        "text": "i need some advice"
+      },
+      {
+        "intent": "ask_advice",
+        "text": "i need help"
+      },
+      {
+        "intent": "ask_advice",
+        "text": "need advice"
+      },
+      {
+        "intent": "ask_advice",
+        "text": "need help"
+      },
+      {
+        "intent": "ask_advice",
+        "text": "any advice"
+      },
+      {
+        "intent": "ask_advice",
+        "text": "give me some advice"
+      },
+      {
+        "intent": "ask_music",
+        "text": "play music"
+      },
+      {
+        "intent": "ask_music",
+        "text": "I need music"
+      },
+      {
+        "intent": "ask_music",
+        "text": "music"
+      },
+      {
+        "intent": "ask_music",
+        "text": "I want some music"
+      },
+      {
+        "intent": "ask_music",
+        "text": "I want to listen some music"
+      },
+      {
+        "intent": "ask_music",
+        "text": "please play some music"
+      },
+      {
+        "intent": "make_doctors_appointment",
+        "text": "make appointment"
+      },
+      {
+        "intent": "make_doctors_appointment",
+        "text": "schedule my appointment"
+      },
+      {
+        "intent": "make_doctors_appointment",
+        "text": "change my appointment"
+      },
+      {
+        "intent": "make_doctors_appointment",
+        "text": "reschedule my appointment"
+      },
+      {
+        "intent": "make_doctors_appointment",
+        "text": "i need to change my doctor's appointment"
+      },
+      {
+        "intent": "make_doctors_appointment",
+        "text": "i want rechedule my docctor's appointment"
+      },
+      {
+        "intent": "make_doctors_appointment",
+        "text": "rechedule doctor's appointment"
+      },
+      {
+        "intent": "make_doctors_appointment",
+        "text": "change the date on visiting the doctor"
+      },
+      {
+        "intent": "ask_general_info",
+        "text": "ask general info"
+      },
+      {
+        "intent": "ask_doctor",
+        "text": "ask doctor"
       }
     ],
     "regex_features": [],

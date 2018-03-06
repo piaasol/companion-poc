@@ -5,12 +5,32 @@ action_names:
 - utter_did_that_help
 - utter_happy
 - utter_goodbye
+- utter_check_context
+- utter_comment_bad_symptom
+- utter_ask_advice
+- utter_save_clipboard
+- utter_play_music
+- utter_alternative_answer
+- utter_ask_doctor
+- utter_ask_general_info
+- utter_make_doctors_appointment
+- utter_ask_doctors_appointment
 actions:
 - utter_greet
 - utter_cheer_up
 - utter_did_that_help
 - utter_happy
 - utter_goodbye
+- utter_check_context
+- utter_comment_bad_symptom
+- utter_ask_advice
+- utter_save_clipboard
+- utter_play_music
+- utter_alternative_answer
+- utter_ask_doctor
+- utter_ask_general_info
+- utter_make_doctors_appointment
+- utter_ask_doctors_appointment
 config:
   store_entities_as_slots: true
 entities: []
@@ -21,43 +41,122 @@ intents:
 - mood_deny
 - mood_great
 - mood_unhappy
+- ask_general
+- comment_bad_symptom
+- ask_food_recommendation
+- ask_symptom_hip_pain_medical_advice
+- user_purchase
+- user_bloom_question
+- user_device_question
+- user_set_reminder
+- ask_symptom
+- ask_doctors_appointment
+- ask_food
+- ask_advice
+- ask_music
+- default
+- make_doctors_appointment
+- ask_general_info
+- ask_doctor
 slots: {}
 templates:
-  utter_cheer_up:
+  utter_alternative_answer:
   - buttons:
       actions:
-        dialog:
-          elements:
-          - label: Pickup Location
-            name: loc_origin
-            type: text
-          - label: Dropoff Location
-            name: loc_destination
-            type: text
-          submit_label: Request
-          title: Request a Ride
-    text: Here is something to cheer you up
-  utter_did_that_help:
-  - text: Did that help you?
-  utter_goodbye:
-  - text: bye
-  utter_greet:
+      - name: ask doctor
+        text: To Doctor
+        type: button
+        value: ask doctor
+      - name: ask general info
+        text: General info
+        type: button
+        value: ask general info
+    text: I'm sorry, I can't give you specific answer but I can forward your question
+      to a doctor or give you general info on the symptom
+  utter_ask_advice:
+  - text: utter_ask_advice
+  utter_ask_doctor:
+  - text: utter_ask_doctor
+  utter_ask_doctors_appointment:
+  - buttons:
+      actions:
+      - name: great
+        text: 'No'
+        type: button
+        value: great
+      - name: make appointment
+        text: 'Yes'
+        type: button
+        value: make appointment
+    text: My record show that your next visit to Dr.Brown is on 21st at 10:00am. Do
+      you want to reschedule?
+  utter_ask_general_info:
+  - text: utter_ask_general_info
+  utter_check_context:
   - buttons:
       actions:
       - name: great
         text: Great
         type: button
         value: great
-      - confirm:
-        - dismiss_text: No, thanks
-          ok_text: Thanks
-          text: Would you like to see some nice pics to cheer you up?
-          title: Oh that is too bad
-        name: sad
-        text: Sad
+      - name: bad
+        text: Bad
         type: button
-        value: sad
-    text: Hey! How are you?
+        value: hate eating
+    text: 'utter_check_context: health over view, Enviornmental info, checking feeling
+      included in the action'
+  utter_cheer_up:
+  - buttons:
+      dialog:
+        callback_id: sad dialog
+        elements:
+        - label: Pickup Location
+          name: loc_origin
+          type: text
+        - label: Dropoff Location
+          name: loc_destination
+          type: text
+        submit_label: Request
+        title: Request a Ride
+    text: Here is something to cheer you up
+  utter_comment_bad_symptom:
+  - buttons:
+      actions:
+      - name: ask advice
+        text: Advice
+        type: button
+        value: ask advice
+      - name: play music
+        text: Music
+        type: button
+        value: play music
+      - name: great
+        text: Book
+        type: button
+        value: great
+      - name: great
+        text: Pregnancy Q
+        type: button
+        value: great
+      - name: great
+        text: Nothing
+        type: button
+        value: great
+    text: utter_comment_bad_symptom
+  utter_default:
+  - text: default
+  utter_did_that_help:
+  - text: Did that help you?
+  utter_goodbye:
+  - text: bye
+  utter_greet:
+  - text: trigger greet start
   utter_happy:
-  - text: Great carry on!
+  - text: Great, carry on!!
+  utter_make_doctors_appointment:
+  - text: utter_make_doctors_appointment
+  utter_play_music:
+  - text: utter_play_music
+  utter_save_clipboard:
+  - text: utter_save_clipboard
 topics: []
