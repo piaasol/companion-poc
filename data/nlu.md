@@ -56,6 +56,11 @@
 - so so perfect
 - so good
 - so perfect
+## intent:ask_bad_mood
+- bad
+- I feel bad
+- very bad
+- feel bad
 
 ## intent:mood_unhappy
 - my day was horrible
@@ -83,9 +88,6 @@
 - can't find anything to eat
 - I have no appetite
 - appetite is off
-- bad
-- I feel bad
-- very bad
 - I don't feel good
 - I don't feel well
 - hip pain
@@ -154,6 +156,8 @@
 - When should I change my Bloom patch?
 ## intent:user_set_reminder
 - Remind me later
+- set reminder
+- reminder
 ## intent:ask_symptom
 - pre-eclampsia?
 - what is pre-eclampsia?
@@ -245,3 +249,12 @@
 
 ## intent:ask_symptom_more_info
 - ask symptom more info
+## intent:ask_symptom_still_bad
+- still bad
+## intent:ask_symptom_worse
+- getting worse
+## intent:ask_remedy
+- ask remedy
+## intent:measure_trigger
+- weight measure
+- bp measure

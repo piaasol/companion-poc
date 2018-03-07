@@ -38,11 +38,26 @@
 - utter_ask_symptom_more_info
 - utter_save_clipboard
 
+## flow 7-1       <!-- ask symptom-->
+* ask_bad_symptom
+- utter_ask_bad_symptom
+* symptom_still_bad
+- utter_symptom_still_bad
+* ask_remedy
+- utter_ask_remedy
+
+## flow 7-2
+* ask_bad_symptom
+- utter_ask_bad_symptom
+* symptom_worse
+- utter_symptom_still_bad
+* ask_remedy
+- utter_ask_remedy
 ## flow 11-12-1              <!-- bot trigger greet  -->
 * greet              
   - utter_greet  <!--health over view, Enviornmental info, checking feeling included in the action-->
-* ask_bad_symptom <!-- user utterance, in format _intent[entities] -->
-  - utter_ask_bad_symptom
+* ask_bad_mood <!-- user utterance, in format _intent[entities] -->
+  - utter_ask_bad_mood
 * ask_advice
   - utter_ask_advice
   - utter_save_clipboard
@@ -50,18 +65,23 @@
 ## flow 11-12-2
 * greet
  - utter_greet  <!--health over view, Enviornmental info, checking feeling included in the action-->
-* ask_bad_symptom <!-- user utterance, in format _intent[entities] -->
- - utter_ask_bad_symptom
+* ask_bad_mood <!-- user utterance, in format _intent[entities] -->
+ - utter_ask_bad_mood
 * ask_music
  - utter_play_music
 
 ## flow 11-12-3
 * greet
  - utter_greet  <!--health over view, Enviornmental info, checking feeling included in the action-->
-* ask_bad_symptom <!-- user utterance, in format _intent[entities] -->
- - utter_ask_bad_symptom
+* ask_bad_mood <!-- user utterance, in format _intent[entities] -->
+ - utter_ask_bad_mood
 * mood_great
  - utter_happy
+ 
+ ## flow 13-1
+ * measure_trigger
+ - utter_measure_trigger
+ 
  
 ## set reminder
 * user_set_reminder

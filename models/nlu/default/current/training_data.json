@@ -198,6 +198,22 @@
         "text": "so perfect"
       },
       {
+        "intent": "ask_bad_mood",
+        "text": "bad"
+      },
+      {
+        "intent": "ask_bad_mood",
+        "text": "I feel bad"
+      },
+      {
+        "intent": "ask_bad_mood",
+        "text": "very bad"
+      },
+      {
+        "intent": "ask_bad_mood",
+        "text": "feel bad"
+      },
+      {
         "intent": "mood_unhappy",
         "text": "my day was horrible"
       },
@@ -292,18 +308,6 @@
       {
         "intent": "ask_bad_symptom",
         "text": "appetite is off"
-      },
-      {
-        "intent": "ask_bad_symptom",
-        "text": "bad"
-      },
-      {
-        "intent": "ask_bad_symptom",
-        "text": "I feel bad"
-      },
-      {
-        "intent": "ask_bad_symptom",
-        "text": "very bad"
       },
       {
         "intent": "ask_bad_symptom",
@@ -544,6 +548,14 @@
       {
         "intent": "user_set_reminder",
         "text": "Remind me later"
+      },
+      {
+        "intent": "user_set_reminder",
+        "text": "set reminder"
+      },
+      {
+        "intent": "user_set_reminder",
+        "text": "reminder"
       },
       {
         "intent": "ask_symptom",
@@ -848,6 +860,26 @@
       {
         "intent": "ask_symptom_more_info",
         "text": "ask symptom more info"
+      },
+      {
+        "intent": "ask_symptom_still_bad",
+        "text": "still bad"
+      },
+      {
+        "intent": "ask_symptom_worse",
+        "text": "getting worse"
+      },
+      {
+        "intent": "ask_remedy",
+        "text": "ask remedy"
+      },
+      {
+        "intent": "measure_trigger",
+        "text": "weight measure"
+      },
+      {
+        "intent": "measure_trigger",
+        "text": "bp measure"
       }
     ],
     "regex_features": [],

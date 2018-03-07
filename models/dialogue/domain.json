@@ -8,6 +8,7 @@
     "intent_mood_unhappy",
     "intent_ask_general",
     "intent_ask_bad_symptom",
+    "intent_ask_bad_mood",
     "intent_ask_food_recommendation",
     "intent_ask_device_purchase",
     "intent_ask_symptom_bloom",
@@ -25,8 +26,13 @@
     "intent_ask_medical_advice",
     "intent_confirm_purchase",
     "intent_ask_symptom_more_info",
+    "intent_symptom_still_bad",
+    "intent_symptom_worse",
+    "intent_ask_remedy",
+    "intent_measure_trigger",
     "prev_action_listen",
     "prev_action_restart",
+    "prev_utter_ask_bad_mood",
     "prev_utter_greet",
     "prev_utter_cheer_up",
     "prev_utter_did_that_help",
@@ -49,6 +55,9 @@
     "prev_utter_confirm_purchase",
     "prev_utter_set_reminder",
     "prev_utter_ask_symptom_bloom",
-    "prev_utter_ask_symptom_more_info"
+    "prev_utter_ask_symptom_more_info",
+    "prev_utter_symptom_still_bad",
+    "prev_utter_ask_remedy",
+    "prev_utter_measure_trigger"
   ]
 }
