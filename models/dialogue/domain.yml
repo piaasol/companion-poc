@@ -202,7 +202,18 @@ templates:
   utter_goodbye:
   - text: bye
   utter_greet:
-  - text: trigger greet start
+  - buttons:
+      actions:
+      - name: great
+        text: Great
+        type: button
+        value: great
+      - name: bad
+        text: Bad
+        type: button
+        value: hate eating
+    text: 'trigger greet start,utter_check_context: health over view, Enviornmental
+      info, checking feeling included in the action'
   utter_happy:
   - text: Great, carry on!!
   utter_make_doctors_appointment:

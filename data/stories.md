@@ -41,7 +41,6 @@
 ## flow 11-12-1              <!-- bot trigger greet  -->
 * greet              
   - utter_greet  <!--health over view, Enviornmental info, checking feeling included in the action-->
-  - utter_check_context
 * ask_bad_symptom <!-- user utterance, in format _intent[entities] -->
   - utter_ask_bad_symptom
 * ask_advice
@@ -96,23 +95,6 @@
  * ask_general_info
  - utter_ask_general_info
  
-## sad path 1               <!-- this is already the start of the next story -->
-* greet
-  - utter_greet             <!-- action of the bot to execute -->
-* mood_unhappy
-  - utter_cheer_up
-  - utter_did_that_help
-* mood_affirm
-  - utter_happy
-
-## sad path 2
-* greet
-  - utter_greet
-* mood_unhappy
-  - utter_cheer_up
-  - utter_did_that_help
-* mood_deny
-  - utter_goodbye
 
 ## say goodbye
 * goodbye
