@@ -72,7 +72,7 @@
 - extremly sad
 - so saad
 - so sad
-## intent:comment_bad_symptom
+## intent:ask_bad_symptom
 - don't feel like eating
 - can't eat
 - don't wanna eat
@@ -88,6 +88,20 @@
 - very bad
 - I don't feel good
 - I don't feel well
+- hip pain
+
+## intent:ask_medical_advice
+- Show me a medical advice for hip pain
+- Any medical suggestions for hip pain?
+- Hip pain is getting worse. Tell me some medical advice.
+- Any medical informaion for bad hip pain?
+- Medical comment on serious hip pain
+- Could you help my hip pain with medical advice
+- Any mendical tips for my hip pain?
+- Counsel of doctors on hip pain
+- hip pain advice
+- I feel more pain on my hips. I need medical advice.
+- Medical advice for my hip pain
 ## intent:ask_food_recommendation
 -  Tell me what to eat
 - What should I eat?
@@ -103,20 +117,7 @@
 - Show me your recommendation
 - Food helps to lower blood pressure
 - Blood pressure- lowering foods
-## intent:ask_symtom_hip_pain_medical_advice
-- I feel more pain on my hips. I need medical advice.
-- Medical advice for my hip pain
-- Show me a medical advice for hip pain
-- Any medical suggestions for hip pain?
-- Hip pain is getting worse. Tell me some medical advice.
-- Any medical informaion for bad hip pain?
-- Medical comment on serious hip pain
-- Could you help my hip pain with medical advice
-- Any mendical tips for my hip pain?
-- Counsel of doctors on hip pain
-- hip pain advice
-- hip pain
-## intent:user_purchase
+## intent:ask_device_purchase
 - Need more patches
 - I need to buy patches
 - I'm about to run out of patches
@@ -127,7 +128,9 @@
 - No more patches
 - Runnig out of patches
 - Patch shopping
-## intent:user_bloom_question
+## intent:confirm_purchase
+- confirm purchase
+## intent:ask_device
 - I think I felt contractions
 - I got uterine contractions
 - Feeing contractions
@@ -173,6 +176,8 @@
 - My schedule with doctor?
 - When am I going to see the doctor?
 - My appointment with doctor?
+- my doctors apointment?
+- my doctors appointment?
 ## intent:ask_food
 - Can I eat pizza now?
 - Can I have some pizza?
@@ -237,3 +242,6 @@
 
 ## intent:ask_doctor
 - ask doctor
+
+## intent:ask_symptom_more_info
+- ask symptom more info

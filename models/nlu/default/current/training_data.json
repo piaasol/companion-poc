@@ -254,64 +254,112 @@
         "text": "so sad"
       },
       {
-        "intent": "comment_bad_symptom",
+        "intent": "ask_bad_symptom",
         "text": "don't feel like eating"
       },
       {
-        "intent": "comment_bad_symptom",
+        "intent": "ask_bad_symptom",
         "text": "can't eat"
       },
       {
-        "intent": "comment_bad_symptom",
+        "intent": "ask_bad_symptom",
         "text": "don't wanna eat"
       },
       {
-        "intent": "comment_bad_symptom",
+        "intent": "ask_bad_symptom",
         "text": "wanna skip meals"
       },
       {
-        "intent": "comment_bad_symptom",
+        "intent": "ask_bad_symptom",
         "text": "hate eating"
       },
       {
-        "intent": "comment_bad_symptom",
+        "intent": "ask_bad_symptom",
         "text": "don't think of eating"
       },
       {
-        "intent": "comment_bad_symptom",
+        "intent": "ask_bad_symptom",
         "text": "can't swallow anything"
       },
       {
-        "intent": "comment_bad_symptom",
+        "intent": "ask_bad_symptom",
         "text": "can't find anything to eat"
       },
       {
-        "intent": "comment_bad_symptom",
+        "intent": "ask_bad_symptom",
         "text": "I have no appetite"
       },
       {
-        "intent": "comment_bad_symptom",
+        "intent": "ask_bad_symptom",
         "text": "appetite is off"
       },
       {
-        "intent": "comment_bad_symptom",
+        "intent": "ask_bad_symptom",
         "text": "bad"
       },
       {
-        "intent": "comment_bad_symptom",
+        "intent": "ask_bad_symptom",
         "text": "I feel bad"
       },
       {
-        "intent": "comment_bad_symptom",
+        "intent": "ask_bad_symptom",
         "text": "very bad"
       },
       {
-        "intent": "comment_bad_symptom",
+        "intent": "ask_bad_symptom",
         "text": "I don't feel good"
       },
       {
-        "intent": "comment_bad_symptom",
+        "intent": "ask_bad_symptom",
         "text": "I don't feel well"
+      },
+      {
+        "intent": "ask_bad_symptom",
+        "text": "hip pain"
+      },
+      {
+        "intent": "ask_medical_advice",
+        "text": "Show me a medical advice for hip pain"
+      },
+      {
+        "intent": "ask_medical_advice",
+        "text": "Any medical suggestions for hip pain?"
+      },
+      {
+        "intent": "ask_medical_advice",
+        "text": "Hip pain is getting worse. Tell me some medical advice."
+      },
+      {
+        "intent": "ask_medical_advice",
+        "text": "Any medical informaion for bad hip pain?"
+      },
+      {
+        "intent": "ask_medical_advice",
+        "text": "Medical comment on serious hip pain"
+      },
+      {
+        "intent": "ask_medical_advice",
+        "text": "Could you help my hip pain with medical advice"
+      },
+      {
+        "intent": "ask_medical_advice",
+        "text": "Any mendical tips for my hip pain?"
+      },
+      {
+        "intent": "ask_medical_advice",
+        "text": "Counsel of doctors on hip pain"
+      },
+      {
+        "intent": "ask_medical_advice",
+        "text": "hip pain advice"
+      },
+      {
+        "intent": "ask_medical_advice",
+        "text": "I feel more pain on my hips. I need medical advice."
+      },
+      {
+        "intent": "ask_medical_advice",
+        "text": "Medical advice for my hip pain"
       },
       {
         "intent": "ask_food_recommendation",
@@ -370,131 +418,87 @@
         "text": "Blood pressure- lowering foods"
       },
       {
-        "intent": "ask_symtom_hip_pain_medical_advice",
-        "text": "I feel more pain on my hips. I need medical advice."
-      },
-      {
-        "intent": "ask_symtom_hip_pain_medical_advice",
-        "text": "Medical advice for my hip pain"
-      },
-      {
-        "intent": "ask_symtom_hip_pain_medical_advice",
-        "text": "Show me a medical advice for hip pain"
-      },
-      {
-        "intent": "ask_symtom_hip_pain_medical_advice",
-        "text": "Any medical suggestions for hip pain?"
-      },
-      {
-        "intent": "ask_symtom_hip_pain_medical_advice",
-        "text": "Hip pain is getting worse. Tell me some medical advice."
-      },
-      {
-        "intent": "ask_symtom_hip_pain_medical_advice",
-        "text": "Any medical informaion for bad hip pain?"
-      },
-      {
-        "intent": "ask_symtom_hip_pain_medical_advice",
-        "text": "Medical comment on serious hip pain"
-      },
-      {
-        "intent": "ask_symtom_hip_pain_medical_advice",
-        "text": "Could you help my hip pain with medical advice"
-      },
-      {
-        "intent": "ask_symtom_hip_pain_medical_advice",
-        "text": "Any mendical tips for my hip pain?"
-      },
-      {
-        "intent": "ask_symtom_hip_pain_medical_advice",
-        "text": "Counsel of doctors on hip pain"
-      },
-      {
-        "intent": "ask_symtom_hip_pain_medical_advice",
-        "text": "hip pain advice"
-      },
-      {
-        "intent": "ask_symtom_hip_pain_medical_advice",
-        "text": "hip pain"
-      },
-      {
-        "intent": "user_purchase",
+        "intent": "ask_device_purchase",
         "text": "Need more patches"
       },
       {
-        "intent": "user_purchase",
+        "intent": "ask_device_purchase",
         "text": "I need to buy patches"
       },
       {
-        "intent": "user_purchase",
+        "intent": "ask_device_purchase",
         "text": "I'm about to run out of patches"
       },
       {
-        "intent": "user_purchase",
+        "intent": "ask_device_purchase",
         "text": "Need to shop for patches"
       },
       {
-        "intent": "user_purchase",
+        "intent": "ask_device_purchase",
         "text": "Shopping for patches"
       },
       {
-        "intent": "user_purchase",
+        "intent": "ask_device_purchase",
         "text": "Buying patches"
       },
       {
-        "intent": "user_purchase",
+        "intent": "ask_device_purchase",
         "text": "Used up patches"
       },
       {
-        "intent": "user_purchase",
+        "intent": "ask_device_purchase",
         "text": "No more patches"
       },
       {
-        "intent": "user_purchase",
+        "intent": "ask_device_purchase",
         "text": "Runnig out of patches"
       },
       {
-        "intent": "user_purchase",
+        "intent": "ask_device_purchase",
         "text": "Patch shopping"
       },
       {
-        "intent": "user_bloom_question",
+        "intent": "confirm_purchase",
+        "text": "confirm purchase"
+      },
+      {
+        "intent": "ask_device",
         "text": "I think I felt contractions"
       },
       {
-        "intent": "user_bloom_question",
+        "intent": "ask_device",
         "text": "I got uterine contractions"
       },
       {
-        "intent": "user_bloom_question",
+        "intent": "ask_device",
         "text": "Feeing contractions"
       },
       {
-        "intent": "user_bloom_question",
+        "intent": "ask_device",
         "text": "The contractions were occurred"
       },
       {
-        "intent": "user_bloom_question",
+        "intent": "ask_device",
         "text": "Contractions occurring"
       },
       {
-        "intent": "user_bloom_question",
+        "intent": "ask_device",
         "text": "It might be contractions"
       },
       {
-        "intent": "user_bloom_question",
+        "intent": "ask_device",
         "text": "It seem to be contractions"
       },
       {
-        "intent": "user_bloom_question",
+        "intent": "ask_device",
         "text": "Contractions during week34"
       },
       {
-        "intent": "user_bloom_question",
+        "intent": "ask_device",
         "text": "Is it normal to feel contractions?"
       },
       {
-        "intent": "user_bloom_question",
+        "intent": "ask_device",
         "text": "No problem with feeling contractions?"
       },
       {
@@ -620,6 +624,14 @@
       {
         "intent": "ask_doctors_appointment",
         "text": "My appointment with doctor?"
+      },
+      {
+        "intent": "ask_doctors_appointment",
+        "text": "my doctors apointment?"
+      },
+      {
+        "intent": "ask_doctors_appointment",
+        "text": "my doctors appointment?"
       },
       {
         "intent": "ask_food",
@@ -832,6 +844,10 @@
       {
         "intent": "ask_doctor",
         "text": "ask doctor"
+      },
+      {
+        "intent": "ask_symptom_more_info",
+        "text": "ask symptom more info"
       }
     ],
     "regex_features": [],

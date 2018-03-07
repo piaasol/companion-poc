@@ -6,7 +6,7 @@ action_names:
 - utter_happy
 - utter_goodbye
 - utter_check_context
-- utter_comment_bad_symptom
+- utter_ask_bad_symptom
 - utter_ask_advice
 - utter_save_clipboard
 - utter_play_music
@@ -15,6 +15,14 @@ action_names:
 - utter_ask_general_info
 - utter_make_doctors_appointment
 - utter_ask_doctors_appointment
+- utter_ask_food_recommendation
+- utter_ask_medical_advice
+- utter_ask_device
+- utter_ask_device_purchase
+- utter_confirm_purchase
+- utter_set_reminder
+- utter_ask_symptom_bloom
+- utter_ask_symptom_more_info
 actions:
 - utter_greet
 - utter_cheer_up
@@ -22,7 +30,7 @@ actions:
 - utter_happy
 - utter_goodbye
 - utter_check_context
-- utter_comment_bad_symptom
+- utter_ask_bad_symptom
 - utter_ask_advice
 - utter_save_clipboard
 - utter_play_music
@@ -31,6 +39,14 @@ actions:
 - utter_ask_general_info
 - utter_make_doctors_appointment
 - utter_ask_doctors_appointment
+- utter_ask_food_recommendation
+- utter_ask_medical_advice
+- utter_ask_device
+- utter_ask_device_purchase
+- utter_confirm_purchase
+- utter_set_reminder
+- utter_ask_symptom_bloom
+- utter_ask_symptom_more_info
 config:
   store_entities_as_slots: true
 entities: []
@@ -42,12 +58,11 @@ intents:
 - mood_great
 - mood_unhappy
 - ask_general
-- comment_bad_symptom
+- ask_bad_symptom
 - ask_food_recommendation
-- ask_symptom_hip_pain_medical_advice
-- user_purchase
-- user_bloom_question
-- user_device_question
+- ask_device_purchase
+- ask_symptom_bloom
+- ask_device
 - user_set_reminder
 - ask_symptom
 - ask_doctors_appointment
@@ -58,6 +73,9 @@ intents:
 - make_doctors_appointment
 - ask_general_info
 - ask_doctor
+- ask_medical_advice
+- confirm_purchase
+- ask_symptom_more_info
 slots: {}
 templates:
   utter_alternative_answer:
@@ -75,6 +93,44 @@ templates:
       to a doctor or give you general info on the symptom
   utter_ask_advice:
   - text: utter_ask_advice
+  utter_ask_bad_symptom:
+  - buttons:
+      actions:
+      - name: ask advice
+        text: Advice
+        type: button
+        value: ask advice
+      - name: play music
+        text: Music
+        type: button
+        value: play music
+      - name: great
+        text: Book
+        type: button
+        value: great
+      - name: great
+        text: Pregnancy Q
+        type: button
+        value: great
+      - name: great
+        text: Nothing
+        type: button
+        value: great
+    text: utter_ask_bad_symptom
+  utter_ask_device:
+  - text: ask_device
+  utter_ask_device_purchase:
+  - buttons:
+      actions:
+      - name: great
+        text: 'No'
+        type: button
+        value: great
+      - name: confirm purchase
+        text: 'Yes'
+        type: button
+        value: make appointment
+    text: utter_ask_device_purchase
   utter_ask_doctor:
   - text: utter_ask_doctor
   utter_ask_doctors_appointment:
@@ -90,8 +146,26 @@ templates:
         value: make appointment
     text: My record show that your next visit to Dr.Brown is on 21st at 10:00am. Do
       you want to reschedule?
+  utter_ask_food_recommendation:
+  - text: utter_ask_food_recommendation
   utter_ask_general_info:
   - text: utter_ask_general_info
+  utter_ask_medical_advice:
+  - text: utter_ask_medical_advice
+  utter_ask_symptom_bloom:
+  - buttons:
+      actions:
+      - name: great
+        text: 'No'
+        type: button
+        value: great
+      - name: ask symptom more info
+        text: 'Yes'
+        type: button
+        value: ask symptom more info
+    text: utter_ask_symptom_bloom
+  utter_ask_symptom_more_info:
+  - text: utter_ask_symptom_more_info
   utter_check_context:
   - buttons:
       actions:
@@ -119,30 +193,8 @@ templates:
         submit_label: Request
         title: Request a Ride
     text: Here is something to cheer you up
-  utter_comment_bad_symptom:
-  - buttons:
-      actions:
-      - name: ask advice
-        text: Advice
-        type: button
-        value: ask advice
-      - name: play music
-        text: Music
-        type: button
-        value: play music
-      - name: great
-        text: Book
-        type: button
-        value: great
-      - name: great
-        text: Pregnancy Q
-        type: button
-        value: great
-      - name: great
-        text: Nothing
-        type: button
-        value: great
-    text: utter_comment_bad_symptom
+  utter_confirm_purchase:
+  - text: confirm purchase
   utter_default:
   - text: default
   utter_did_that_help:
@@ -159,4 +211,6 @@ templates:
   - text: utter_play_music
   utter_save_clipboard:
   - text: utter_save_clipboard
+  utter_set_reminder:
+  - text: Okay, I will ask you later
 topics: []
