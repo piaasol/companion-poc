@@ -771,6 +771,14 @@
       },
       {
         "intent": "ask_advice",
+        "text": "asking advice"
+      },
+      {
+        "intent": "ask_advice",
+        "text": "advice ask"
+      },
+      {
+        "intent": "ask_advice",
         "text": "i need some advice"
       },
       {
@@ -856,6 +864,14 @@
       {
         "intent": "ask_doctor",
         "text": "ask doctor"
+      },
+      {
+        "intent": "ask_doctor",
+        "text": "asking doctor"
+      },
+      {
+        "intent": "ask_doctor",
+        "text": "doctor consulting"
       },
       {
         "intent": "ask_symptom_more_info",

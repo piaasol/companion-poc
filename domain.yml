@@ -33,6 +33,9 @@ intents:
 
 actions:
 - utter_ask_bad_mood
+- action.bot_trigger.ActionGreetTrigger
+- action.user_trigger.ActionAskDoctorsAppointment
+- action.user_trigger.ActionBadMood
 - utter_greet
 - utter_cheer_up
 - utter_did_that_help
@@ -70,7 +73,18 @@ templates:
 
   utter_ask_medical_advice:
     - text : "utter_ask_medical_advice"
-
+  utter_greet:
+    - text : "How are you feeling?"
+      buttons :
+        actions :
+          - name : "great"
+            text : "Great"
+            type : "button"
+            value : ""
+          - name : "bad"
+            text : "Bad"
+            type : "button"
+            value : ""  
   utter_ask_food_recommendation:
     - text : "utter_ask_food_recommendation"
       buttons :
@@ -129,7 +143,7 @@ templates:
     - text : "utter_make_doctors_appointment"   
 
   utter_ask_doctors_appointment:
-    - text : "My record show that your next visit to Dr.Brown is on 21st at 10:00am. Do you want to reschedule?"
+    - text : ""
       buttons :
         actions :
           - name : "great"
@@ -182,7 +196,7 @@ templates:
             type : "button"
             value : "great"  
   utter_ask_bad_mood:
-    - text : "utter_ask_bad_mood" 
+    - text : "Are you not feeling well regarding your pregnancy symptoms? Please let me know how I can help." 
       buttons :
         actions :
           - name : "ask advice"
@@ -221,19 +235,6 @@ templates:
               text : "Bad"
               type : "button"
               value : "hate eating" 
-
-  utter_greet:
-    - text: "trigger greet start,utter_check_context: health over view, Enviornmental info, checking feeling included in the action"
-      buttons :
-          actions :
-            - name : "great"
-              text : "Great"
-              type : "button"
-              value : "great" 
-            - name : "feel bad"
-              text : "Bad"
-              type : "button"
-              value : "feel bad" 
 
   utter_cheer_up: 
     - text : "Here is something to cheer you up"

@@ -216,6 +216,8 @@
 - Breastfeed my baby
 ## intent:ask_advice
 - ask advice
+- asking advice
+- advice ask
 - i need some advice
 - i need help
 - need advice
@@ -246,6 +248,8 @@
 
 ## intent:ask_doctor
 - ask doctor
+- asking doctor
+- doctor consulting
 
 ## intent:ask_symptom_more_info
 - ask symptom more info

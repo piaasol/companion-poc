@@ -44,7 +44,7 @@ class SlackBot(SlackClient, OutputChannel):
         print("SlackBot._convert_to_slack_buttons")
 
     def send_text_with_buttons(self, recipient_id, message, buttons, **kwargs):
-        print("SlackBot.send_text_with_buttons")
+        print("SlackBot.send_text_with_buttons",recipient_id)
         if len(buttons) > 5:
             logger.warn("Slack API currently allows only up to 5 buttons. "
                         "If you add more, all will be ignored.")
@@ -137,17 +137,17 @@ class SlackInput(HttpInputComponent):
     def blueprint(self, on_new_message):
         print("SlackInput.blueprint")
         slack_webhook = Blueprint('slack_webhook', __name__)
-        message_actions = Blueprint('message_actions',__name__)
 
         @slack_webhook.route("/", methods=['GET'])
         def health():
             print("SlackInput.health()")
             return jsonify({"status": "ok"})
         
-        @message_actions.route("/message_actions", methods=['POST'])
+        @slack_webhook.route("/message_actions", methods=['POST'])
         def message_actions():
-            message_action = json.loads(slack_event['payload'])
-            print("message action check===>",message_actions)
+            request.get_data()
+            #message_action = json.loads(slack_event['payload'])
+            print("message action check===>",request.get_data())
 
         @slack_webhook.route("/webhook", methods=['GET', 'POST'])
         def webhook():

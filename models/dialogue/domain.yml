@@ -1,6 +1,9 @@
 action_factory: null
 action_names:
 - utter_ask_bad_mood
+- action_greet_trigger
+- action_ask_doctors_appointment
+- action_bad_mood
 - utter_greet
 - utter_cheer_up
 - utter_did_that_help
@@ -29,6 +32,9 @@ action_names:
 - utter_measure_trigger
 actions:
 - utter_ask_bad_mood
+- action.bot_trigger.ActionGreetTrigger
+- action.user_trigger.ActionAskDoctorsAppointment
+- action.user_trigger.ActionBadMood
 - utter_greet
 - utter_cheer_up
 - utter_did_that_help
@@ -129,7 +135,8 @@ templates:
         text: Nothing
         type: button
         value: great
-    text: utter_ask_bad_mood
+    text: Are you not feeling well regarding your pregnancy symptoms? Please let me
+      know how I can help.
   utter_ask_bad_symptom:
   - buttons:
       actions:
@@ -173,8 +180,7 @@ templates:
         text: 'Yes'
         type: button
         value: make appointment
-    text: My record show that your next visit to Dr.Brown is on 21st at 10:00am. Do
-      you want to reschedule?
+    text: ''
   utter_ask_food_recommendation:
   - buttons:
       actions:
@@ -252,13 +258,12 @@ templates:
       - name: great
         text: Great
         type: button
-        value: great
-      - name: feel bad
+        value: ''
+      - name: bad
         text: Bad
         type: button
-        value: feel bad
-    text: 'trigger greet start,utter_check_context: health over view, Enviornmental
-      info, checking feeling included in the action'
+        value: ''
+    text: How are you feeling?
   utter_happy:
   - text: Great, carry on!!
   utter_make_doctors_appointment:

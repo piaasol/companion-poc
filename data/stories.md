@@ -1,7 +1,7 @@
 
 ## flow 1-1     <!--check doctors appointment -->
   * ask_doctors_appointment
-   - utter_ask_doctors_appointment
+   - action_ask_doctors_appointment
   * make_doctors_appointment
    - utter_make_doctors_appointment
    
@@ -55,7 +55,7 @@
 - utter_ask_remedy
 ## flow 11-12-1              <!-- bot trigger greet  -->
 * greet              
-  - utter_greet  <!--health over view, Enviornmental info, checking feeling included in the action-->
+  - action_greet_trigger
 * ask_bad_mood <!-- user utterance, in format _intent[entities] -->
   - utter_ask_bad_mood
 * ask_advice
@@ -64,7 +64,7 @@
   
 ## flow 11-12-2
 * greet
- - utter_greet  <!--health over view, Enviornmental info, checking feeling included in the action-->
+ - action_greet_trigger
 * ask_bad_mood <!-- user utterance, in format _intent[entities] -->
  - utter_ask_bad_mood
 * ask_music
@@ -72,7 +72,7 @@
 
 ## flow 11-12-3
 * greet
- - utter_greet  <!--health over view, Enviornmental info, checking feeling included in the action-->
+ - action_greet_trigger
 * ask_bad_mood <!-- user utterance, in format _intent[entities] -->
  - utter_ask_bad_mood
 * mood_great
