@@ -35,7 +35,7 @@ actions:
 - utter_ask_bad_mood
 - action.bot_trigger.ActionGreetTrigger
 - action.user_trigger.ActionAskDoctorsAppointment
-- action.user_trigger.ActionBadMood
+- action.user_trigger.ActionAskSymptom
 - utter_greet
 - utter_cheer_up
 - utter_did_that_help
@@ -178,7 +178,7 @@ templates:
     - text : "utter_ask_advice"
 
   utter_play_music:
-    - text : "utter_play_music"  
+    - text : "music play now"  
   utter_ask_bad_symptom:
     - text : "utter_ask_bad_symptom:symptom list triggered" 
       buttons :

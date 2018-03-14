@@ -54,6 +54,18 @@ class ActionGreetTrigger(Action):
 
         return []
 
+
+class ActionDeviceTrigger(Action) :
+    @classmethod
+    def name(cls):
+        return 'action_device_trigger'
+    @classmethod
+    def run(cls,dispatcher,tracker,domain):
+        client = MongoClient('localhost',27017)
+        db = client.user_database
+        result = db.user_data.find()
+
+
 def call_weather_api(location) :
     if location =='seoul' :
         url = 'https://simple-weather.p.mashape.com/weatherData?lat=37.5&lng=127'

@@ -3,7 +3,7 @@ action_names:
 - utter_ask_bad_mood
 - action_greet_trigger
 - action_ask_doctors_appointment
-- action_bad_mood
+- action_ask_symptom
 - utter_greet
 - utter_cheer_up
 - utter_did_that_help
@@ -34,7 +34,7 @@ actions:
 - utter_ask_bad_mood
 - action.bot_trigger.ActionGreetTrigger
 - action.user_trigger.ActionAskDoctorsAppointment
-- action.user_trigger.ActionBadMood
+- action.user_trigger.ActionAskSymptom
 - utter_greet
 - utter_cheer_up
 - utter_did_that_help
@@ -271,7 +271,7 @@ templates:
   utter_measure_trigger:
   - text: utter_measure_trigger
   utter_play_music:
-  - text: utter_play_music
+  - text: music play now
   utter_save_clipboard:
   - text: utter_save_clipboard
   utter_set_reminder:

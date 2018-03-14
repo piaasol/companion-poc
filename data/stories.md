@@ -40,7 +40,7 @@
 
 ## flow 7-1       <!-- ask symptom-->
 * ask_bad_symptom
-- utter_ask_bad_symptom
+- action_ask_symptom
 * symptom_still_bad
 - utter_symptom_still_bad
 * ask_remedy
@@ -48,7 +48,7 @@
 
 ## flow 7-2
 * ask_bad_symptom
-- utter_ask_bad_symptom
+- action_ask_symptom
 * symptom_worse
 - utter_symptom_still_bad
 * ask_remedy
@@ -101,7 +101,7 @@
 
 ## comment bad symptom
  * ask_bad_symptom
-  - utter_ask_bad_symptom
+  - action_ask_symptom
   
 ## make doctors appointment
   * make_doctors_appointment
