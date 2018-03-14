@@ -142,7 +142,7 @@ class SlackInput(HttpInputComponent):
     def greet_trigger(self,on_new_message):
 
         print("greet trigger starts")
-        trigger_time = '09:50'
+        trigger_time = '13:40'
         current_time = datetime.time(datetime.now()).strftime('%H:%M')
         if trigger_time == current_time :
             user_id = "U98A5D231"
@@ -154,12 +154,13 @@ class SlackInput(HttpInputComponent):
     def blueprint(self, on_new_message):
         print("SlackInput.blueprint")
         slack_webhook = Blueprint('slack_webhook', __name__)
-        app = Flask(__name__)
-        with app.app_context():
-            schedule.every(1).minutes.do(self.greet_trigger,self,on_new_message)
-            while True:
-                schedule.run_pending()
-                time.sleep(1)
+        schedule.every(1).minutes.do(self.greet_trigger,self,on_new_message)
+#        app = Flask(__name__)
+#        with app.app_context():
+#            schedule.every(1).minutes.do(self.greet_trigger,self,on_new_message)
+#            while True:
+#                schedule.run_pending()
+#                time.sleep(1)
 
         @slack_webhook.route("/", methods=['GET'])
         def health():
