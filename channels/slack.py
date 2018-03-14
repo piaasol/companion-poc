@@ -6,12 +6,15 @@ from __future__ import unicode_literals
 import json
 import logging
 
-from flask import Blueprint, request, jsonify, make_response
+from flask import Blueprint, request, jsonify, make_response, current_app, Flask
 from slackclient import SlackClient
 
 from rasa_core.channels.channel import UserMessage, OutputChannel
 from rasa_core.channels.rest import HttpInputComponent
-
+from rasa_core.events    import ActionExecuted, BotUttered
+from datetime   import datetime
+import schedule
+import time
 logger = logging.getLogger(__name__)
 
 
@@ -113,7 +116,8 @@ class SlackInput(HttpInputComponent):
         self.slack_token = slack_token
         self.slack_channel = slack_channel
         print("SlackInput __init__")
-
+    
+    
     @staticmethod
     def _is_user_message(slack_event):
         print("SlackInput._is_user_message")
@@ -133,10 +137,29 @@ class SlackInput(HttpInputComponent):
     def _get_button_reply(slack_event):
         print("SlackInput._get_button_reply")
         return json.loads(slack_event['payload'][0])['actions'][0]['name']
+    
+    @staticmethod
+    def greet_trigger(self,on_new_message):
+
+        print("greet trigger starts")
+        trigger_time = '09:50'
+        current_time = datetime.time(datetime.now()).strftime('%H:%M')
+        if trigger_time == current_time :
+            user_id = "U98A5D231"
+            out_channel = SlackBot(self.slack_token)
+            user_msg = UserMessage("hello", out_channel, user_id)
+            on_new_message(user_msg)
+            return make_response()
 
     def blueprint(self, on_new_message):
         print("SlackInput.blueprint")
         slack_webhook = Blueprint('slack_webhook', __name__)
+        app = Flask(__name__)
+        with app.app_context():
+            schedule.every(1).minutes.do(self.greet_trigger,self,on_new_message)
+            while True:
+                schedule.run_pending()
+                time.sleep(1)
 
         @slack_webhook.route("/", methods=['GET'])
         def health():
@@ -145,10 +168,27 @@ class SlackInput(HttpInputComponent):
         
         @slack_webhook.route("/message_actions", methods=['POST'])
         def message_actions():
-            request.get_data()
-            #message_action = json.loads(slack_event['payload'])
-            print("message action check===>",request.get_data())
-
+            request_form_data = dict(request.form)
+            
+            print("request.form check===>",request_form_data)
+            if request_form_data['payload'] :
+                action_data = json.loads(request_form_data['payload'][0]).get('actions')
+                if action_data :
+                    action_type = action_data[0]['type']
+                    if action_type == 'select' :
+                        user_text = action_data[0]['selected_options'][0]['value']
+                    elif action_type == 'button' :
+                        user_text = action_data[0]['name']
+                sender_id = json.loads(request_form_data['payload'][0]).get(
+                                                                 'user').get('id')
+                print("sender id checkkkk===",sender_id)
+                out_channel = SlackBot(self.slack_token)
+                user_msg = UserMessage(user_text, out_channel, sender_id)
+                on_new_message(user_msg)
+                return make_response()
+    
+        
+        
         @slack_webhook.route("/webhook", methods=['GET', 'POST'])
         def webhook():
             request.get_data()
@@ -189,12 +229,12 @@ class SlackInput(HttpInputComponent):
                 user_msg = UserMessage(text, out_channel, sender_id)
                 on_new_message(user_msg)
             except Exception as e:
-                print(" except Exception")
+                print("except Exception")
                 logger.error("Exception when trying to handle "
                              "message.{0}".format(e))
                 logger.error(e, exc_info=True)
                 pass
 
             return make_response()
-
+        
         return slack_webhook
