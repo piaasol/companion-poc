@@ -11,10 +11,14 @@ from slackclient import SlackClient
 
 from rasa_core.channels.channel import UserMessage, OutputChannel
 from rasa_core.channels.rest import HttpInputComponent
-from rasa_core.events    import ActionExecuted, BotUttered
+from rasa_core.events    import ActionExecuted, BotUttered, SlotSet
+
 from datetime   import datetime
 import schedule
 import time
+import sched
+from threading import Timer
+
 logger = logging.getLogger(__name__)
 
 
@@ -59,6 +63,7 @@ class SlackBot(SlackClient, OutputChannel):
            print("if actions in buttons",buttons.get('actions'))
            button_attachment = [{"fallback": message,
                                  "callback_id" : message.replace(' ', '_')[:20],
+                                 "color" : "#3AA3E3",
                                  "actions":buttons.get('actions')
                                  }]
            super(SlackBot, self).api_call("chat.postMessage",
@@ -85,6 +90,7 @@ class SlackBot(SlackClient, OutputChannel):
             print("else actions in buttons")
             button_attachment = [{"fallback": message,
                                   "callback_id": message.replace(' ', '_')[:20],
+                                   "color" : "#3AA3E3",
                                   "actions": self._convert_to_slack_buttons(
                                       buttons)}]
 
@@ -116,8 +122,16 @@ class SlackInput(HttpInputComponent):
         self.slack_token = slack_token
         self.slack_channel = slack_channel
         print("SlackInput __init__")
-    
-    
+        
+
+    @classmethod
+    def __enter__(cls):
+        return cls
+
+    @classmethod
+    def __exit__(cls, typ, value, tb):
+        print('exit')
+
     @staticmethod
     def _is_user_message(slack_event):
         print("SlackInput._is_user_message")
@@ -139,103 +153,104 @@ class SlackInput(HttpInputComponent):
         return json.loads(slack_event['payload'][0])['actions'][0]['name']
     
     @staticmethod
-    def greet_trigger(self,on_new_message):
-
+    def greet_trigger(self, on_new_message):
         print("greet trigger starts")
-        trigger_time = '13:40'
-        current_time = datetime.time(datetime.now()).strftime('%H:%M')
-        if trigger_time == current_time :
-            user_id = "U98A5D231"
-            out_channel = SlackBot(self.slack_token)
-            user_msg = UserMessage("hello", out_channel, user_id)
-            on_new_message(user_msg)
-            return make_response()
+        user_id = "U98A5D231"
+        out_channel = SlackBot(self.slack_token)
+        user_msg = UserMessage("greet trigger start now", out_channel, user_id)
+        on_new_message(user_msg)
+        make_response()
 
+    @staticmethod
+    def device_trigger(self, on_new_message):
+        print("greet trigger starts")
+        user_id = "U98A5D231"
+        out_channel = SlackBot(self.slack_token)
+        user_msg = UserMessage("device trigger starts now..", out_channel, user_id)
+        on_new_message(user_msg)
+        make_response()    
+        
     def blueprint(self, on_new_message):
         print("SlackInput.blueprint")
         slack_webhook = Blueprint('slack_webhook', __name__)
-        schedule.every(1).minutes.do(self.greet_trigger,self,on_new_message)
-#        app = Flask(__name__)
-#        with app.app_context():
-#            schedule.every(1).minutes.do(self.greet_trigger,self,on_new_message)
-#            while True:
-#                schedule.run_pending()
-#                time.sleep(1)
-
+        app = Flask(__name__)
+        with app.app_context():
+            self.greet_trigger(self,on_new_message)
+        print("finish...")
+         
         @slack_webhook.route("/", methods=['GET'])
         def health():
-            print("SlackInput.health()")
-            return jsonify({"status": "ok"})
+                print("SlackInput.health()")
+                return jsonify({"status": "ok"})
         
         @slack_webhook.route("/message_actions", methods=['POST'])
         def message_actions():
-            request_form_data = dict(request.form)
-            
-            print("request.form check===>",request_form_data)
-            if request_form_data['payload'] :
-                action_data = json.loads(request_form_data['payload'][0]).get('actions')
-                if action_data :
-                    action_type = action_data[0]['type']
-                    if action_type == 'select' :
-                        user_text = action_data[0]['selected_options'][0]['value']
-                    elif action_type == 'button' :
-                        user_text = action_data[0]['name']
-                sender_id = json.loads(request_form_data['payload'][0]).get(
-                                                                 'user').get('id')
+                request_form_data = dict(request.form)
+                print("request.form check===>",request_form_data)
+                if request_form_data['payload'] :
+                    action_data = json.loads(request_form_data['payload'][0]).get('actions')
+                    if action_data :
+                        action_type = action_data[0]['type']
+                        if action_type == 'select' :
+                            user_text = action_data[0]['selected_options'][0]['value']
+                        elif action_type == 'button' :
+                            user_text = action_data[0]['name']
+                    sender_id = json.loads(request_form_data['payload'][0]).get(
+                                                                     'user').get('id')
                 print("sender id checkkkk===",sender_id)
                 out_channel = SlackBot(self.slack_token)
                 user_msg = UserMessage(user_text, out_channel, sender_id)
                 on_new_message(user_msg)
                 return make_response()
     
-        
-        
         @slack_webhook.route("/webhook", methods=['GET', 'POST'])
         def webhook():
-            request.get_data()
-            print("SlackInput.webhook()")
-            if request.json:
-                print("if request.json")
-                output = request.json
-                print("output check==>",output)
-                if "challenge" in output:
-                    print("if challenge in output")
-                    return make_response(output.get("challenge"), 200,
-                                         {"content_type": "application/json"})
-                elif self._is_user_message(output):
-                    print("elif self._is_user_message")
-                    text = output['event']['text']
-                    sender_id = output.get('event').get('user')
+                request.get_data()
+                print("SlackInput.webhook()")
+                if request.json:
+                    print("if request.json")
+                    output = request.json
+                    print("output check==>",output)
+                    if "challenge" in output:
+                        print("if challenge in output")
+                        return make_response(output.get("challenge"), 200,
+                                             {"content_type": "application/json"})
+                    elif self._is_user_message(output):
+                        print("elif self._is_user_message")
+                        text = output['event']['text']
+                        sender_id = output.get('event').get('user')
+                    else:
+                        print("else")
+                        return make_response()
+                elif request.form:
+                    print("elif request.form")
+                    output = dict(request.form)
+                    if self._is_button_reply(output):
+                        print("if self._is_button_reply")
+                        text = self._get_button_reply(output)
+                        sender_id = json.loads(output['payload'][0]).get(
+                            'user').get('id')
+                    else:
+                        print("else self._is_button_reply")
+                        return make_response()
                 else:
-                    print("else")
+                    print("else request.json")
                     return make_response()
-            elif request.form:
-                print("elif request.form")
-                output = dict(request.form)
-                if self._is_button_reply(output):
-                    print("if self._is_button_reply")
-                    text = self._get_button_reply(output)
-                    sender_id = json.loads(output['payload'][0]).get(
-                        'user').get('id')
-                else:
-                    print("else self._is_button_reply")
-                    return make_response()
-            else:
-                print("else request.json")
+
+                try:
+                    print("try webhook")
+                    out_channel = SlackBot(self.slack_token)
+                    user_msg = UserMessage(text, out_channel, sender_id)
+                    on_new_message(user_msg)
+                except Exception as e:
+                    print("except Exception")
+                    logger.error("Exception when trying to handle "
+                                 "message.{0}".format(e))
+                    logger.error(e, exc_info=True)
+                    pass
+
                 return make_response()
 
-            try:
-                print("try webhook")
-                out_channel = SlackBot(self.slack_token)
-                user_msg = UserMessage(text, out_channel, sender_id)
-                on_new_message(user_msg)
-            except Exception as e:
-                print("except Exception")
-                logger.error("Exception when trying to handle "
-                             "message.{0}".format(e))
-                logger.error(e, exc_info=True)
-                pass
-
-            return make_response()
-        
         return slack_webhook
+
+

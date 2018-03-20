@@ -1,10 +1,6 @@
 action_factory: null
 action_names:
 - utter_ask_bad_mood
-- action_greet_trigger
-- action_ask_doctors_appointment
-- action_ask_symptom
-- utter_greet
 - utter_cheer_up
 - utter_did_that_help
 - utter_happy
@@ -18,8 +14,6 @@ action_names:
 - utter_ask_doctor
 - utter_ask_general_info
 - utter_make_doctors_appointment
-- utter_ask_doctors_appointment
-- utter_ask_food_recommendation
 - utter_ask_medical_advice
 - utter_ask_device
 - utter_ask_device_purchase
@@ -30,12 +24,21 @@ action_names:
 - utter_symptom_still_bad
 - utter_ask_remedy
 - utter_measure_trigger
+- utter_greet
+- utter_ask_forward_doctor
+- action_food_recommendation
+- action_ask_symptom
+- action_set_remind
+- action_start_greet_trigger
+- ask_doctors_appointment
+- action_ask_symptom_bloom
+- action_ask_device_purchase
+- action_ask_food
+- action_ask_supplements
+- action_device_trigger
+- action_ask_disease
 actions:
 - utter_ask_bad_mood
-- action.bot_trigger.ActionGreetTrigger
-- action.user_trigger.ActionAskDoctorsAppointment
-- action.user_trigger.ActionAskSymptom
-- utter_greet
 - utter_cheer_up
 - utter_did_that_help
 - utter_happy
@@ -49,8 +52,6 @@ actions:
 - utter_ask_doctor
 - utter_ask_general_info
 - utter_make_doctors_appointment
-- utter_ask_doctors_appointment
-- utter_ask_food_recommendation
 - utter_ask_medical_advice
 - utter_ask_device
 - utter_ask_device_purchase
@@ -61,6 +62,19 @@ actions:
 - utter_symptom_still_bad
 - utter_ask_remedy
 - utter_measure_trigger
+- utter_greet
+- utter_ask_forward_doctor
+- actions.ActionFoodRecommendation
+- actions.ActionAskSymptom
+- actions.ActionSetRemind
+- actions.ActionStartGreetTrigger
+- actions.ActionAskDoctorsAppointment
+- actions.ActionAskSymptomBloom
+- actions.ActionAskDevicePurchase
+- actions.ActionAskFood
+- actions.ActionAskSupplements
+- actions.ActionDeviceTrigger
+- actions.ActionAskDisease
 config:
   store_entities_as_slots: true
 entities: []
@@ -82,7 +96,7 @@ intents:
 - ask_symptom
 - ask_doctors_appointment
 - ask_food
-- ask_advice
+- user_device_question
 - ask_music
 - default
 - make_doctors_appointment
@@ -95,23 +109,24 @@ intents:
 - symptom_worse
 - ask_remedy
 - measure_trigger
-slots: {}
+- start_greet_trigger
+- ask_advice
+- ask_forward_doctor
+- ask_symptom_worse
+- ask_supplements
+- ask_food_advice
+- start_device_trigger
+- ask_disease
+slots:
+  disease:
+    initial_value: null
+    type: rasa_core.slots.TextSlot
 templates:
   utter_alternative_answer:
-  - buttons:
-      actions:
-      - name: ask doctor
-        text: To Doctor
-        type: button
-        value: ask doctor
-      - name: ask general info
-        text: General info
-        type: button
-        value: ask general info
-    text: I'm sorry, I can't give you specific answer but I can forward your question
-      to a doctor or give you general info on the symptom
+  - text: I'm afraid I don't have information on it yet. I recommend accessing internet
+      for that. I'll let you know when I acquire the knowledge later.
   utter_ask_advice:
-  - text: utter_ask_advice
+  - text: You can use a patch up to about a week
   utter_ask_bad_mood:
   - buttons:
       actions:
@@ -140,11 +155,11 @@ templates:
   utter_ask_bad_symptom:
   - buttons:
       actions:
-      - name: still bad
+      - name: it is still bad
         text: Still Bad
         type: button
         value: still bad
-      - name: getting worse
+      - name: symptom is getting worse
         text: Worse
         type: button
         value: getting worse
@@ -154,77 +169,88 @@ templates:
         value: great
     text: utter_ask_bad_symptom:symptom list triggered
   utter_ask_device:
-  - text: ask_device
+  - text: You can use a patch up to about a week
   utter_ask_device_purchase:
   - buttons:
       actions:
-      - name: great
-        text: 'No'
-        type: button
-        value: great
       - name: confirm purchase
+        style: primary
         text: 'Yes'
         type: button
         value: make appointment
-    text: utter_ask_device_purchase
-  utter_ask_doctor:
-  - text: utter_ask_doctor
-  utter_ask_doctors_appointment:
-  - buttons:
-      actions:
       - name: great
+        style: danger
         text: 'No'
         type: button
         value: great
-      - name: make appointment
-        text: 'Yes'
-        type: button
-        value: make appointment
-    text: ''
-  utter_ask_food_recommendation:
+    text: You need about 8 more patches before birth. Shall I order 8 using the sam
+  utter_ask_doctor:
   - buttons:
       actions:
-      - name: ask remedy
-        text: 'Yes'
+      - name: yes, I agree sending my info to doctor
+        style: primary
+        text: Agree
         type: button
-        value: ask remedy
-      - name: set reminder
-        text: Let me know later
-        type: button
-        value: et reminder
+        value: ''
       - name: great
-        text: 'Yes'
+        style: danger
+        text: Disagree
         type: button
-        value: great
-    text: utter_ask_food_recommendation
+        value: ''
+    text: I will forward your basic information and your symptom to OBGYN doctors'
+      forum and ask if anyone can answer. Do you agree passing the information? Your
+      name, address and contact information weill not be shared by me.
+  utter_ask_forward_doctor:
+  - text: Okay. Your question about hip pain is posted. I'll let you know when i get
+      an answer or chat request from a doctor.
   utter_ask_general_info:
   - text: utter_ask_general_info
   utter_ask_medical_advice:
-  - text: utter_ask_medical_advice
+  - buttons:
+      actions:
+      - name: ask doctor
+        style: primary
+        text: To Doctor
+        type: button
+        value: ask doctor
+      - name: ask general info
+        text: General info
+        type: button
+        value: ask general info
+    text: I'm sorry, I can't give you specific answer but I can forward your question
+      to a doctor or give you general info on the symptom
   utter_ask_remedy:
   - text: utter_ask_remedy
   utter_ask_symptom_bloom:
   - buttons:
       actions:
-      - name: great
-        text: 'No'
-        type: button
-        value: great
       - name: ask symptom more info
+        style: primary
         text: 'Yes'
         type: button
         value: ask symptom more info
+      - name: great
+        style: danger
+        text: 'No'
+        type: button
+        value: great
     text: utter_ask_symptom_bloom
   utter_ask_symptom_more_info:
-  - text: utter_ask_symptom_more_info
+  - text: Before 'true' labor begins, you may have 'false' labor pains. These are
+      also known as Braxton Hicks contractions. They are your body's way of getting
+      ready for the real thing -- the day you give birth -- but they are not a sign
+      that labor has begun or is getting ready to begin. I'll put more info on your
+      Clipboard.
   utter_check_context:
   - buttons:
       actions:
       - name: great
+        style: primary
         text: Great
         type: button
         value: great
       - name: bad
+        style: danger
         text: Bad
         type: button
         value: hate eating
@@ -245,7 +271,7 @@ templates:
         title: Request a Ride
     text: Here is something to cheer you up
   utter_confirm_purchase:
-  - text: confirm purchase
+  - text: Order places. It'll arrive within 5days.
   utter_default:
   - text: default
   utter_did_that_help:
@@ -253,17 +279,7 @@ templates:
   utter_goodbye:
   - text: bye
   utter_greet:
-  - buttons:
-      actions:
-      - name: great
-        text: Great
-        type: button
-        value: ''
-      - name: bad
-        text: Bad
-        type: button
-        value: ''
-    text: How are you feeling?
+  - text: Hi, there
   utter_happy:
   - text: Great, carry on!!
   utter_make_doctors_appointment:
@@ -277,5 +293,17 @@ templates:
   utter_set_reminder:
   - text: Okay, I will ask you later
   utter_symptom_still_bad:
-  - text: 'utter_symptom_still_bad : do you want remedy?'
+  - buttons:
+      actions:
+      - name: Yes, i want remedy
+        style: primary
+        text: 'Yes'
+        type: button
+        value: ask symptom more info
+      - name: great
+        style: danger
+        text: 'No'
+        type: button
+        value: great
+    text: 'utter_symptom_still_bad : do you want remedy?'
 topics: []

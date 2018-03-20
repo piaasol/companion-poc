@@ -57,10 +57,12 @@
 - so good
 - so perfect
 ## intent:ask_bad_mood
-- bad
 - I feel bad
-- very bad
+- i feel very bad
 - feel bad
+- i have bad mood
+- my mood is not good
+- my mood is bad
 
 ## intent:mood_unhappy
 - my day was horrible
@@ -130,9 +132,17 @@
 - No more patches
 - Runnig out of patches
 - Patch shopping
+- i need more patch
+- need patch
+- need more patch
+- I need more patch
+- need more patches
 ## intent:confirm_purchase
 - confirm purchase
-## intent:ask_device
+- i am confirming the purchse
+- confirming purchase
+- please continue the purchase
+## intent:ask_symptom_bloom
 - I think I felt contractions
 - I got uterine contractions
 - Feeing contractions
@@ -158,6 +168,12 @@
 - Remind me later
 - set reminder
 - reminder
+- please remind me later
+- remind me later
+- plz remind me
+- reminder start
+- remind this
+- start remind
 ## intent:ask_symptom
 - pre-eclampsia?
 - what is pre-eclampsia?
@@ -195,6 +211,8 @@
 - I want to have pizza now. Is it ok?
 ## intent:ask_general
 - Maternity leave?
+- what is maternity leave
+- I want to know more about maternity leave
 - Information on maternity leave
 - Tips for maternity leave
 - What is maternity leave?
@@ -205,6 +223,8 @@
 - Law about maternity leave
 - Submitting maternity leave
 - Lactation?
+- what is lactation?
+- I want do find out about lactation
 - Breast-feeding?
 - Breast-feeding tips
 - Good Lactation?
@@ -224,6 +244,17 @@
 - need help
 - any advice
 - give me some advice
+
+## intent:start_greet_trigger
+- greet trigger start now
+- greet trigger
+- bot trigger greet action start now
+- bot trigger starts now
+- bot trigger start now
+- trigger starts now
+- trigger start
+- greet trigger starts...
+- greet tirgger start...
 
 ## intent:ask_music
 - play music
@@ -245,20 +276,76 @@
 
 ## intent:ask_general_info
 - ask general info
+- I need general info
+- general info, please
+- general info needed
 
 ## intent:ask_doctor
 - ask doctor
 - asking doctor
 - doctor consulting
+- i would like to consult with the doctor
+- please, ask the doctor
 
 ## intent:ask_symptom_more_info
 - ask symptom more info
+- yes, I need more information for the symptom
+- I need more info about the symptom
+- need more details about the symptom
+- want more info about the symptom
 ## intent:ask_symptom_still_bad
 - still bad
+- my symptom is still bad
+- yes, it is still bad
+- my symptom has not been any better
+- my symptom is still there
+
 ## intent:ask_symptom_worse
 - getting worse
+- the symptom is even worse
+- it is geeting worse
+- the symptom has gone worse
+- my symptom is getting worse
 ## intent:ask_remedy
 - ask remedy
+- I want to get remedy
+- I need remedy
+- yes, need remedy
+- please, I need remedy
+- I am asking for remedy
 ## intent:measure_trigger
 - weight measure
 - bp measure
+## intent:ask_forward_doctor
+- yes, I agree sending my info to doctor
+- I agree forwarding my information to doctors
+- please send my info to doctors
+- I agree to forward my info at doctors' forum
+## intent:ask_food_advice
+- helpful food for this disease
+- what food is good for this disease?
+- what food is for the disease?
+- what food is good for the disease?
+- helpful food for the disease
+## intent:ask_supplements
+- please, recommend some supplements
+- supplements?
+- supplements
+- supplement?
+- please, recommend some supplement
+- recommend me some helpful supplements for the disease
+- what supplement is good for the disease?
+- do i need any supplements?
+## intent:start_device_trigger
+- device trigger starts now..
+- device trigger start..
+- device trigger starting
+- starts device trigger action
+- start device trigger now
+## intent:ask_disease
+- i want to find more about this disease
+- i would like to know more about this disease
+- i sould like to find more abou this disease
+- let's find out more about this disease
+- wanna find out more about the disease
+

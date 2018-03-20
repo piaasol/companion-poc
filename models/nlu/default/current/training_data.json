@@ -199,19 +199,27 @@
       },
       {
         "intent": "ask_bad_mood",
-        "text": "bad"
-      },
-      {
-        "intent": "ask_bad_mood",
         "text": "I feel bad"
       },
       {
         "intent": "ask_bad_mood",
-        "text": "very bad"
+        "text": "i feel very bad"
       },
       {
         "intent": "ask_bad_mood",
         "text": "feel bad"
+      },
+      {
+        "intent": "ask_bad_mood",
+        "text": "i have bad mood"
+      },
+      {
+        "intent": "ask_bad_mood",
+        "text": "my mood is not good"
+      },
+      {
+        "intent": "ask_bad_mood",
+        "text": "my mood is bad"
       },
       {
         "intent": "mood_unhappy",
@@ -462,47 +470,79 @@
         "text": "Patch shopping"
       },
       {
+        "intent": "ask_device_purchase",
+        "text": "i need more patch"
+      },
+      {
+        "intent": "ask_device_purchase",
+        "text": "need patch"
+      },
+      {
+        "intent": "ask_device_purchase",
+        "text": "need more patch"
+      },
+      {
+        "intent": "ask_device_purchase",
+        "text": "I need more patch"
+      },
+      {
+        "intent": "ask_device_purchase",
+        "text": "need more patches"
+      },
+      {
         "intent": "confirm_purchase",
         "text": "confirm purchase"
       },
       {
-        "intent": "ask_device",
+        "intent": "confirm_purchase",
+        "text": "i am confirming the purchse"
+      },
+      {
+        "intent": "confirm_purchase",
+        "text": "confirming purchase"
+      },
+      {
+        "intent": "confirm_purchase",
+        "text": "please continue the purchase"
+      },
+      {
+        "intent": "ask_symptom_bloom",
         "text": "I think I felt contractions"
       },
       {
-        "intent": "ask_device",
+        "intent": "ask_symptom_bloom",
         "text": "I got uterine contractions"
       },
       {
-        "intent": "ask_device",
+        "intent": "ask_symptom_bloom",
         "text": "Feeing contractions"
       },
       {
-        "intent": "ask_device",
+        "intent": "ask_symptom_bloom",
         "text": "The contractions were occurred"
       },
       {
-        "intent": "ask_device",
+        "intent": "ask_symptom_bloom",
         "text": "Contractions occurring"
       },
       {
-        "intent": "ask_device",
+        "intent": "ask_symptom_bloom",
         "text": "It might be contractions"
       },
       {
-        "intent": "ask_device",
+        "intent": "ask_symptom_bloom",
         "text": "It seem to be contractions"
       },
       {
-        "intent": "ask_device",
+        "intent": "ask_symptom_bloom",
         "text": "Contractions during week34"
       },
       {
-        "intent": "ask_device",
+        "intent": "ask_symptom_bloom",
         "text": "Is it normal to feel contractions?"
       },
       {
-        "intent": "ask_device",
+        "intent": "ask_symptom_bloom",
         "text": "No problem with feeling contractions?"
       },
       {
@@ -556,6 +596,30 @@
       {
         "intent": "user_set_reminder",
         "text": "reminder"
+      },
+      {
+        "intent": "user_set_reminder",
+        "text": "please remind me later"
+      },
+      {
+        "intent": "user_set_reminder",
+        "text": "remind me later"
+      },
+      {
+        "intent": "user_set_reminder",
+        "text": "plz remind me"
+      },
+      {
+        "intent": "user_set_reminder",
+        "text": "reminder start"
+      },
+      {
+        "intent": "user_set_reminder",
+        "text": "remind this"
+      },
+      {
+        "intent": "user_set_reminder",
+        "text": "start remind"
       },
       {
         "intent": "ask_symptom",
@@ -691,6 +755,14 @@
       },
       {
         "intent": "ask_general",
+        "text": "what is maternity leave"
+      },
+      {
+        "intent": "ask_general",
+        "text": "I want to know more about maternity leave"
+      },
+      {
+        "intent": "ask_general",
         "text": "Information on maternity leave"
       },
       {
@@ -728,6 +800,14 @@
       {
         "intent": "ask_general",
         "text": "Lactation?"
+      },
+      {
+        "intent": "ask_general",
+        "text": "what is lactation?"
+      },
+      {
+        "intent": "ask_general",
+        "text": "I want do find out about lactation"
       },
       {
         "intent": "ask_general",
@@ -802,6 +882,42 @@
         "text": "give me some advice"
       },
       {
+        "intent": "start_greet_trigger",
+        "text": "greet trigger start now"
+      },
+      {
+        "intent": "start_greet_trigger",
+        "text": "greet trigger"
+      },
+      {
+        "intent": "start_greet_trigger",
+        "text": "bot trigger greet action start now"
+      },
+      {
+        "intent": "start_greet_trigger",
+        "text": "bot trigger starts now"
+      },
+      {
+        "intent": "start_greet_trigger",
+        "text": "bot trigger start now"
+      },
+      {
+        "intent": "start_greet_trigger",
+        "text": "trigger starts now"
+      },
+      {
+        "intent": "start_greet_trigger",
+        "text": "trigger start"
+      },
+      {
+        "intent": "start_greet_trigger",
+        "text": "greet trigger starts..."
+      },
+      {
+        "intent": "start_greet_trigger",
+        "text": "greet tirgger start..."
+      },
+      {
         "intent": "ask_music",
         "text": "play music"
       },
@@ -862,6 +978,18 @@
         "text": "ask general info"
       },
       {
+        "intent": "ask_general_info",
+        "text": "I need general info"
+      },
+      {
+        "intent": "ask_general_info",
+        "text": "general info, please"
+      },
+      {
+        "intent": "ask_general_info",
+        "text": "general info needed"
+      },
+      {
         "intent": "ask_doctor",
         "text": "ask doctor"
       },
@@ -874,20 +1002,96 @@
         "text": "doctor consulting"
       },
       {
+        "intent": "ask_doctor",
+        "text": "i would like to consult with the doctor"
+      },
+      {
+        "intent": "ask_doctor",
+        "text": "please, ask the doctor"
+      },
+      {
         "intent": "ask_symptom_more_info",
         "text": "ask symptom more info"
+      },
+      {
+        "intent": "ask_symptom_more_info",
+        "text": "yes, I need more information for the symptom"
+      },
+      {
+        "intent": "ask_symptom_more_info",
+        "text": "I need more info about the symptom"
+      },
+      {
+        "intent": "ask_symptom_more_info",
+        "text": "need more details about the symptom"
+      },
+      {
+        "intent": "ask_symptom_more_info",
+        "text": "want more info about the symptom"
       },
       {
         "intent": "ask_symptom_still_bad",
         "text": "still bad"
       },
       {
+        "intent": "ask_symptom_still_bad",
+        "text": "my symptom is still bad"
+      },
+      {
+        "intent": "ask_symptom_still_bad",
+        "text": "yes, it is still bad"
+      },
+      {
+        "intent": "ask_symptom_still_bad",
+        "text": "my symptom has not been any better"
+      },
+      {
+        "intent": "ask_symptom_still_bad",
+        "text": "my symptom is still there"
+      },
+      {
         "intent": "ask_symptom_worse",
         "text": "getting worse"
       },
       {
+        "intent": "ask_symptom_worse",
+        "text": "the symptom is even worse"
+      },
+      {
+        "intent": "ask_symptom_worse",
+        "text": "it is geeting worse"
+      },
+      {
+        "intent": "ask_symptom_worse",
+        "text": "the symptom has gone worse"
+      },
+      {
+        "intent": "ask_symptom_worse",
+        "text": "my symptom is getting worse"
+      },
+      {
         "intent": "ask_remedy",
         "text": "ask remedy"
+      },
+      {
+        "intent": "ask_remedy",
+        "text": "I want to get remedy"
+      },
+      {
+        "intent": "ask_remedy",
+        "text": "I need remedy"
+      },
+      {
+        "intent": "ask_remedy",
+        "text": "yes, need remedy"
+      },
+      {
+        "intent": "ask_remedy",
+        "text": "please, I need remedy"
+      },
+      {
+        "intent": "ask_remedy",
+        "text": "I am asking for remedy"
       },
       {
         "intent": "measure_trigger",
@@ -896,6 +1100,114 @@
       {
         "intent": "measure_trigger",
         "text": "bp measure"
+      },
+      {
+        "intent": "ask_forward_doctor",
+        "text": "yes, I agree sending my info to doctor"
+      },
+      {
+        "intent": "ask_forward_doctor",
+        "text": "I agree forwarding my information to doctors"
+      },
+      {
+        "intent": "ask_forward_doctor",
+        "text": "please send my info to doctors"
+      },
+      {
+        "intent": "ask_forward_doctor",
+        "text": "I agree to forward my info at doctors' forum"
+      },
+      {
+        "intent": "ask_food_advice",
+        "text": "helpful food for this disease"
+      },
+      {
+        "intent": "ask_food_advice",
+        "text": "what food is good for this disease?"
+      },
+      {
+        "intent": "ask_food_advice",
+        "text": "what food is for the disease?"
+      },
+      {
+        "intent": "ask_food_advice",
+        "text": "what food is good for the disease?"
+      },
+      {
+        "intent": "ask_food_advice",
+        "text": "helpful food for the disease"
+      },
+      {
+        "intent": "ask_supplements",
+        "text": "please, recommend some supplements"
+      },
+      {
+        "intent": "ask_supplements",
+        "text": "supplements?"
+      },
+      {
+        "intent": "ask_supplements",
+        "text": "supplements"
+      },
+      {
+        "intent": "ask_supplements",
+        "text": "supplement?"
+      },
+      {
+        "intent": "ask_supplements",
+        "text": "please, recommend some supplement"
+      },
+      {
+        "intent": "ask_supplements",
+        "text": "recommend me some helpful supplements for the disease"
+      },
+      {
+        "intent": "ask_supplements",
+        "text": "what supplement is good for the disease?"
+      },
+      {
+        "intent": "ask_supplements",
+        "text": "do i need any supplements?"
+      },
+      {
+        "intent": "start_device_trigger",
+        "text": "device trigger starts now.."
+      },
+      {
+        "intent": "start_device_trigger",
+        "text": "device trigger start.."
+      },
+      {
+        "intent": "start_device_trigger",
+        "text": "device trigger starting"
+      },
+      {
+        "intent": "start_device_trigger",
+        "text": "starts device trigger action"
+      },
+      {
+        "intent": "start_device_trigger",
+        "text": "start device trigger now"
+      },
+      {
+        "intent": "ask_disease",
+        "text": "i want to find more about this disease"
+      },
+      {
+        "intent": "ask_disease",
+        "text": "i would like to know more about this disease"
+      },
+      {
+        "intent": "ask_disease",
+        "text": "i sould like to find more abou this disease"
+      },
+      {
+        "intent": "ask_disease",
+        "text": "let's find out more about this disease"
+      },
+      {
+        "intent": "ask_disease",
+        "text": "wanna find out more about the disease"
       }
     ],
     "regex_features": [],
