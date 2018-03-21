@@ -242,7 +242,20 @@ templates:
         value: great
     text: utter_ask_symptom_bloom
   utter_ask_symptom_more_info:
-  - text: Before 'true' labor begins, you may have 'false' labor pains. These are
+  - buttons:
+      actions:
+      - confirm:
+          dismiss_text: Close
+          ok_text: ''
+          text: 'Before ''true'' labor begins, you may have ''false'' labor pains.
+            These are also known as Braxton Hicks contractions. '
+          title: Contractions...
+        name: save clipboard...
+        style: primary
+        text: Clipboard
+        type: button
+        value: ''
+    text: Before 'true' labor begins, you may have 'false' labor pains. These are
       also known as Braxton Hicks contractions. They are your body's way of getting
       ready for the real thing -- the day you give birth -- but they are not a sign
       that labor has begun or is getting ready to begin. I'll put more info on your
