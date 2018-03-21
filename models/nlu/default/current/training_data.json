@@ -1208,6 +1208,30 @@
       {
         "intent": "ask_disease",
         "text": "wanna find out more about the disease"
+      },
+      {
+        "intent": "start_product_recommendation_trigger",
+        "text": "product recommend trigger now"
+      },
+      {
+        "intent": "start_product_recommendation_trigger",
+        "text": "product recommendation tirgger starts now..."
+      },
+      {
+        "intent": "start_product_recommendation_trigger",
+        "text": "product recommendation trigger.."
+      },
+      {
+        "intent": "start_product_recommendation_trigger",
+        "text": "product recommendation start..."
+      },
+      {
+        "intent": "start_product_recommendation_trigger",
+        "text": "trigger for product recommendation.."
+      },
+      {
+        "intent": "start_product_recommendation_trigger",
+        "text": "launch product recommendation trigger..."
       }
     ],
     "regex_features": [],

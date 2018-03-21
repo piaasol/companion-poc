@@ -160,6 +160,9 @@ class SlackInput(HttpInputComponent):
         user_msg = UserMessage("greet trigger start now", out_channel, user_id)
         on_new_message(user_msg)
         make_response()
+        user_msg = UserMessage("product recommendation start...", out_channel, user_id)
+        on_new_message(user_msg)
+        make_response()
 
     @staticmethod
     def device_trigger(self, on_new_message):
@@ -168,7 +171,9 @@ class SlackInput(HttpInputComponent):
         out_channel = SlackBot(self.slack_token)
         user_msg = UserMessage("device trigger starts now..", out_channel, user_id)
         on_new_message(user_msg)
-        make_response()    
+        make_response() 
+        
+           
         
     def blueprint(self, on_new_message):
         print("SlackInput.blueprint")

@@ -37,6 +37,7 @@ action_names:
 - action_ask_supplements
 - action_device_trigger
 - action_ask_disease
+- action_product_recommendation_trigger
 actions:
 - utter_ask_bad_mood
 - utter_cheer_up
@@ -75,6 +76,7 @@ actions:
 - actions.ActionAskSupplements
 - actions.ActionDeviceTrigger
 - actions.ActionAskDisease
+- actions.ActionProductRecommendationTrigger
 config:
   store_entities_as_slots: true
 entities: []
@@ -117,8 +119,12 @@ intents:
 - ask_food_advice
 - start_device_trigger
 - ask_disease
+- start_product_recommendation_trigger
 slots:
   disease:
+    initial_value: null
+    type: rasa_core.slots.TextSlot
+  user:
     initial_value: null
     type: rasa_core.slots.TextSlot
 templates:

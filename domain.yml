@@ -37,6 +37,7 @@ intents:
   - ask_food_advice
   - start_device_trigger
   - ask_disease
+  - start_product_recommendation_trigger
 
 
 
@@ -78,6 +79,7 @@ actions:
   - actions.ActionAskSupplements
   - actions.ActionDeviceTrigger
   - actions.ActionAskDisease
+  - actions.ActionProductRecommendationTrigger
  
 slots:
    disease:

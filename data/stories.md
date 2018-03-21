@@ -95,7 +95,10 @@
 ## flow 13-1
 * measure_trigger
  - utter_measure_trigger
- 
+
+## flow 14
+* start_product_recommendation_trigger
+ - action_product_recommendation_trigger  
  
 ## set reminder
 * user_set_reminder
@@ -138,8 +141,43 @@
  - action_ask_food 
 * ask_supplements 
  - action_ask_supplements
+ 
+## food advice
+* ask_food_advice
+ - action_ask_food 
+ 
+## ask desease
+* ask_disease
+ - action_ask_disease
+
+## supplement 
+* ask_supplements 
+ - action_ask_supplements 
 
 ## say goodbye
 * goodbye
   - utter_goodbye
- 
+
+## ask advice
+* ask_advice
+  - utter_ask_advice
+  - utter_save_clipboard  
+  
+## ask remedy
+* ask_remedy
+  - utter_ask_remedy 
+
+## symptom more info
+* ask_symptom_more_info
+  - utter_ask_symptom_more_info
+  - utter_save_clipboard  
+
+## ask doctor
+* ask_doctor
+  - utter_ask_doctor
+* ask_forward_doctor
+  - utter_ask_forward_doctor 
+  
+## confirm purchase
+* confirm_purchase
+  - utter_confirm_purchase

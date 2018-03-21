@@ -38,7 +38,9 @@
     "intent_ask_food_advice",
     "intent_start_device_trigger",
     "intent_ask_disease",
+    "intent_start_product_recommendation_trigger",
     "slot_disease_0",
+    "slot_user_0",
     "prev_action_listen",
     "prev_action_restart",
     "prev_utter_ask_bad_mood",
@@ -77,6 +79,7 @@
     "prev_action_ask_food",
     "prev_action_ask_supplements",
     "prev_action_device_trigger",
-    "prev_action_ask_disease"
+    "prev_action_ask_disease",
+    "prev_action_product_recommendation_trigger"
   ]
 }

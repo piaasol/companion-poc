@@ -348,4 +348,12 @@
 - i sould like to find more abou this disease
 - let's find out more about this disease
 - wanna find out more about the disease
+## intent:start_product_recommendation_trigger
+- product recommend trigger now
+- product recommendation tirgger starts now...
+- product recommendation trigger..
+- product recommendation start...
+- trigger for product recommendation..
+- launch product recommendation trigger...
+
 

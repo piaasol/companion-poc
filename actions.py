@@ -93,7 +93,7 @@ class ActionSetRemind(Action):
         print("tracker.latest_message===>",tracker.latest_message)
         print("latest_action===>",tracker.latest_action_name)
         ReminderScheduled(action,datetime.now()+ timedelta(minutes=5))
-        dispatcher.utter_message("remind this in 5 min")
+        dispatcher.utter_message("Ok, I will let you know then.")
         return []
 
 class ActionAskSymptomBloom(Action):
@@ -128,7 +128,7 @@ class ActionStartGreetTrigger(Action):
     def name(self):
         return 'action_start_greet_trigger'
     def run(self,dispatcher,tracker,domain):
-        trigger_time = '09:50'
+        trigger_time = '14:13'
         current_time = datetime.time(datetime.now()).strftime('%H:%M')
         print("action greet tirgger start......")
         if trigger_time == current_time :
@@ -271,7 +271,41 @@ class ActionAskSupplements(Action):
             dispatcher.utter_message(response_text)
         return []        
                                         
-                  
+class ActionProductRecommendationTrigger(Action):
+    @classmethod
+    def name(cls):
+        return 'action_product_recommendation_trigger'
+    @classmethod
+    def run(cls,dispatcher,tracker,domain): 
+        trigger_time = '19:00'
+        current_time = datetime.time(datetime.now()).strftime('%H:%M')
+        print("action greet tirgger start......")
+        if trigger_time == current_time :
+            response_text = 'In 6 weeks, you will meet your baby, Silvia. \nThere must be lots of thinks to consider and be prepared.\n Do you want me to show some helpful information?'                  
+            attachment_buttons = {'actions' :[{
+                                            'name' : "great",
+                                            'text' : "Devices-Owlet, TytoCare",
+                                            'type' : "button",
+                                            'value' : ""},{
+                                            'name' : "great",
+                                            'text' : "Insurance",
+                                            'type' : "button",
+                                            'value' : ""
+                                            },{
+                                            'name' : "great",
+                                            'text' : "Postpartum",
+                                            'type' : "button",
+                                            'value' : ""
+                                            },{
+                                            'name' : "remind me later",
+                                            'text' : "Not now",
+                                            'type' : "button",
+                                            'value' : ""
+                                            }]}
+            dispatcher.utter_button_message(response_text,attachment_buttons)
+            return [ReminderScheduled('action_product_recommendation_trigger', datetime.now()+ timedelta(days=1),kill_on_user_message=False)]
+        return [ReminderScheduled('action_product_recommendation_trigger', datetime.now()+ timedelta(minutes=1),kill_on_user_message=False)]    
+            
 def call_weather_api(location) :
     if location =='seoul' :
         url = 'https://simple-weather.p.mashape.com/weatherData?lat=37.5&lng=127'
