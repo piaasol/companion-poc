@@ -16,7 +16,6 @@ action_names:
 - utter_make_doctors_appointment
 - utter_ask_medical_advice
 - utter_ask_device
-- utter_ask_device_purchase
 - utter_confirm_purchase
 - utter_set_reminder
 - utter_ask_symptom_bloom
@@ -38,6 +37,7 @@ action_names:
 - action_device_trigger
 - action_ask_disease
 - action_product_recommendation_trigger
+- action_ask_advice
 actions:
 - utter_ask_bad_mood
 - utter_cheer_up
@@ -55,7 +55,6 @@ actions:
 - utter_make_doctors_appointment
 - utter_ask_medical_advice
 - utter_ask_device
-- utter_ask_device_purchase
 - utter_confirm_purchase
 - utter_set_reminder
 - utter_ask_symptom_bloom
@@ -77,6 +76,7 @@ actions:
 - actions.ActionDeviceTrigger
 - actions.ActionAskDisease
 - actions.ActionProductRecommendationTrigger
+- actions.ActionAskAdvice
 config:
   store_entities_as_slots: true
 entities: []
@@ -107,20 +107,22 @@ intents:
 - ask_medical_advice
 - confirm_purchase
 - ask_symptom_more_info
-- symptom_still_bad
-- symptom_worse
+- ask_symptom_still_bad
+- ask_symptom_worse
 - ask_remedy
 - measure_trigger
 - start_greet_trigger
 - ask_advice
 - ask_forward_doctor
-- ask_symptom_worse
 - ask_supplements
 - ask_food_advice
 - start_device_trigger
 - ask_disease
 - start_product_recommendation_trigger
 slots:
+  clipboard:
+    initial_value: null
+    type: rasa_core.slots.TextSlot
   disease:
     initial_value: null
     type: rasa_core.slots.TextSlot
@@ -132,7 +134,7 @@ templates:
   - text: I'm afraid I don't have information on it yet. I recommend accessing internet
       for that. I'll let you know when I acquire the knowledge later.
   utter_ask_advice:
-  - text: You can use a patch up to about a week
+  - text: utter ask advice run.....
   utter_ask_bad_mood:
   - buttons:
       actions:
@@ -176,20 +178,6 @@ templates:
     text: utter_ask_bad_symptom:symptom list triggered
   utter_ask_device:
   - text: You can use a patch up to about a week
-  utter_ask_device_purchase:
-  - buttons:
-      actions:
-      - name: confirm purchase
-        style: primary
-        text: 'Yes'
-        type: button
-        value: make appointment
-      - name: great
-        style: danger
-        text: 'No'
-        type: button
-        value: great
-    text: You need about 8 more patches before birth. Shall I order 8 using the sam
   utter_ask_doctor:
   - buttons:
       actions:
@@ -242,20 +230,7 @@ templates:
         value: great
     text: utter_ask_symptom_bloom
   utter_ask_symptom_more_info:
-  - buttons:
-      actions:
-      - confirm:
-          dismiss_text: Close
-          ok_text: ''
-          text: 'Before ''true'' labor begins, you may have ''false'' labor pains.
-            These are also known as Braxton Hicks contractions. '
-          title: Contractions...
-        name: save clipboard...
-        style: primary
-        text: Clipboard
-        type: button
-        value: ''
-    text: Before 'true' labor begins, you may have 'false' labor pains. These are
+  - text: Before 'true' labor begins, you may have 'false' labor pains. These are
       also known as Braxton Hicks contractions. They are your body's way of getting
       ready for the real thing -- the day you give birth -- but they are not a sign
       that labor has begun or is getting ready to begin. I'll put more info on your
@@ -308,7 +283,18 @@ templates:
   utter_play_music:
   - text: music play now
   utter_save_clipboard:
-  - text: utter_save_clipboard
+  - buttons:
+      actions:
+      - confirm:
+          dismiss_text: Close
+          text: '{clipboard}'
+          title: Clipboard
+        name: save clipboard...
+        style: primary
+        text: Clipboard
+        type: button
+        value: ''
+    text: utter_save_clipboard
   utter_set_reminder:
   - text: Okay, I will ask you later
   utter_symptom_still_bad:
