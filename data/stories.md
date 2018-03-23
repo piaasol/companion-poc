@@ -44,13 +44,13 @@
 * ask_symptom_bloom
   - action_ask_symptom_bloom
 * ask_symptom_more_info
-  - utter_ask_symptom_more_info
-  - utter_save_clipboard
+  - action_ask_more_info
+  - action_save_clipboard
 
 ## flow 7-1       <!-- ask symptom-->
 * ask_bad_symptom
   - action_ask_symptom
-* symptom_still_bad
+* ask_symptom_still_bad
   - utter_symptom_still_bad
 * ask_remedy
   - utter_ask_remedy
@@ -58,7 +58,7 @@
 ## flow 7-2
 * ask_bad_symptom
   - action_ask_symptom
-* symptom_worse
+* ask_symptom_worse
   - utter_symptom_still_bad
 * ask_remedy
   - utter_ask_remedy 
@@ -73,8 +73,8 @@
 * ask_bad_mood <!-- user utterance, in format _intent[entities] -->
   - utter_ask_bad_mood
 * ask_advice
-  - utter_ask_advice
-  - utter_save_clipboard
+  - action_ask_advice
+  - action_save_clipboard
   
 ## flow 11-12-2
 * start_greet_trigger
@@ -109,8 +109,8 @@
  
 ## advice path
 * ask_advice
-- utter_ask_advice
-- utter_save_clipboard
+- action_ask_advice
+- action_save_clipboard
 
 ## happy path
 * mood_great
@@ -160,8 +160,8 @@
 
 ## ask advice
 * ask_advice
-  - utter_ask_advice
-  - utter_save_clipboard  
+  - action_ask_advice
+  - action_save_clipboard  
   
 ## ask remedy
 * ask_remedy
@@ -169,8 +169,8 @@
 
 ## symptom more info
 * ask_symptom_more_info
-  - utter_ask_symptom_more_info
-  - utter_save_clipboard  
+  - action_ask_more_info
+  - action_save_clipboard  
 
 ## ask doctor
 * ask_doctor

@@ -25,14 +25,13 @@ intents:
   - ask_medical_advice
   - confirm_purchase
   - ask_symptom_more_info
-  - symptom_still_bad
-  - symptom_worse
+  - ask_symptom_still_bad
+  - ask_symptom_worse
   - ask_remedy
   - measure_trigger
   - start_greet_trigger
   - ask_advice
   - ask_forward_doctor
-  - ask_symptom_worse
   - ask_supplements
   - ask_food_advice
   - start_device_trigger
@@ -49,7 +48,6 @@ actions:
   - utter_goodbye
   - utter_check_context
   - utter_ask_bad_symptom
-  - utter_ask_advice
   - utter_save_clipboard
   - utter_play_music
   - utter_alternative_answer
@@ -58,7 +56,6 @@ actions:
   - utter_make_doctors_appointment
   - utter_ask_medical_advice
   - utter_ask_device
-  - utter_ask_device_purchase
   - utter_confirm_purchase
   - utter_set_reminder
   - utter_ask_symptom_bloom
@@ -80,12 +77,17 @@ actions:
   - actions.ActionDeviceTrigger
   - actions.ActionAskDisease
   - actions.ActionProductRecommendationTrigger
+  - actions.ActionAskAdvice
+  - actions.ActionSaveClipboard
+  - actions.ActionAskMoreInfo
  
 slots:
    disease:
       type: text
    user:
-      type: text   
+      type: text 
+   clipboard:
+      type: text     
 
 templates:
   utter_measure_trigger:
@@ -107,8 +109,6 @@ templates:
                 value : "great"
                 style : "danger"
 
-  utter_ask_medical_advice:
-    - text : "utter_ask_medical_advice"
   utter_set_reminder:
     - text : "Okay, I will ask you later"
 
@@ -130,33 +130,7 @@ templates:
 
   utter_ask_symptom_more_info:
     - text : "Before 'true' labor begins, you may have 'false' labor pains. These are also known as Braxton Hicks contractions. They are your body's way of getting ready for the real thing -- the day you give birth -- but they are not a sign that labor has begun or is getting ready to begin. I'll put more info on your Clipboard."  
-      buttons :  
-        actions :
-          - name: "save clipboard..."
-            text: "Clipboard"
-            style: "primary"
-            type: "button"
-            value: ""
-            confirm: 
-                title: "Contractions..."
-                text: "Before 'true' labor begins, you may have 'false' labor pains. These are also known as Braxton Hicks contractions. "
-                ok_text : ""
-                dismiss_text: "Close"
                     
-  utter_ask_device_purchase:
-    - text : "You need about 8 more patches before birth. Shall I order 8 using the sam"
-      buttons :
-        actions :
-          - name : "confirm purchase"
-            text : "Yes"
-            type : "button"
-            value : "make appointment"
-            style: "primary"
-          - name : "great"
-            text : "No"
-            type : "button"
-            value : "great"
-            style: "danger"
 
   utter_confirm_purchase:
     - text : "Order places. It'll arrive within 5days."  
@@ -207,8 +181,7 @@ templates:
   utter_default:
     - text : "default"
 
-  utter_ask_advice:
-    - text : "You can use a patch up to about a week"
+
 
   utter_play_music:
     - text : "music play now"
@@ -255,7 +228,18 @@ templates:
             value : "great" 
 
   utter_save_clipboard:
-    - text : "utter_save_clipboard"  
+    - text : "{clipboard}" 
+      buttons :  
+        actions :
+          - name: "save clipboard..."
+            text: "Clipboard"
+            style: "primary"
+            type: "button"
+            value: ""
+            confirm: 
+                title: "Clipboard"
+                text: "{clipboard}"
+                dismiss_text: "Close" 
 
   utter_check_context:
     - text : "utter_check_context: health over view, Enviornmental info, checking feeling included in the action"

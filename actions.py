@@ -13,6 +13,30 @@ from rasa_core.events import  ReminderScheduled, SlotSet
 from datetime import datetime, timedelta
 import requests
 
+class ActionSaveClipboard(Action):
+    def name(self):
+        return "action_save_clipboard"
+    def run(self,dispatcher,tracker,domain):
+        client = MongoClient('localhost',27017)
+        db = client.user_database
+        result = db.user_data.find()
+        clip_contents=tracker.get_slot('clipboard')
+        if clip_contents is None :
+            clip_contents = ''
+        attachment_buttons = {'actions' :[{
+                                            'name' : "save clipboard...",
+                                            'text' : "Clipboard",
+                                            'type' : "button",
+                                            'value' : "",
+                                            'style': "primary",
+                                            'confirm' : {
+                                                'title': "Clipboard",
+                                                'text' : clip_contents,
+                                                'dismiss_text' : "Close"}}]}
+        dispatcher.utter_button_message('',attachment_buttons)
+        return []
+       
+
 class ActionAskDoctorsAppointment(Action):
     def name(self):
         return "ask_doctors_appointment"
@@ -32,7 +56,7 @@ class ActionAskDoctorsAppointment(Action):
                                             'value' : "",
                                             'style': "danger"}]}
         if result :
-            if result[0]['user_info']['schedule']['appointment'] :
+            if result[0]['schedule']['appointment'] :
                 recent_schedule = result[0]['user_info']['schedule']['appointment'][0]
                 print('recent_schedule check',recent_schedule)
                 dispatcher.utter_button_message('My record show that your next visit to ' + recent_schedule['doctor_name'] + ' is ' + recent_schedule['date'] + '. Do you want to reschedule?',attachment_buttons)
@@ -41,6 +65,23 @@ class ActionAskDoctorsAppointment(Action):
         else :
             dispatcher.utter_button_message('You don\'t have any appointment. Do you like to make an appointment?',attachment_buttons)
         return []
+
+class ActionAskAdvice(Action):
+    def name(self):
+        return "action_ask_advice"        
+    def run(self,dispatcher,tracker,domain):
+        response_text = 'utter ask advice run..., clipboard saved.'
+        client = MongoClient('localhost',27017)
+        db = client.user_database
+        result = db.user_data.find()
+        if result:
+            clipboard_data = result[0]['clipboard']
+            clip_data=clipboard_data['contents'] 
+            clip_data+='\n\n'+response_text
+            db.user_data.update_one({"_id": 1}, {"$set": {"clipboard":{"date":datetime.now().strftime('%Y-%m-%d %H:%m'),"contents":clip_data}}})
+            tracker.update(SlotSet("clipboard",clip_data))
+        dispatcher.utter_message(response_text) 
+        return []    
 
 class ActionFoodRecommendation(Action):
     def name(self):
@@ -101,13 +142,13 @@ class ActionAskSymptomBloom(Action):
         return 'action_ask_symptom_bloom'
     def run(self,dispatcher,tracker,domain):
         print('KB Data ......')
-        reponse_text = 'answer from KB Data..'
+        reponse_text = 'Bloom Symptom KB'
         dispatcher.utter_message(reponse_text)
         client = MongoClient('localhost',27017)
         db = client.user_database
         result = db.user_data.find()   
         if result :
-            health_info = result[0]['user_info']['health_info']
+            health_info = result[0]['health_info']
             reponse_text += '\n You\'re in week'+ str(health_info['weeks']) + '. If they are not painful or regular, they may be Braxton Hicks contractions. You can try using Belli device. '
             reponse_text += 'Do you want more info?' 
             attachment_buttons = {'actions' :[{
@@ -123,12 +164,26 @@ class ActionAskSymptomBloom(Action):
                                                 'style' : "danger"}]}
             dispatcher.utter_button_message(reponse_text,attachment_buttons)
         return []                                        
-
+class ActionAskMoreInfo(Action):
+    def name(self):
+        return 'action_ask_more_info'
+    def run(self,dispatcher,tracker,domain):
+        response_text = "Before 'true' labor begins, you may have 'false' labor pains. These are also known as Braxton Hicks contractions. They are your body's way of getting ready for the real thing -- the day you give birth -- but they are not a sign that labor has begun or is getting ready to begin. I'll put more info on your Clipboard."  
+        clip_data = tracker.get_slot('clipboard')
+        if clip_data is None :
+            clip_data = ''
+        clip_data += '\n\nbloom symptom : Before \'true\' labor begins, you may have \'false\' labor pains.'
+        tracker.update(SlotSet("clipboard",clip_data))
+        client = MongoClient('localhost',27017)
+        db = client.user_database
+        db.user_data.update_one({"_id": 1}, {"$set": {"clipboard":{"date":datetime.now().strftime('%Y-%m-%d %H:%m'),"contents":clip_data}}})
+        dispatcher.utter_message(response_text)
+        return []
 class ActionStartGreetTrigger(Action):
     def name(self):
         return 'action_start_greet_trigger'
     def run(self,dispatcher,tracker,domain):
-        trigger_time = '14:13'
+        trigger_time = '10:54'
         current_time = datetime.time(datetime.now()).strftime('%H:%M')
         print("action greet tirgger start......")
         if trigger_time == current_time :
@@ -179,7 +234,7 @@ class ActionAskDevicePurchase(Action):
         result = db.user_data.find()
         if result:
             user_info = result[0]['user_info']
-            health_info = result[0]['user_info']['health_info']
+            health_info = result[0]['health_info']
             remain_patch = 42 - health_info['weeks']
             response_text = 'You need about '+ str(remain_patch) + 'more patches before birth. \n'
             response_text += 'Shall I order '+ str(remain_patch) + 'using the same address ('+ user_info['address']+') and '

@@ -5,7 +5,8 @@ client = MongoClient('localhost',27017)
 db = client.user_database
 user_insert = db.user_data
 
-user_data = [{
+user_data = {
+  "_id": 1,
   "user_info" : {
     "email" : "grace_silvia@gmail.com",
     "user_name" : "silvia",
@@ -16,7 +17,8 @@ user_data = [{
     "start_weight" : 58.4,
     "address" : "seoul",
     "job" : "working_mom",
-    "multiparity" : 0,
+    "multiparity" : 0
+    },
     "health_info" : {
       "trimester" : "third",
       "weeks" : 34,
@@ -67,13 +69,13 @@ user_data = [{
        "sleep_time" : "23:00:00"
      }
    },
-   "clipboard" : [{
+   "clipboard" : {
      "date" : "",
      "contents" : ""
-   }]
-  }
+   }
   
-}]
+}
 print('db insert start...')
+user_insert.remove()
 user_insert.insert(user_data)
 print('db insert finish...')
