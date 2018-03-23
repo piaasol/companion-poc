@@ -14,7 +14,6 @@ from rasa_core.channels.rest import HttpInputComponent
 from rasa_core.events    import ActionExecuted, BotUttered, SlotSet
 
 from datetime   import datetime
-import schedule
 import time
 import sched
 from threading import Timer
