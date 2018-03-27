@@ -143,7 +143,7 @@ class ActionAskSymptomBloom(Action):
     def run(self,dispatcher,tracker,domain):
         print('KB Data ......')
         reponse_text = 'Bloom Symptom KB'
-        dispatcher.utter_message(reponse_text)
+        #dispatcher.utter_message(reponse_text)
         client = MongoClient('localhost',27017)
         db = client.user_database
         result = db.user_data.find()   
