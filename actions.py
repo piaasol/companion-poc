@@ -57,7 +57,7 @@ class ActionAskDoctorsAppointment(Action):
                                             'style': "danger"}]}
         if result :
             if result[0]['schedule']['appointment'] :
-                recent_schedule = result[0]['user_info']['schedule']['appointment'][0]
+                recent_schedule = result[0]['schedule']['appointment'][0]
                 print('recent_schedule check',recent_schedule)
                 dispatcher.utter_button_message('My record show that your next visit to ' + recent_schedule['doctor_name'] + ' is ' + recent_schedule['date'] + '. Do you want to reschedule?',attachment_buttons)
             else :
@@ -104,7 +104,7 @@ class ActionAskSymptom(Action):
         db = client.user_database
         result = db.user_data.find()
         if result :
-            symptom_list = result[0]['user_info']['chat_info']['symptoms']
+            symptom_list = result[0]['chat_info']['symptoms']
             if symptom_list :
                 reponse_text = 'How are you doing with your ' + symptom_list[0]['name'] + '?'
                 attachment_buttons = {'actions' :[{
@@ -202,14 +202,14 @@ class ActionStartGreetTrigger(Action):
                                                 'value' : "",
                                                 'style': "danger"}]}
                 if result :
-                    user_info = result[0]['user_info']
+                    user_info = result[0]
                     
                     date_format = "%Y-%m-%d"
                     a = datetime.strptime(datetime.now().strftime(date_format),date_format)
                     b = datetime.strptime(user_info['health_info']['weight_date'], date_format+' %H:%M:%S')
                     days_ago = a - b
                     weeks =str(user_info['health_info']['weeks'])
-                    response_text ='Hello, '+user_info['user_name']+'. \n'
+                    response_text ='Hello, '+user_info['user_info']['user_name']+'. \n'
                     response_text += 'Here\'s a quick summary for you today.\n You\'re in week' + weeks +' '
                     response_text += 'and your weight was '+str(user_info['health_info']['weight'])+'kg, '+str(days_ago.days)+'days ago. \n'
                     weather_data = call_weather_api(result[0]['user_info']['address'])
@@ -233,11 +233,11 @@ class ActionAskDevicePurchase(Action):
         db = client.user_database
         result = db.user_data.find()
         if result:
-            user_info = result[0]['user_info']
+            user_info = result[0]
             health_info = result[0]['health_info']
             remain_patch = 42 - health_info['weeks']
             response_text = 'You need about '+ str(remain_patch) + 'more patches before birth. \n'
-            response_text += 'Shall I order '+ str(remain_patch) + 'using the same address ('+ user_info['address']+') and '
+            response_text += 'Shall I order '+ str(remain_patch) + 'using the same address ('+ user_info['user_info']['address']+') and '
             response_text += 'payment method? It\'s $20 including taxes and shipping.'
             attachment_buttons = {'actions' :[{
                                         'name' : "confirm purchase",
