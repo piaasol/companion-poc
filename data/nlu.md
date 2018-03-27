@@ -139,9 +139,16 @@
 - need more patches
 ## intent:confirm_purchase
 - confirm purchase
-- i am confirming the purchse
+- i am confirming the purchase
 - confirming purchase
 - please continue the purchase
+- confirm and proceed the purchase
+- confirm the purchase
+- confirming the purchase
+- purchase is now confirmed
+- i want to confirm my purchase
+- confirm my purchase
+- confirming my purchase
 ## intent:ask_symptom_bloom
 - I think I felt contractions
 - I got uterine contractions
@@ -234,6 +241,11 @@
 - All about lactacion
 - Breast-feeding information
 - Breastfeed my baby
+- can't
+- i can't
+- don't like
+- i don't like
+- i think
 ## intent:ask_advice
 - ask advice
 - asking advice
@@ -299,13 +311,16 @@
 - yes, it is still bad
 - my symptom has not been any better
 - my symptom is still there
-
+- it is still bad
 ## intent:ask_symptom_worse
 - getting worse
 - the symptom is even worse
 - it is geeting worse
 - the symptom has gone worse
 - my symptom is getting worse
+- my symptom getting worse
+- it is worse now
+- my symptom is worse now
 ## intent:ask_remedy
 - ask remedy
 - I want to get remedy
@@ -313,14 +328,20 @@
 - yes, need remedy
 - please, I need remedy
 - I am asking for remedy
-## intent:measure_trigger
-- weight measure
-- bp measure
+- i want the remedy
+- i need the remedy.
+- yes, i need the remedy
+- ask the remedy
+- remdy
+- remedy
 ## intent:ask_forward_doctor
 - yes, I agree sending my info to doctor
 - I agree forwarding my information to doctors
 - please send my info to doctors
 - I agree to forward my info at doctors' forum
+- i agree and send my info to doctors
+- i agree to send my info to the doctors
+- i agree and please forward this to the doctors
 ## intent:ask_food_advice
 - helpful food for this disease
 - what food is good for this disease?
@@ -355,5 +376,6 @@
 - product recommendation start...
 - trigger for product recommendation..
 - launch product recommendation trigger...
+
 
 

@@ -9,176 +9,459 @@ import re
 from pymongo import MongoClient
 from rasa_core.actions import Action
 from rasa_core.policies.keras_policy import KerasPolicy
-from rasa_core.events import  ReminderScheduled, SlotSet
+from rasa_core.events import  ReminderScheduled, SlotSet, ActionExecuted
 from datetime import datetime, timedelta
 import requests
+
+class ActionHappy(Action):
+    def name(self):
+        return "action_happy"
+    def run(self,dispatcher,tracker,domain):
+        intent_result = intent_classification_check(self, dispatcher, tracker, domain)
+        if intent_result == 1 :
+            response_text = "Great, carry on!!"
+            dispatcher.utter_message(response_text)
+            return []
+        else:
+            action_default(self,dispatcher,tracker,domain)
+            return[] 
+
+class ActionAskForwardDoctor(Action):
+    def name(self):
+        return "action_ask_forward_doctor"
+    def run(self,dispatcher,tracker,domain):
+        intent_result = intent_classification_check(self, dispatcher, tracker, domain)
+        if intent_result == 1 :
+            response_text = "Okay. Your question about hip pain is posted.\n I'll let you know when i get an answer or chat request from a doctor."
+            dispatcher.utter_message(response_text)
+            return []
+        else:
+            action_default(self,dispatcher,tracker,domain)
+            return[]             
+class ActionGoodbye(Action):
+    def name(self):
+        return "action_goodbye"
+    def run(self,dispatcher,tracker,domain):
+        intent_result = intent_classification_check(self, dispatcher, tracker, domain)
+        if intent_result == 1 :
+            response_text = "Bye"
+            dispatcher.utter_message(response_text)
+            return []
+        else:
+            action_default(self,dispatcher,tracker,domain)
+            return[]             
+class ActionPlayMusic(Action):
+    def name(self):
+        return "action_play_music"
+    def run(self,dispatcher,tracker,domain):
+        intent_result = intent_classification_check(self, dispatcher, tracker, domain)
+        if intent_result == 1 :
+            response_text = "Music play now"
+            dispatcher.utter_message(response_text)
+            return []
+        else:
+            action_default(self,dispatcher,tracker,domain)
+            return[] 
+
+class ActionAskGeneralInfo(Action):
+    def name(self):
+        return "action_ask_general_info"
+    def run(self,dispatcher,tracker,domain):
+        intent_result = intent_classification_check(self, dispatcher, tracker, domain)
+        if intent_result == 1 :
+            response_text = "utter_ask_general_info"
+            dispatcher.utter_message(response_text)
+            return []
+        else:
+            action_default(self,dispatcher,tracker,domain)
+            return[] 
+class ActionAskDevice(Action):
+    def name(self):
+        return "action_ask_device"
+    def run(self,dispatcher,tracker,domain):
+        intent_result = intent_classification_check(self, dispatcher, tracker, domain)
+        if intent_result == 1 :
+            response_text = "You can use a patch up to about a week"
+            dispatcher.utter_message(response_text)
+            return []
+        else:
+            action_default(self,dispatcher,tracker,domain)
+            return[] 
+
+class ActionConfirmPurchase(Action):
+    def name(self):
+        return "action_confirm_purchase"
+    def run(self,dispatcher,tracker,domain):
+        intent_result = intent_classification_check(self, dispatcher, tracker, domain)
+        if intent_result == 1 :
+            response_text = "Order places. It'll arrive within 5days."
+            dispatcher.utter_message(response_text)
+            return []
+        else:
+            action_default(self,dispatcher,tracker,domain)
+            return[] 
+class ActionGreet(Action):
+    def name(self):
+        return "action_greet"
+    def run(self,dispatcher,tracker,domain):
+        intent_result = intent_classification_check(self, dispatcher, tracker, domain)
+        if intent_result == 1 :
+            response_text = "Hi, there"
+            dispatcher.utter_message(response_text)
+            return []
+        else:
+            action_default(self,dispatcher,tracker,domain)
+            return[]            
+
+class ActionAskRemedy(Action):
+    def name(self):
+        return "action_ask_remedy"
+    def run(self,dispatcher,tracker,domain):
+        intent_result = intent_classification_check(self, dispatcher, tracker, domain)
+        if intent_result == 1 :
+            response_text = "Here is remedy...."
+            dispatcher.utter_message(response_text)
+            return []
+        else:
+            action_default(self,dispatcher,tracker,domain)
+            return[]                    
+                    
+class ActionMakeDoctorsAppointment(Action):
+    def name(self):
+        return "action_make_doctors_appointment"
+    def run(self,dispatcher,tracker,domain):
+        intent_result = intent_classification_check(self, dispatcher, tracker, domain)
+        if intent_result == 1 :
+            response_text = "utter_make_doctors_appointment"
+            dispatcher.utter_message(response_text)
+            return []
+        else:
+            action_default(self,dispatcher,tracker,domain)
+            return[]  
+class ActionAlternativeAnswer(Action):
+    def name(self):
+        return "action_alternative_answer"
+    def run(self,dispatcher,tracker,domain):
+        intent_result = intent_classification_check(self, dispatcher, tracker, domain)
+        if intent_result == 1 :
+            response_text = "I'm afraid I don't have information on it yet.\n I recommend accessing internet for that.\n I'll let you know when I acquire the knowledge later."
+            dispatcher.utter_message(response_text)
+            return []
+        else:
+            action_default(self,dispatcher,tracker,domain)
+            return[] 
+                    
+class ActionAskMedicalAdvice(Action):
+    def name(self):
+        return "action_ask_medical_advice"
+    def run(self,dispatcher,tracker,domain):
+        intent_result = intent_classification_check(self, dispatcher, tracker, domain)
+        if intent_result == 1 :
+            response_text = "I'm sorry, I can't give you specific answer but I can forward your question to a doctor or give you general info on the symptom"
+            attachment_buttons = {'actions' :[{
+                                                    'name' : "ask doctor",
+                                                    'text' : "To Doctor",
+                                                    'type' : "button",
+                                                    'value' : "",
+                                                    'style': "primary"},{
+                                                    'name' : "ask general info",
+                                                    'text' : "General info",
+                                                    'type' : "button",
+                                                    'value' : ""}]}
+            dispatcher.utter_button_message(response_text,attachment_buttons)
+            return []
+        else:
+            action_default(self,dispatcher,tracker,domain)
+            return[] 
+class ActionSymptomStillBad(Action):
+    def name(self):
+        return "action_symptom_still_bad"
+    def run(self,dispatcher,tracker,domain):
+        intent_result = intent_classification_check(self, dispatcher, tracker, domain)
+        if intent_result == 1 :
+            response_text = "I have found some remedy for you. Do you want the remedy?"
+            attachment_buttons = {'actions' :[{
+                                                    'name' : "I want to get remedy",
+                                                    'text' : "Yes",
+                                                    'type' : "button",
+                                                    'value' : "",
+                                                    'style': "primary"},{
+                                                    'name' : "great",
+                                                    'text' : "No",
+                                                    'type' : "button",
+                                                    'value' : ""}]}
+            dispatcher.utter_button_message(response_text,attachment_buttons)
+            return []
+        else:
+            action_default(self,dispatcher,tracker,domain)
+            return[]             
+
+class ActionAskDoctor(Action):
+    def name(self):
+        return "action_ask_doctor"
+    def run(self,dispatcher,tracker,domain):
+        intent_result = intent_classification_check(self, dispatcher, tracker, domain)
+        if intent_result == 1 :
+            response_text = "I will forward your basic information and your symptom to OBGYN doctors' forum and ask if anyone can answer.\n Do you agree passing the information? Your name, address and contact information weill not be shared by me."
+            attachment_buttons = {'actions' :[{
+                                                    'name' : "i agree and send my info to doctors",
+                                                    'text' : "Agree",
+                                                    'type' : "button",
+                                                    'value' : "",
+                                                    'style': "primary"},{
+                                                    'name' : "great",
+                                                    'text' : "Disagree",
+                                                    'type' : "button",
+                                                    'value' : "",
+                                                    'style' : "danger"}]}
+            dispatcher.utter_button_message(response_text,attachment_buttons)
+            return []
+        else:
+            action_default(self,dispatcher,tracker,domain)
+            return[]             
+class ActionAskBadMood(Action):
+    def name(self):
+        return "action_ask_bad_mood"
+    def run(self,dispatcher,tracker,domain):
+        intent_result = intent_classification_check(self, dispatcher, tracker, domain)
+        if intent_result == 1 :
+            response_text = "Are you not feeling well regarding your pregnancy symptoms? Please let me know how I can help."
+            attachment_buttons = {'actions' :[{
+                                                    'name' : "ask advice",
+                                                    'text' : "Advice",
+                                                    'type' : "button",
+                                                    'value' : "",
+                                                    'style': "primary"},{
+                                                    'name' : "play music",
+                                                    'text' : "Music",
+                                                    'type' : "button",
+                                                    'value' : "",
+                                                    'style': "primary"},{
+                                                    'name' : "great",
+                                                    'text' : "Book",
+                                                    'type' : "button",
+                                                    'value' : ""},{
+                                                    'name' : "great",
+                                                    'text' : "Pregnancy Q",
+                                                    'type' : "button",
+                                                    'value' : ""},{
+                                                    'name' : "great",
+                                                    'text' : "Nothing",
+                                                    'type' : "button",
+                                                    'value' : ""}]}
+            dispatcher.utter_button_message(response_text,attachment_buttons)
+            return []
+        else:
+            action_default(self,dispatcher,tracker,domain)
+            return[] 
+
 
 class ActionSaveClipboard(Action):
     def name(self):
         return "action_save_clipboard"
     def run(self,dispatcher,tracker,domain):
-        client = MongoClient('localhost',27017)
-        db = client.user_database
-        result = db.user_data.find()
-        clip_contents=tracker.get_slot('clipboard')
-        if clip_contents is None :
-            clip_contents = ''
-        attachment_buttons = {'actions' :[{
-                                            'name' : "save clipboard...",
-                                            'text' : "Clipboard",
-                                            'type' : "button",
-                                            'value' : "",
-                                            'style': "primary",
-                                            'confirm' : {
-                                                'title': "Clipboard",
-                                                'text' : clip_contents,
-                                                'dismiss_text' : "Close"}}]}
-        dispatcher.utter_button_message('',attachment_buttons)
-        return []
+        intent_result = intent_classification_check(self, dispatcher, tracker, domain)
+        if intent_result == 1 :
+            client = MongoClient('localhost',27017)
+            db = client.user_database
+            result = db.user_data.find()
+            clip_contents=tracker.get_slot('clipboard')
+            if clip_contents is None :
+                clip_contents = ''
+            attachment_buttons = {'actions' :[{
+                                                'name' : "save clipboard...",
+                                                'text' : "Clipboard",
+                                                'type' : "button",
+                                                'value' : "",
+                                                'style': "primary",
+                                                'confirm' : {
+                                                    'title': "Clipboard",
+                                                    'text' : clip_contents,
+                                                    'dismiss_text' : "Close"}}]}
+            dispatcher.utter_button_message('',attachment_buttons)
+            return []
+        else:
+            action_default(self,dispatcher,tracker,domain)
+            return[]   
        
 
 class ActionAskDoctorsAppointment(Action):
     def name(self):
         return "ask_doctors_appointment"
     def run(self,dispatcher,tracker,domain):
-        client = MongoClient('localhost',27017)
-        db = client.user_database
-        result = db.user_data.find()
-        attachment_buttons = {'actions' :[{
-                                            'name' : "make appointment",
-                                            'text' : "Yes",
-                                            'type' : "button",
-                                            'value' : "",
-                                            'style': "primary"},{
-                                            'name' : "great",
-                                            'text' : "No",
-                                            'type' : "button",
-                                            'value' : "",
-                                            'style': "danger"}]}
-        if result :
-            if result[0]['schedule']['appointment'] :
-                recent_schedule = result[0]['schedule']['appointment'][0]
-                print('recent_schedule check',recent_schedule)
-                dispatcher.utter_button_message('My record show that your next visit to ' + recent_schedule['doctor_name'] + ' is ' + recent_schedule['date'] + '. Do you want to reschedule?',attachment_buttons)
+        intent_result = intent_classification_check(self, dispatcher, tracker, domain)
+        if intent_result == 1 :
+            client = MongoClient('localhost',27017)
+            db = client.user_database
+            result = db.user_data.find()
+            attachment_buttons = {'actions' :[{
+                                                'name' : "make appointment",
+                                                'text' : "Yes",
+                                                'type' : "button",
+                                                'value' : "",
+                                                'style': "primary"},{
+                                                'name' : "great",
+                                                'text' : "No",
+                                                'type' : "button",
+                                                'value' : "",
+                                                'style': "danger"}]}
+            if result :
+                if result[0]['schedule']['appointment'] :
+                    recent_schedule = result[0]['schedule']['appointment'][0]
+                    print('recent_schedule check',recent_schedule)
+                    dispatcher.utter_button_message('My record show that your next visit to ' + recent_schedule['doctor_name'] + ' is ' + recent_schedule['date'] + '. Do you want to reschedule?',attachment_buttons)
+                else :
+                    dispatcher.utter_button_message('You don\'t have any appointment. Do you like to make an appointment?',attachment_buttons)
             else :
                 dispatcher.utter_button_message('You don\'t have any appointment. Do you like to make an appointment?',attachment_buttons)
-        else :
-            dispatcher.utter_button_message('You don\'t have any appointment. Do you like to make an appointment?',attachment_buttons)
-        return []
+            return []
+        else:
+            action_default(self,dispatcher,tracker,domain)
+            return[] 
 
 class ActionAskAdvice(Action):
     def name(self):
         return "action_ask_advice"        
     def run(self,dispatcher,tracker,domain):
-        response_text = 'utter ask advice run..., clipboard saved.'
-        client = MongoClient('localhost',27017)
-        db = client.user_database
-        result = db.user_data.find()
-        if result:
-            clipboard_data = result[0]['clipboard']
-            clip_data=clipboard_data['contents'] 
-            clip_data+='\n\n'+response_text
-            db.user_data.update_one({"_id": 1}, {"$set": {"clipboard":{"date":datetime.now().strftime('%Y-%m-%d %H:%m'),"contents":clip_data}}})
-            tracker.update(SlotSet("clipboard",clip_data))
-        dispatcher.utter_message(response_text) 
-        return []    
-
+        intent_result = intent_classification_check(self, dispatcher, tracker, domain)
+        if intent_result == 1 :
+            response_text = 'utter ask advice run..., clipboard saved.'
+            client = MongoClient('localhost',27017)
+            db = client.user_database
+            result = db.user_data.find()
+            if result:
+                clipboard_data = result[0]['clipboard']
+                clip_data=clipboard_data['contents'] 
+                clip_data+='\n\n'+response_text
+                db.user_data.update_one({"_id": 1}, {"$set": {"clipboard":{"date":datetime.now().strftime('%Y-%m-%d %H:%m'),"contents":clip_data}}})
+                tracker.update(SlotSet("clipboard",clip_data))
+            dispatcher.utter_message(response_text) 
+            return []    
+        else:
+            action_default(self,dispatcher,tracker,domain)
+            return[]  
+            
 class ActionFoodRecommendation(Action):
     def name(self):
         return "action_food_recommendation"
     def run(self,dispatcher,tracker,domain):
-        print('chect past diet history, weight,doctor\'s recommendation....')
-        reponse_text = 'Your weight is okay and you can eat whatever you want unless the doctor advised otherwise. Recommended calories are ***Kcal and try to avoid *** during pregnancy'
-        dispatcher.utter_message(reponse_text)
-        
-        return []
+        intent_result = intent_classification_check(self, dispatcher, tracker, domain)
+        if intent_result == 1 :
+            print('chect past diet history, weight,doctor\'s recommendation....')
+            reponse_text = 'Your weight is okay and you can eat whatever you want unless the doctor advised otherwise. Recommended calories are ***Kcal and try to avoid *** during pregnancy'
+            dispatcher.utter_message(reponse_text)
+            
+            return []
+        else:
+            action_default(self,dispatcher,tracker,domain)
+            return[]    
 
 class ActionAskSymptom(Action):
     def name(self):
         return "action_ask_symptom"
     def run(self,dispatcher,tracker,domain):
-        print('KB Data ......')
-        reponse_text = 'answer from KB Data..'
-        dispatcher.utter_message(reponse_text)
-        client = MongoClient('localhost',27017)
-        db = client.user_database
-        result = db.user_data.find()
-        if result :
-            symptom_list = result[0]['chat_info']['symptoms']
-            if symptom_list :
-                reponse_text = 'How are you doing with your ' + symptom_list[0]['name'] + '?'
-                attachment_buttons = {'actions' :[{
-                                                  'name' : "great",
-                                                  'text' : "Choose...",
-                                                  'type' : "select",
-                                                  'options': [
-                                                              {
-                                                              'text': "Better",
-                                                              'value': "great"
-                                                              },{
-                                                              'text': "Still Bad",
-                                                              'value': "the pain is even worse"
-                                                              },{
-                                                              'text': "Worse",
-                                                              'value': "the pain is even worse"
-                                                              }]}]}
-                dispatcher.utter_button_message(reponse_text,attachment_buttons)
-        return []
+        intent_result = intent_classification_check(self, dispatcher, tracker, domain)
+        if intent_result == 1 :
+            print('KB Data ......')
+            reponse_text = 'answer from KB Data..'
+            dispatcher.utter_message(reponse_text)
+            client = MongoClient('localhost',27017)
+            db = client.user_database
+            result = db.user_data.find()
+            if result :
+                symptom_list = result[0]['chat_info']['symptoms']
+                if symptom_list :
+                    reponse_text = 'How are you doing with your ' + symptom_list[0]['name'] + '?'
+                    attachment_buttons = {'actions' :[{
+                                                    'name' : "great",
+                                                    'text' : "Choose...",
+                                                    'type' : "select",
+                                                    'options': [
+                                                                {
+                                                                'text': "Better",
+                                                                'value': "great"
+                                                                },{
+                                                                'text': "Still Bad",
+                                                                'value': "the pain is even worse"
+                                                                },{
+                                                                'text': "Worse",
+                                                                'value': "the pain is even worse"
+                                                                }]}]}
+                    dispatcher.utter_button_message(reponse_text,attachment_buttons)
+            return []
+        else:
+            action_default(self,dispatcher,tracker,domain)
+            return[]  
 
 class ActionSetRemind(Action):
-    def name(self):
+    def name(cls):
         return 'action_set_remind'
-    def run(self,dispatcher,tracker,domain):
-        action = 'action_ask_symptom'
-        print("latest_bot_utterance===>",tracker.latest_bot_utterance)
-        print("tracker.latest_message===>",tracker.latest_message)
-        print("latest_action===>",tracker.latest_action_name)
-        ReminderScheduled(action,datetime.now()+ timedelta(minutes=5))
-        dispatcher.utter_message("Ok, I will let you know then.")
-        return []
+    def run(cls,dispatcher,tracker,domain):
+        intent_result = intent_classification_check(cls, dispatcher, tracker, domain)
+        if intent_result == 1 :
+            action = 'action_ask_symptom'
+            print("latest_bot_utterance===>",tracker.latest_bot_utterance)
+            print("tracker.latest_message===>",tracker.latest_message)
+            print("latest_action===>",tracker.latest_action_name)
+            ReminderScheduled(action,datetime.now()+ timedelta(minutes=5))
+            dispatcher.utter_message("Ok, I will let you know then.")
+            return []
+        else:
+            action_default(self,dispatcher,tracker,domain)
+            return[]   
 
 class ActionAskSymptomBloom(Action):
     def name(self):
         return 'action_ask_symptom_bloom'
     def run(self,dispatcher,tracker,domain):
-        print('KB Data ......')
-        reponse_text = 'Bloom Symptom KB'
-        #dispatcher.utter_message(reponse_text)
-        client = MongoClient('localhost',27017)
-        db = client.user_database
-        result = db.user_data.find()   
-        if result :
-            health_info = result[0]['health_info']
-            reponse_text += '\n You\'re in week'+ str(health_info['weeks']) + '. If they are not painful or regular, they may be Braxton Hicks contractions. You can try using Belli device. '
-            reponse_text += 'Do you want more info?' 
-            attachment_buttons = {'actions' :[{
-                                                'name' : "ask symptom more info",
-                                                'text' : "Yes",
-                                                'type' : "button",
-                                                'value' : "",
-                                                'style' : "primary"},{
-                                                'name' : "great",
-                                                'text' : "No",
-                                                'type' : "button",
-                                                'value' : "",
-                                                'style' : "danger"}]}
-            dispatcher.utter_button_message(reponse_text,attachment_buttons)
-        return []                                        
+        intent_result = intent_classification_check(self, dispatcher, tracker, domain)
+        if intent_result == 1 :
+            print('KB Data ......')
+            reponse_text = 'Bloom Symptom KB'
+            #dispatcher.utter_message(reponse_text)
+            client = MongoClient('localhost',27017)
+            db = client.user_database
+            result = db.user_data.find()   
+            if result :
+                health_info = result[0]['health_info']
+                reponse_text += '\n You\'re in week'+ str(health_info['weeks']) + '. If they are not painful or regular, they may be Braxton Hicks contractions. You can try using Belli device. '
+                reponse_text += 'Do you want more info?' 
+                attachment_buttons = {'actions' :[{
+                                                    'name' : "ask symptom more info",
+                                                    'text' : "Yes",
+                                                    'type' : "button",
+                                                    'value' : "",
+                                                    'style' : "primary"},{
+                                                    'name' : "great",
+                                                    'text' : "No",
+                                                    'type' : "button",
+                                                    'value' : "",
+                                                    'style' : "danger"}]}
+                dispatcher.utter_button_message(reponse_text,attachment_buttons)
+            return []
+        else:
+            action_default(self,dispatcher,tracker,domain)
+            return[]                                       
 class ActionAskMoreInfo(Action):
     def name(self):
         return 'action_ask_more_info'
     def run(self,dispatcher,tracker,domain):
-        response_text = "Before 'true' labor begins, you may have 'false' labor pains. These are also known as Braxton Hicks contractions. They are your body's way of getting ready for the real thing -- the day you give birth -- but they are not a sign that labor has begun or is getting ready to begin. I'll put more info on your Clipboard."  
-        clip_data = tracker.get_slot('clipboard')
-        if clip_data is None :
-            clip_data = ''
-        clip_data += '\n\nbloom symptom : Before \'true\' labor begins, you may have \'false\' labor pains.'
-        tracker.update(SlotSet("clipboard",clip_data))
-        client = MongoClient('localhost',27017)
-        db = client.user_database
-        db.user_data.update_one({"_id": 1}, {"$set": {"clipboard":{"date":datetime.now().strftime('%Y-%m-%d %H:%m'),"contents":clip_data}}})
-        dispatcher.utter_message(response_text)
-        return []
+        intent_result = intent_classification_check(self, dispatcher, tracker, domain)
+        if intent_result == 1 :
+            response_text = "Before 'true' labor begins, you may have 'false' labor pains. These are also known as Braxton Hicks contractions. They are your body's way of getting ready for the real thing -- the day you give birth -- but they are not a sign that labor has begun or is getting ready to begin. I'll put more info on your Clipboard."  
+            clip_data = tracker.get_slot('clipboard')
+            if clip_data is None :
+                clip_data = ''
+            clip_data += '\n\nbloom symptom : Before \'true\' labor begins, you may have \'false\' labor pains.'
+            tracker.update(SlotSet("clipboard",clip_data))
+            client = MongoClient('localhost',27017)
+            db = client.user_database
+            db.user_data.update_one({"_id": 1}, {"$set": {"clipboard":{"date":datetime.now().strftime('%Y-%m-%d %H:%m'),"contents":clip_data}}})
+            dispatcher.utter_message(response_text)
+            return []
+        else:
+            action_default(self,dispatcher,tracker,domain)
+            return[]  
 class ActionStartGreetTrigger(Action):
     def name(self):
         return 'action_start_greet_trigger'
@@ -220,39 +503,44 @@ class ActionStartGreetTrigger(Action):
                     response_text += 'How are you feeling?'
                     dispatcher.utter_button_message(response_text,attachment_buttons)
                     return [ReminderScheduled('action_start_greet_trigger', datetime.now()+ timedelta(days=1),kill_on_user_message=False)]
-                          
+                        
         else :  
             return [ReminderScheduled('action_start_greet_trigger', datetime.now()+ timedelta(minutes=1),kill_on_user_message=False)]
-
+ 
   
 class ActionAskDevicePurchase(Action):
     def name(self):
         return 'action_ask_device_purchase'
     def run(self,dispatcher,tracker,domain):
-        client = MongoClient('localhost',27017)
-        db = client.user_database
-        result = db.user_data.find()
-        if result:
-            user_info = result[0]
-            health_info = result[0]['health_info']
-            remain_patch = 42 - health_info['weeks']
-            response_text = 'You need about '+ str(remain_patch) + 'more patches before birth. \n'
-            response_text += 'Shall I order '+ str(remain_patch) + 'using the same address ('+ user_info['user_info']['address']+') and '
-            response_text += 'payment method? It\'s $20 including taxes and shipping.'
-            attachment_buttons = {'actions' :[{
-                                        'name' : "confirm purchase",
-                                        'text' : "Yes",
-                                        'type' : "button",
-                                        'value' : "",
-                                        'style' : "primary"},{
-                                        'name' : "great",
-                                        'text' : "No",
-                                        'type' : "button",
-                                        'value' : "",
-                                        'style' : "danger"
-                                        }]}
-            dispatcher.utter_button_message(response_text,attachment_buttons)
-        return [] 
+        intent_result = intent_classification_check(self, dispatcher, tracker, domain)
+        if intent_result == 1 :
+            client = MongoClient('localhost',27017)
+            db = client.user_database
+            result = db.user_data.find()
+            if result:
+                user_info = result[0]
+                health_info = result[0]['health_info']
+                remain_patch = 42 - health_info['weeks']
+                response_text = 'You need about '+ str(remain_patch) + 'more patches before birth. \n'
+                response_text += 'Shall I order '+ str(remain_patch) + 'using the same address ('+ user_info['user_info']['address']+') and '
+                response_text += 'payment method? It\'s $20 including taxes and shipping.'
+                attachment_buttons = {'actions' :[{
+                                            'name' : "confirm purchase",
+                                            'text' : "Yes",
+                                            'type' : "button",
+                                            'value' : "",
+                                            'style' : "primary"},{
+                                            'name' : "great",
+                                            'text' : "No",
+                                            'type' : "button",
+                                            'value' : "",
+                                            'style' : "danger"
+                                            }]}
+                dispatcher.utter_button_message(response_text,attachment_buttons)
+            return [] 
+        else:
+            action_default(self,dispatcher,tracker,domain)
+            return[]   
      
 class ActionDeviceTrigger(Action):
     def name(self):
@@ -274,58 +562,76 @@ class ActionDeviceTrigger(Action):
                                         }]}
         tracker.update(SlotSet("disease","pre-eclampsia"))
         dispatcher.utter_button_message(response_text,attachment_buttons)
-        return [] 
-
+        return []  
 class ActionAskDisease(Action):
     def name(self):
         return 'action_ask_disease'
     def run(self, dispatcher,tracker,domain): 
-        disease = tracker.get_slot('disease')   
-        if disease :
-            response_text = 'pre-eclampsia is a condition that pregnant women develop. \nIt is marked by high blood pressure in women who have ' 
-            response_text += 'previously not experienced high blood pressure before. \nPre-eclamptic women will have a high level of pretein in their urin '
-            response_text += 'and often also have swelling in the feet, legs and hands. \nThis condition usually appears late in pregnancy although it can occur earlier.'
-            response_text += '\n If you\'s like to find details, please select the taps.'
-            attachment_buttons = {'actions' :[{
-                                        'name' : "helpful food for this disease",
-                                        'text' : "Food Recommendation",
-                                        'type' : "button",
-                                        'value' : "",
-                                        'style' : "primary"},{
-                                        'name' : "great",
-                                        'text' : "Cause",
-                                        'type' : "button",
-                                        'value' : ""
-                                        },{
-                                        'name' : "great",
-                                        'text' : "Sign & Symptom",
-                                        'type' : "button",
-                                        'value' : ""
-                                        }]}
-            dispatcher.utter_button_message(response_text,attachment_buttons)
-        return []  
+        intent_result = intent_classification_check(self, dispatcher, tracker, domain)
+        if intent_result == 1 :
+            disease = tracker.get_slot('disease')   
+            if disease :
+                response_text = 'pre-eclampsia is a condition that pregnant women develop. \nIt is marked by high blood pressure in women who have ' 
+                response_text += 'previously not experienced high blood pressure before. \nPre-eclamptic women will have a high level of pretein in their urin '
+                response_text += 'and often also have swelling in the feet, legs and hands. \nThis condition usually appears late in pregnancy although it can occur earlier.'
+                response_text += '\n If you\'s like to find details, please select the taps.'
+                attachment_buttons = {'actions' :[{
+                                            'name' : "helpful food for this disease",
+                                            'text' : "Food Recommendation",
+                                            'type' : "button",
+                                            'value' : "",
+                                            'style' : "primary"},{
+                                            'name' : "great",
+                                            'text' : "Cause",
+                                            'type' : "button",
+                                            'value' : ""
+                                            },{
+                                            'name' : "great",
+                                            'text' : "Sign & Symptom",
+                                            'type' : "button",
+                                            'value' : ""
+                                            }]}
+                dispatcher.utter_button_message(response_text,attachment_buttons)
+            return []  
+        else :
+            action_default(self,dispatcher,tracker,domain)
+            return[]   
 class ActionAskFood(Action):
     def name(self):
         return 'action_ask_food'  
-    def run(self, dispatcher,tracker,domain): 
-        disease = tracker.get_slot('disease') 
-        if disease :
-            response_text = 'I recommend food containing Ca, meneral, Re. They can help your blood circulations as well as High bp controll.'
-            response_text += 'Besides, they are good for your baby\'s nutrition.'
-            dispatcher.utter_message(response_text)
-        return []  
+    def run(self, dispatcher,tracker,domain):
+        intent_result = intent_classification_check(self, dispatcher, tracker, domain)
+        if intent_result == 1 :
+            disease = tracker.get_slot('disease') 
+            if disease :
+                response_text = 'I recommend food containing Ca, meneral, Re. They can help your blood circulations as well as High bp controll.'
+                response_text += 'Besides, they are good for your baby\'s nutrition.'
+                dispatcher.utter_message(response_text)
+            return []  
+        else:
+            action_default(self,dispatcher,tracker,domain)
+            return[]   
         
 class ActionAskSupplements(Action):
     def name(self):
         return 'action_ask_supplements'  
     def run(self, dispatcher,tracker,domain): 
-        disease = tracker.get_slot('disease') 
-        if disease :
-            response_text = 'That is a good idea. However, you\'d beeter talk to your doctor first before purchaseing supplements.'
-            response_text += 'Besides, they are good for your baby\'s nutrition.'
-            dispatcher.utter_message(response_text)
-        return []        
-                                        
+        intent_result = intent_classification_check(self, dispatcher, tracker, domain)
+        if intent_result == 1 :
+            disease = tracker.get_slot('disease') 
+            if disease :
+                response_text = 'That is a good idea. However, you\'d beeter talk to your doctor first before purchaseing supplements.'
+                response_text += 'Besides, they are good for your baby\'s nutrition.'
+                dispatcher.utter_message(response_text)
+            return []  
+        else:
+            action_default(self,dispatcher,tracker,domain)
+            return[]    
+               
+def action_default(cls,dispatcher,tracker,domain):
+        dispatcher.utter_message("I am sorry. I don't understand what you are saying.")
+        return []
+
 class ActionProductRecommendationTrigger(Action):
     @classmethod
     def name(cls):
@@ -360,7 +666,7 @@ class ActionProductRecommendationTrigger(Action):
             dispatcher.utter_button_message(response_text,attachment_buttons)
             return [ReminderScheduled('action_product_recommendation_trigger', datetime.now()+ timedelta(days=1),kill_on_user_message=False)]
         return [ReminderScheduled('action_product_recommendation_trigger', datetime.now()+ timedelta(minutes=1),kill_on_user_message=False)]    
-            
+       
 def call_weather_api(location) :
     if location =='seoul' :
         url = 'https://simple-weather.p.mashape.com/weatherData?lat=37.5&lng=127'
@@ -370,7 +676,15 @@ def call_weather_api(location) :
         r= requests.get(url,headers=headers)
         data=r.json()
         return data   
-
+        
+def intent_classification_check(cls, dispatcher, tracker, domain):
+    confidence_check = tracker.latest_message.intent['confidence']
+    print("intent check===>",confidence_check)
+    if confidence_check >= 0.17:
+        return 1
+    else:
+        return 2    
+        
 class UsertriggerPolicy(KerasPolicy):
     def _build_model(self, num_features, num_actions, max_history_len):
         """Build a keras model and return a compiled model.
