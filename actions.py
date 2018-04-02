@@ -411,20 +411,8 @@ class ActionAskAdvice(Action):
     def run(self,dispatcher,tracker,domain):
         intent_result = intent_classification_check(self, dispatcher, tracker, domain)
         if intent_result == 1 :
-            response_text = 'You may be feeling like you\'ve been pregnant for forever, but keep in mind the big day is less than two months away. \nYou should also note that most babies don\'t arrive on their due date or even within a couple of days of that target. Many babies arrive after week 38 or (and you may not want to read this) a couple of weeks after their due date. Every pregnancy is different. \nDoctors will want you to complete all 40 weeks to increase the chance of a healthy baby. \nNeed detailed advice?'
-            attachment_buttons = {'actions' :[{
-                                                    'name' : "body change",
-                                                    'text' : "Body Change",
-                                                    'type' : "button",
-                                                    'value' : ""},{
-                                                    'name' : "baby",
-                                                    'text' : "Baby",
-                                                    'type' : "button",
-                                                    'value' : ""},{
-                                                    'name' : "Symptoms",
-                                                    'text' : "Symptoms",
-                                                    'type' : "button",
-                                                    'value' : ""}]}
+            response_text = 'You may be feeling like you\'ve been pregnant for forever, but keep in mind the big day is less than two months away. \nYou should also note that most babies don\'t arrive on their due date or even within a couple of days of that target. Many babies arrive after week 38 or (and you may not want to read this) a couple of weeks after their due date. Every pregnancy is different. \nDoctors will want you to complete all 40 weeks to increase the chance of a healthy baby.'
+          
             client = MongoClient('localhost',27017)
             db = client.user_database
             result = db.user_data.find()
@@ -434,7 +422,7 @@ class ActionAskAdvice(Action):
                 clip_data+='\n\n'+response_text
                 db.user_data.update_one({"_id": 1}, {"$set": {"clipboard":{"date":datetime.now().strftime('%Y-%m-%d %H:%m'),"contents":clip_data}}})
                 tracker.update(SlotSet("clipboard",clip_data))
-            dispatcher.utter_button_message(response_text,attachment_buttons)
+            dispatcher.utter_message(response_text,attachment_buttons)
             return []    
         else:
             action_default(self,dispatcher,tracker,domain)
