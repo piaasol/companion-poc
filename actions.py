@@ -244,7 +244,7 @@ class ActionSymptomStillBad(Action):
             response_text = "It is not uncommon to have pain around hip area during pregnancy.\n This occurs because your body is preparing itself for labor. \nSoreness and pain are often felt the strongest on the side where the baby tends to lie in your uterus."
             response_text += "I found some remedies for hip pain. Would you like to see it?"
             attachment_buttons = {'actions' :[{
-                                                    'name' : "I want to get remedy",
+                                                    'name' : "ask remedy",
                                                     'text' : "Yes",
                                                     'type' : "button",
                                                     'value' : "",
@@ -479,7 +479,7 @@ class ActionAskSymptom(Action):
                                                     'options': [
                                                                 {
                                                                 'text': "Better",
-                                                                'value': "symptom great"
+                                                                'value': "symptom better"
                                                                 },{
                                                                 'text': "Still there",
                                                                 'value': "symptom still bad"
