@@ -664,7 +664,7 @@ class ActionDeviceTrigger(Action):
         response_text = 'You have high blood pressure! It is 138/60. High BP could cause pre-eclampsia so you\'d better take extra caution'
         response_text += 'Do you want to know more about pre-eclampsia?'
         attachment_buttons = {'actions' :[{
-                                        'name' : "i want to find more about this disease",
+                                        'name' : "more about the disease",
                                         'text' : "Yes",
                                         'type' : "button",
                                         'value' : "",
