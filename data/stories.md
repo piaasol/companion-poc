@@ -199,3 +199,11 @@
 ## disagree forward doctor
 * disagree_forward_doctor
  - action_disagree_forward_doctor 
+
+## ask pregnancy q
+* ask_pregnancy_q
+ - action_pregnancy_q
+ 
+## ask book
+* ask_book
+ - action_ask_book  

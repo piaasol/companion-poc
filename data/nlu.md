@@ -422,6 +422,19 @@
 - no thank you
 - no
 - none
+## intent:ask_book
+- recommend book
+- book recommendation
+- book recommend
+- ask book
+- asking book
+## intent:ask_pregnancy_q
+- ask pregnancy Q
+- ask pregnancy q
+- asking pregnancy q
+- asking pregnancy Q
+- asking for pregnancy Q
+- asking for pregnancy q
 
 
 

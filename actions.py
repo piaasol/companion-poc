@@ -31,11 +31,11 @@ class ActionHappy(Action):
                                                     'type' : "button",
                                                     'value' : "",
                                                     'style': "primary"},{
-                                                    'name' : "great",
+                                                    'name' : "ask book",
                                                     'text' : "Book",
                                                     'type' : "button",
                                                     'value' : ""},{
-                                                    'name' : "great",
+                                                    'name' : "pregnancy q",
                                                     'text' : "Pregnancy Q",
                                                     'type' : "button",
                                                     'value' : ""},{
@@ -67,11 +67,11 @@ class ActionNotBad(Action):
                                                     'type' : "button",
                                                     'value' : "",
                                                     'style': "primary"},{
-                                                    'name' : "great",
+                                                    'name' : "ask book",
                                                     'text' : "Book",
                                                     'type' : "button",
                                                     'value' : ""},{
-                                                    'name' : "great",
+                                                    'name' : "pregnancy q",
                                                     'text' : "Pregnancy Q",
                                                     'type' : "button",
                                                     'value' : ""},{
@@ -323,11 +323,11 @@ class ActionAskBadMood(Action):
                                                     'type' : "button",
                                                     'value' : "",
                                                     'style': "primary"},{
-                                                    'name' : "great",
+                                                    'name' : "ask book",
                                                     'text' : "Book",
                                                     'type' : "button",
                                                     'value' : ""},{
-                                                    'name' : "great",
+                                                    'name' : "pregnancy q",
                                                     'text' : "Pregnancy Q",
                                                     'type' : "button",
                                                     'value' : ""},{
@@ -491,6 +491,30 @@ class ActionSymptomBetter(Action):
         else:
             action_default(self,dispatcher,tracker,domain)
             return[] 
+class ActionPregnancyQ(Action):
+    def name(self):
+        return 'action_pregnancy_q'  
+    def run(self, dispatcher,tracker,domain): 
+        intent_result = intent_classification_check(self, dispatcher, tracker, domain)
+        if intent_result == 1 :
+            response_text = 'Pegnancy Q'
+            dispatcher.utter_message(response_text)
+            return []  
+        else:
+            action_default(self,dispatcher,tracker,domain)
+            return[]  
+class ActionAskBook(Action):
+    def name(self):
+        return 'action_ask_book'  
+    def run(self, dispatcher,tracker,domain): 
+        intent_result = intent_classification_check(self, dispatcher, tracker, domain)
+        if intent_result == 1 :
+            response_text = 'Book List [Happy Pregnancy Like]'
+            dispatcher.utter_message(response_text)
+            return []  
+        else:
+            action_default(self,dispatcher,tracker,domain)
+            return[]                   
 class ActionSetRemind(Action):
     def name(cls):
         return 'action_set_remind'

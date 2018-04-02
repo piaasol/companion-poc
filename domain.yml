@@ -37,6 +37,8 @@ intents:
   - ask_symptom_better
   - answer_denial
   - disagree_forward_doctor
+  - ask_pregnancy_q
+  - ask_book
   
 
 entities:
@@ -82,6 +84,8 @@ actions:
   - actions.ActionSymptomWorse
   - actions.ActionDenial
   - actions.ActionDisagree
+  - actions.ActionPregnancyQ
+  - actions.ActionAskBook
  
 slots:
    disease:
