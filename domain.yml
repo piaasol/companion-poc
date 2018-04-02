@@ -35,7 +35,6 @@ intents:
   - no_intent_found
   - mood_not_bad
   - ask_symptom_better
-  - ask_symptom_worse
   - answer_denial
   - disagree_forward_doctor
   

@@ -59,9 +59,7 @@
 * ask_bad_symptom
   - action_ask_symptom
 * ask_symptom_worse
-  - action_symptom_still_bad
-* ask_remedy
-  - action_ask_remedy 
+  - action_symptom_worse
 
 ## flow 11    <!-- bot trigger greet  -->
 * greet
@@ -197,7 +195,7 @@
 ## answer denial
 * answer_denial
  - action_denial 
- 
+
 ## disagree forward doctor
 * disagree_forward_doctor
  - action_disagree_forward_doctor 
