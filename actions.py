@@ -688,7 +688,7 @@ class ActionAskDisease(Action):
             if disease :
                 response_text = 'Pre-eclampsia is when you have high blood pressure and protein in your urine during pregnancy. \nIt can happen at any point after the 20th week of pregnancy, though in some cases it occurs earlier. \nYou may also have low clotting factors (platelets) in your blood or indicators of kidney or liver trouble. \nThis condition is also called toxemia or pregnancy-induced hypertension (PIH). \nEclampsia is a severe complication of preeclampsia. Eclampsia includes high blood pressure resulting in seizures during pregnancy. \nApproximately 5 to 10 percent of all pregnant women get preeclampsia.'
                 attachment_buttons = {'actions' :[{
-                                            'name' : "helpful food for this disease",
+                                            'name' : "food for disease",
                                             'text' : "Food Recommendation",
                                             'type' : "button",
                                             'value' : "",
