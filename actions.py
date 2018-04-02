@@ -434,7 +434,6 @@ class ActionFoodRecommendation(Action):
     def run(self,dispatcher,tracker,domain):
         intent_result = intent_classification_check(self, dispatcher, tracker, domain)
         if intent_result == 1 :
-            print('chect past diet history, weight,doctor\'s recommendation....')
             reponse_text = 'Your weight is okay and you can eat whatever you want unless the doctor advised otherwise. Recommended calories are 2,200Kcal a day and try to avoid caffeine during pregnancy'
             dispatcher.utter_message(reponse_text)
             return []
@@ -732,9 +731,8 @@ class ActionDenial(Action):
     def run(self, dispatcher,tracker,domain): 
         intent_result = intent_classification_check(self, dispatcher, tracker, domain)
         if intent_result == 1 :
-            if disease :
-                response_text = 'Okay. Ask me again anytime!'
-                dispatcher.utter_message(response_text)
+            response_text = 'Okay. Ask me again anytime!'
+            dispatcher.utter_message(response_text)
             return []  
         else:
             action_default(self,dispatcher,tracker,domain)
