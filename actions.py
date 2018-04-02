@@ -498,9 +498,8 @@ class ActionSymptomBetter(Action):
     def run(self, dispatcher,tracker,domain): 
         intent_result = intent_classification_check(self, dispatcher, tracker, domain)
         if intent_result == 1 :
-            if disease :
-                response_text = 'Oh, great! Let me know if your symptoms worsen.'
-                dispatcher.utter_message(response_text)
+            response_text = 'Oh, great! Let me know if your symptoms worsen.'
+            dispatcher.utter_message(response_text)
             return []  
         else:
             action_default(self,dispatcher,tracker,domain)
