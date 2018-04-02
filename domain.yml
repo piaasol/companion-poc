@@ -1,10 +1,7 @@
 intents:
   - greet
   - goodbye
-  - mood_affirm
-  - mood_deny
   - mood_great
-  - mood_unhappy
   - ask_general
   - ask_bad_symptom
   - ask_bad_mood
@@ -15,7 +12,6 @@ intents:
   - user_set_reminder
   - ask_symptom
   - ask_doctors_appointment
-  - ask_food
   - user_device_question
   - ask_music
   - default
@@ -37,9 +33,19 @@ intents:
   - ask_disease
   - start_product_recommendation_trigger
   - no_intent_found
+  - mood_not_bad
+  - ask_symptom_better
+  - ask_symptom_worse
+  - answer_denial
+  - disagree_forward_doctor
   
 
-
+entities:
+ - medical advice
+ - pre-eclampsia
+ - people
+ - price
+ - cuisine
 
 actions:
   - actions.ActionAskBadMood
@@ -72,6 +78,11 @@ actions:
   - actions.ActionAskAdvice
   - actions.ActionSaveClipboard
   - actions.ActionAskMoreInfo
+  - actions.ActionNotBad
+  - actions.ActionSymptomBetter
+  - actions.ActionSymptomWorse
+  - actions.ActionDenial
+  - actions.ActionDisagree
  
 slots:
    disease:

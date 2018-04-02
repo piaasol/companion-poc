@@ -178,6 +178,26 @@
 * confirm_purchase
   - action_confirm_purchase
 
-  ## ask bad mood
-  * ask_bad_mood
-   - action_ask_bad_mood
+## ask bad mood
+* ask_bad_mood
+  - action_ask_bad_mood
+
+## mood not bad
+* mood_not_bad
+ - action_not_bad
+
+## symptom better
+* ask_symptom_better
+ - action_symptom_better
+
+## symptom worse
+* ask_symptom_worse
+ - action_symptom_worse
+
+## answer denial
+* answer_denial
+ - action_denial 
+ 
+## disagree forward doctor
+* disagree_forward_doctor
+ - action_disagree_forward_doctor 

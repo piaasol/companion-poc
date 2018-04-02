@@ -12,34 +12,17 @@
 - goodmorning
 - goodevening
 - good afternoon
-
 ## intent:goodbye
 - cu
 - good by
 - cee you later
 - good night
-- good afternoon
 - bye
 - goodbye
 - have a nice day
 - see you around
 - bye bye
 - see you later
-
-## intent:mood_affirm
-- yes
-- indeed
-- of course
-- that sounds good
-- correct
-
-## intent:mood_deny
-- no
-- never
-- I don't think so
-- don't like that
-- no way
-
 ## intent:mood_great
 - perfect
 - very good
@@ -63,22 +46,12 @@
 - i have bad mood
 - my mood is not good
 - my mood is bad
-
-## intent:mood_unhappy
-- my day was horrible
-- I am sad
-- I don't feel very well
-- I am disappointed
-- super sad
-- I'm so sad
-- sad
-- very sad
-- unhappy
-- not so good
-- not very good
-- extremly sad
-- so saad
-- so sad
+- bad mood
+- mood bad
+- feeling bad
+- feeling not good
+- mood not good
+- feel not good
 ## intent:ask_bad_symptom
 - don't feel like eating
 - can't eat
@@ -92,7 +65,6 @@
 - appetite is off
 - I don't feel good
 - I don't feel well
-- hip pain
 
 ## intent:ask_medical_advice
 - Show me a medical advice for hip pain
@@ -106,8 +78,9 @@
 - hip pain advice
 - I feel more pain on my hips. I need medical advice.
 - Medical advice for my hip pain
+- hip pain medical advice
 ## intent:ask_food_recommendation
--  Tell me what to eat
+- Tell me what to eat
 - What should I eat?
 - Recommend food
 - Don't know what to eat
@@ -241,11 +214,6 @@
 - All about lactacion
 - Breast-feeding information
 - Breastfeed my baby
-- can't
-- i can't
-- don't like
-- i don't like
-- i think
 ## intent:ask_advice
 - ask advice
 - asking advice
@@ -256,7 +224,7 @@
 - need help
 - any advice
 - give me some advice
-
+- more advice needed
 ## intent:start_greet_trigger
 - greet trigger start now
 - greet trigger
@@ -267,7 +235,6 @@
 - trigger start
 - greet trigger starts...
 - greet tirgger start...
-
 ## intent:ask_music
 - play music
 - I need music
@@ -275,7 +242,9 @@
 - I want some music
 - I want to listen some music
 - please play some music
-
+- music play
+- need music
+- play music now
 ## intent:make_doctors_appointment
 - make appointment
 - schedule my appointment
@@ -285,26 +254,43 @@
 - i want rechedule my docctor's appointment
 - rechedule doctor's appointment
 - change the date on visiting the doctor
-
 ## intent:ask_general_info
 - ask general info
 - I need general info
 - general info, please
 - general info needed
-
+- need general info
+- need general information
+- want general info
+- want general information
+- asking general info
+- asking general information
+- general info
+- general information
 ## intent:ask_doctor
 - ask doctor
 - asking doctor
 - doctor consulting
 - i would like to consult with the doctor
 - please, ask the doctor
-
+- question for doctor
+- ask doctors
+- asking doctors
+- consulting doctor
+- consulting doctors
 ## intent:ask_symptom_more_info
 - ask symptom more info
 - yes, I need more information for the symptom
 - I need more info about the symptom
 - need more details about the symptom
 - want more info about the symptom
+- symptom more information
+- more symptom info
+- more symptom information
+- need more symptom info
+- want more symptom info
+- need more symptom information
+- want more symptom information
 ## intent:ask_symptom_still_bad
 - still bad
 - my symptom is still bad
@@ -312,6 +298,10 @@
 - my symptom has not been any better
 - my symptom is still there
 - it is still bad
+- symptom still bad
+- symptom still there
+- symptom not getting better
+- symptom still exists
 ## intent:ask_symptom_worse
 - getting worse
 - the symptom is even worse
@@ -321,6 +311,8 @@
 - my symptom getting worse
 - it is worse now
 - my symptom is worse now
+- symptom even worse
+- symptom worse
 ## intent:ask_remedy
 - ask remedy
 - I want to get remedy
@@ -342,12 +334,26 @@
 - i agree and send my info to doctors
 - i agree to send my info to the doctors
 - i agree and please forward this to the doctors
+- agree on forwarding info
+- agree on sending info
+- forward info agreed
+## intent:disagree_forward_doctor
+- disagree on forwarding info
+- disagree on sending info
+- disagree
+- disagreement
+- disagree forward info
+- i disagree
 ## intent:ask_food_advice
 - helpful food for this disease
 - what food is good for this disease?
 - what food is for the disease?
 - what food is good for the disease?
 - helpful food for the disease
+- food for the disease
+- good food for the disease
+- food for disease
+- helpful food for disease
 ## intent:ask_supplements
 - please, recommend some supplements
 - supplements?
@@ -357,18 +363,29 @@
 - recommend me some helpful supplements for the disease
 - what supplement is good for the disease?
 - do i need any supplements?
+- good supplement?
+- supplement recommendation?
 ## intent:start_device_trigger
 - device trigger starts now..
 - device trigger start..
 - device trigger starting
 - starts device trigger action
 - start device trigger now
+- device trigger
+- device trigger now
+- launch device trigger
 ## intent:ask_disease
 - i want to find more about this disease
 - i would like to know more about this disease
 - i sould like to find more abou this disease
 - let's find out more about this disease
 - wanna find out more about the disease
+- ask about disease
+- more info for the disease
+- more about the disease
+- more info for disease
+- find out more about disease
+- find more info for disease
 ## intent:start_product_recommendation_trigger
 - product recommend trigger now
 - product recommendation tirgger starts now...
@@ -376,6 +393,36 @@
 - product recommendation start...
 - trigger for product recommendation..
 - launch product recommendation trigger...
+- product recommendation tirgger
+## intent:mood_not_bad
+- not bad
+- mood not bad
+- not bad mood
+- i feel not bad
+- feeling not bad
+- feel not bad
+- i'm feeling not bad
+## intent:ask_symptom_better
+- symptom better
+- the symptom is better
+- the symptom better
+- symptom is better
+- my symptom is better
+- symptom is better now
+## intent:ask_symptom_worse
+- symptom worse
+- the symptom is worse
+- the symptom worse
+- my symptom is worse
+- symptom is worse now
+- symptom is worse
+## intent:answer_denial
+- no thanks
+- nothing
+- no thank you
+- no
+- none
+
 
 
 

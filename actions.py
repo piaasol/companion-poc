@@ -19,13 +19,71 @@ class ActionHappy(Action):
     def run(self,dispatcher,tracker,domain):
         intent_result = intent_classification_check(self, dispatcher, tracker, domain)
         if intent_result == 1 :
-            response_text = "Great, carry on!!"
-            dispatcher.utter_message(response_text)
+            response_text = "Great! I'm happy to hear that you are feeling good. Please let me know if you need any help."
+            attachment_buttons = {'actions' :[{
+                                                    'name' : "ask advice",
+                                                    'text' : "Advice",
+                                                    'type' : "button",
+                                                    'value' : "",
+                                                    'style': "primary"},{
+                                                    'name' : "play music",
+                                                    'text' : "Music",
+                                                    'type' : "button",
+                                                    'value' : "",
+                                                    'style': "primary"},{
+                                                    'name' : "great",
+                                                    'text' : "Book",
+                                                    'type' : "button",
+                                                    'value' : ""},{
+                                                    'name' : "great",
+                                                    'text' : "Pregnancy Q",
+                                                    'type' : "button",
+                                                    'value' : ""},{
+                                                    'name' : "no thanks",
+                                                    'text' : "Nothing",
+                                                    'type' : "button",
+                                                    'value' : ""}]}
+            dispatcher.utter_button_message(response_text,attachment_buttons)
             return []
         else:
             action_default(self,dispatcher,tracker,domain)
             return[] 
 
+class ActionNotBad(Action):
+    def name(self):
+        return "action_not_bad"
+    def run(self,dispatcher,tracker,domain):
+        intent_result = intent_classification_check(self, dispatcher, tracker, domain)
+        if intent_result == 1 :
+            response_text = "I hope you feel bettter. Please let me know if you need any help."
+            attachment_buttons = {'actions' :[{
+                                                    'name' : "ask advice",
+                                                    'text' : "Advice",
+                                                    'type' : "button",
+                                                    'value' : "",
+                                                    'style': "primary"},{
+                                                    'name' : "play music",
+                                                    'text' : "Music",
+                                                    'type' : "button",
+                                                    'value' : "",
+                                                    'style': "primary"},{
+                                                    'name' : "great",
+                                                    'text' : "Book",
+                                                    'type' : "button",
+                                                    'value' : ""},{
+                                                    'name' : "great",
+                                                    'text' : "Pregnancy Q",
+                                                    'type' : "button",
+                                                    'value' : ""},{
+                                                    'name' : "no thanks",
+                                                    'text' : "Nothing",
+                                                    'type' : "button",
+                                                    'value' : ""}]}
+            dispatcher.utter_button_message(response_text,attachment_buttons)
+            return []
+        else:
+            action_default(self,dispatcher,tracker,domain)
+            return[] 
 class ActionAskForwardDoctor(Action):
     def name(self):
         return "action_ask_forward_doctor"
@@ -56,7 +114,7 @@ class ActionPlayMusic(Action):
     def run(self,dispatcher,tracker,domain):
         intent_result = intent_classification_check(self, dispatcher, tracker, domain)
         if intent_result == 1 :
-            response_text = "Music play now"
+            response_text = "Play music [April in Paris by Eddie Higgins Trio ]"
             dispatcher.utter_message(response_text)
             return []
         else:
@@ -69,7 +127,11 @@ class ActionAskGeneralInfo(Action):
     def run(self,dispatcher,tracker,domain):
         intent_result = intent_classification_check(self, dispatcher, tracker, domain)
         if intent_result == 1 :
-            response_text = "utter_ask_general_info"
+            response_text = "When nothing else works, have a warm water bath or apply a hot water bottle on your hip." 
+            response_text += "\nWith advice and consultation from your doctor, you can also get a massage with warm oil to get relief from hip pain."
+            response_text += "\nThe massage should be very gentle, and your bath water should be warm (not hot)."
+            response_text += "\nIn addition, I would like you to schedule a prenatal massage eases the pains and aches of pregnancy."
+            response_text += "\nA prenatal massage not only relaxes your muscles and de-stresses you but also makes you feel better. \nGo to a trained therapist so that they know where the exact sore spots lie."
             dispatcher.utter_message(response_text)
             return []
         else:
@@ -119,7 +181,7 @@ class ActionAskRemedy(Action):
     def run(self,dispatcher,tracker,domain):
         intent_result = intent_classification_check(self, dispatcher, tracker, domain)
         if intent_result == 1 :
-            response_text = "Here is remedy...."
+            response_text = "Practicing exercises that strengthen both the back muscles, as well as, your abdominal muscles will likely reduce hip pain. \nOne exercise that may provide relief is elevating your hips above chest level while lying on your back for a couple of minutes. \nTaking a warm bath or applying warm compresses to the sore area can reduce pain. In addition, a massage may ease soreness.\n As you get closer to your delivery date, make sure to sleep on your side and keep your legs and knees bent.\n Using pillows to support your abdomen and upper leg can alleviate uncomfortableness while sleeping. \nIf lying on your side worsens your hip pain, place a pillow or blanket at the small of your back and sleep leaning against it.\n This will reduce pressure on the hip you are sleeping on."
             dispatcher.utter_message(response_text)
             return []
         else:
@@ -132,7 +194,7 @@ class ActionMakeDoctorsAppointment(Action):
     def run(self,dispatcher,tracker,domain):
         intent_result = intent_classification_check(self, dispatcher, tracker, domain)
         if intent_result == 1 :
-            response_text = "utter_make_doctors_appointment"
+            response_text = "When would you like to see your doctor?"
             dispatcher.utter_message(response_text)
             return []
         else:
@@ -179,14 +241,15 @@ class ActionSymptomStillBad(Action):
     def run(self,dispatcher,tracker,domain):
         intent_result = intent_classification_check(self, dispatcher, tracker, domain)
         if intent_result == 1 :
-            response_text = "I have found some remedy for you. Do you want the remedy?"
+            response_text = "It is not uncommon to have pain around hip area during pregnancy.\n This occurs because your body is preparing itself for labor. \nSoreness and pain are often felt the strongest on the side where the baby tends to lie in your uterus."
+            response_text += "I found some remedies for hip pain. Would you like to see it?"
             attachment_buttons = {'actions' :[{
                                                     'name' : "I want to get remedy",
                                                     'text' : "Yes",
                                                     'type' : "button",
                                                     'value' : "",
                                                     'style': "primary"},{
-                                                    'name' : "great",
+                                                    'name' : "no thanks",
                                                     'text' : "No",
                                                     'type' : "button",
                                                     'value' : ""}]}
@@ -195,7 +258,30 @@ class ActionSymptomStillBad(Action):
         else:
             action_default(self,dispatcher,tracker,domain)
             return[]             
-
+class ActionSymptomWorse(Action):
+    def name(self):
+        return "action_symptom_worse"
+    def run(self,dispatcher,tracker,domain):
+        intent_result = intent_classification_check(self, dispatcher, tracker, domain)
+        if intent_result == 1 :
+            response_text = "If the pain persists, You would be better go see your doctor."
+            dispatcher.utter_message(response_text)
+            return []
+        else:
+            action_default(self,dispatcher,tracker,domain)
+            return[] 
+class ActionDisagree(Action):
+    def name(self):
+        return "action_disagree_forward_doctor"
+    def run(self,dispatcher,tracker,domain):
+        intent_result = intent_classification_check(self, dispatcher, tracker, domain)
+        if intent_result == 1 :
+            response_text = "I am afraid I might not be able to get the exact anwer without these. Anyways when I get answer, I will tell you. "
+            dispatcher.utter_message(response_text)
+            return []
+        else:
+            action_default(self,dispatcher,tracker,domain)
+            return[]             
 class ActionAskDoctor(Action):
     def name(self):
         return "action_ask_doctor"
@@ -204,12 +290,12 @@ class ActionAskDoctor(Action):
         if intent_result == 1 :
             response_text = "I will forward your basic information and your symptom to OBGYN doctors' forum and ask if anyone can answer.\n Do you agree passing the information? Your name, address and contact information weill not be shared by me."
             attachment_buttons = {'actions' :[{
-                                                    'name' : "i agree and send my info to doctors",
+                                                    'name' : "agree on sending info",
                                                     'text' : "Agree",
                                                     'type' : "button",
                                                     'value' : "",
                                                     'style': "primary"},{
-                                                    'name' : "great",
+                                                    'name' : "disagree",
                                                     'text' : "Disagree",
                                                     'type' : "button",
                                                     'value' : "",
@@ -245,7 +331,7 @@ class ActionAskBadMood(Action):
                                                     'text' : "Pregnancy Q",
                                                     'type' : "button",
                                                     'value' : ""},{
-                                                    'name' : "great",
+                                                    'name' : "no thanks",
                                                     'text' : "Nothing",
                                                     'type' : "button",
                                                     'value' : ""}]}
@@ -300,7 +386,7 @@ class ActionAskDoctorsAppointment(Action):
                                                 'type' : "button",
                                                 'value' : "",
                                                 'style': "primary"},{
-                                                'name' : "great",
+                                                'name' : "no thanks",
                                                 'text' : "No",
                                                 'type' : "button",
                                                 'value' : "",
@@ -325,7 +411,20 @@ class ActionAskAdvice(Action):
     def run(self,dispatcher,tracker,domain):
         intent_result = intent_classification_check(self, dispatcher, tracker, domain)
         if intent_result == 1 :
-            response_text = 'utter ask advice run..., clipboard saved.'
+            response_text = 'You may be feeling like you\'ve been pregnant for forever, but keep in mind the big day is less than two months away. \nYou should also note that most babies don\'t arrive on their due date or even within a couple of days of that target. Many babies arrive after week 38 or (and you may not want to read this) a couple of weeks after their due date. Every pregnancy is different. \nDoctors will want you to complete all 40 weeks to increase the chance of a healthy baby. \nNeed detailed advice?'
+            attachment_buttons = {'actions' :[{
+                                                    'name' : "body change",
+                                                    'text' : "Body Change",
+                                                    'type' : "button",
+                                                    'value' : ""},{
+                                                    'name' : "baby",
+                                                    'text' : "Baby",
+                                                    'type' : "button",
+                                                    'value' : ""},{
+                                                    'name' : "Symptoms",
+                                                    'text' : "Symptoms",
+                                                    'type' : "button",
+                                                    'value' : ""}]}
             client = MongoClient('localhost',27017)
             db = client.user_database
             result = db.user_data.find()
@@ -335,7 +434,7 @@ class ActionAskAdvice(Action):
                 clip_data+='\n\n'+response_text
                 db.user_data.update_one({"_id": 1}, {"$set": {"clipboard":{"date":datetime.now().strftime('%Y-%m-%d %H:%m'),"contents":clip_data}}})
                 tracker.update(SlotSet("clipboard",clip_data))
-            dispatcher.utter_message(response_text) 
+            dispatcher.utter_button_message(response_text,attachment_buttons)
             return []    
         else:
             action_default(self,dispatcher,tracker,domain)
@@ -348,9 +447,8 @@ class ActionFoodRecommendation(Action):
         intent_result = intent_classification_check(self, dispatcher, tracker, domain)
         if intent_result == 1 :
             print('chect past diet history, weight,doctor\'s recommendation....')
-            reponse_text = 'Your weight is okay and you can eat whatever you want unless the doctor advised otherwise. Recommended calories are ***Kcal and try to avoid *** during pregnancy'
+            reponse_text = 'Your weight is okay and you can eat whatever you want unless the doctor advised otherwise. Recommended calories are 2,200Kcal a day and try to avoid caffeine during pregnancy'
             dispatcher.utter_message(reponse_text)
-            
             return []
         else:
             action_default(self,dispatcher,tracker,domain)
@@ -363,7 +461,9 @@ class ActionAskSymptom(Action):
         intent_result = intent_classification_check(self, dispatcher, tracker, domain)
         if intent_result == 1 :
             print('KB Data ......')
-            reponse_text = 'answer from KB Data..'
+            reponse_text = 'Bloating is probably one of your least favorite pregnancy symptoms, and it usually shows up around week 11.\n'
+            reponse_text += 'The bad news? It typically lasts until delivery day. \nBut you don’t have to suffer through it.\n'
+            reponse_text += 'There are plenty of things you can do to beat the bloat and start feeling like your old self again. \nWater will help keep things moving in your gastrointestinal tract, so you can avoid constipation and the inevitable bloat that goes along with it.\n In addition, smaller meals are easier for your body to digest. \nOverloading your digestive system will only lead to more gas and bloating. \nPlus, eating six small meals will help keep your body and your baby  well nourished.'
             dispatcher.utter_message(reponse_text)
             client = MongoClient('localhost',27017)
             db = client.user_database
@@ -379,20 +479,32 @@ class ActionAskSymptom(Action):
                                                     'options': [
                                                                 {
                                                                 'text': "Better",
-                                                                'value': "great"
+                                                                'value': "symptom great"
                                                                 },{
-                                                                'text': "Still Bad",
-                                                                'value': "the pain is even worse"
+                                                                'text': "Still there",
+                                                                'value': "symptom still bad"
                                                                 },{
                                                                 'text': "Worse",
-                                                                'value': "the pain is even worse"
+                                                                'value': "symptom worse"
                                                                 }]}]}
                     dispatcher.utter_button_message(reponse_text,attachment_buttons)
             return []
         else:
             action_default(self,dispatcher,tracker,domain)
             return[]  
-
+class ActionSymptomBetter(Action):
+    def name(self):
+        return 'action_symptom_better'  
+    def run(self, dispatcher,tracker,domain): 
+        intent_result = intent_classification_check(self, dispatcher, tracker, domain)
+        if intent_result == 1 :
+            if disease :
+                response_text = 'Oh, great! Let me know if your symptoms worsen.'
+                dispatcher.utter_message(response_text)
+            return []  
+        else:
+            action_default(self,dispatcher,tracker,domain)
+            return[] 
 class ActionSetRemind(Action):
     def name(cls):
         return 'action_set_remind'
@@ -432,7 +544,7 @@ class ActionAskSymptomBloom(Action):
                                                     'type' : "button",
                                                     'value' : "",
                                                     'style' : "primary"},{
-                                                    'name' : "great",
+                                                    'name' : "no thanks",
                                                     'text' : "No",
                                                     'type' : "button",
                                                     'value' : "",
@@ -479,7 +591,11 @@ class ActionStartGreetTrigger(Action):
                                                 'type' : "button",
                                                 'value' : "",
                                                 'style': "primary"},{
-                                                'name' : "i feel bad",
+                                                'name' : "Not Bad",
+                                                'text' : "Not Bad",
+                                                'type' : "button",
+                                                'value' : ""},{
+                                                'name' : "bad mood",
                                                 'text' : "Bad",
                                                 'type' : "button",
                                                 'value' : "",
@@ -530,7 +646,7 @@ class ActionAskDevicePurchase(Action):
                                             'type' : "button",
                                             'value' : "",
                                             'style' : "primary"},{
-                                            'name' : "great",
+                                            'name' : "no thanks",
                                             'text' : "No",
                                             'type' : "button",
                                             'value' : "",
@@ -554,7 +670,7 @@ class ActionDeviceTrigger(Action):
                                         'type' : "button",
                                         'value' : "",
                                         'style' : "primary"},{
-                                        'name' : "great",
+                                        'name' : "no thanks",
                                         'text' : "No",
                                         'type' : "button",
                                         'value' : "",
@@ -571,10 +687,7 @@ class ActionAskDisease(Action):
         if intent_result == 1 :
             disease = tracker.get_slot('disease')   
             if disease :
-                response_text = 'pre-eclampsia is a condition that pregnant women develop. \nIt is marked by high blood pressure in women who have ' 
-                response_text += 'previously not experienced high blood pressure before. \nPre-eclamptic women will have a high level of pretein in their urin '
-                response_text += 'and often also have swelling in the feet, legs and hands. \nThis condition usually appears late in pregnancy although it can occur earlier.'
-                response_text += '\n If you\'s like to find details, please select the taps.'
+                response_text = 'Pre-eclampsia is when you have high blood pressure and protein in your urine during pregnancy. \nIt can happen at any point after the 20th week of pregnancy, though in some cases it occurs earlier. \nYou may also have low clotting factors (platelets) in your blood or indicators of kidney or liver trouble. \nThis condition is also called toxemia or pregnancy-induced hypertension (PIH). \nEclampsia is a severe complication of preeclampsia. Eclampsia includes high blood pressure resulting in seizures during pregnancy. \nApproximately 5 to 10 percent of all pregnant women get preeclampsia.'
                 attachment_buttons = {'actions' :[{
                                             'name' : "helpful food for this disease",
                                             'text' : "Food Recommendation",
@@ -604,8 +717,7 @@ class ActionAskFood(Action):
         if intent_result == 1 :
             disease = tracker.get_slot('disease') 
             if disease :
-                response_text = 'I recommend food containing Ca, meneral, Re. They can help your blood circulations as well as High bp controll.'
-                response_text += 'Besides, they are good for your baby\'s nutrition.'
+                response_text = 'I recommend food containg Ca, mineral, Fe. \nThey can help your blood circulations as well as High bp control. \nBesides, they are good for your baby\'s nutrition.'
                 dispatcher.utter_message(response_text)
             return []  
         else:
@@ -627,6 +739,19 @@ class ActionAskSupplements(Action):
         else:
             action_default(self,dispatcher,tracker,domain)
             return[]    
+class ActionDenial(Action):
+    def name(self):
+        return 'action_denial'  
+    def run(self, dispatcher,tracker,domain): 
+        intent_result = intent_classification_check(self, dispatcher, tracker, domain)
+        if intent_result == 1 :
+            if disease :
+                response_text = 'Okay. Ask me again anytime!'
+                dispatcher.utter_message(response_text)
+            return []  
+        else:
+            action_default(self,dispatcher,tracker,domain)
+            return[]               
                
 def action_default(cls,dispatcher,tracker,domain):
         dispatcher.utter_message("I am sorry. I don't understand what you are saying.")
@@ -680,7 +805,7 @@ def call_weather_api(location) :
 def intent_classification_check(cls, dispatcher, tracker, domain):
     confidence_check = tracker.latest_message.intent['confidence']
     print("intent check===>",confidence_check)
-    if confidence_check >= 0.17:
+    if confidence_check >= 0.25:
         return 1
     else:
         return 2    
