@@ -31,7 +31,7 @@ class ActionHappy(Action):
                                                     'type' : "button",
                                                     'value' : "",
                                                     'style': "primary"},{
-                                                    'name' : "ask book",
+                                                    'name' : "book",
                                                     'text' : "Book",
                                                     'type' : "button",
                                                     'value' : ""},{
