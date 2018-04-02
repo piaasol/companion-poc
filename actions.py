@@ -422,7 +422,7 @@ class ActionAskAdvice(Action):
                 clip_data+='\n\n'+response_text
                 db.user_data.update_one({"_id": 1}, {"$set": {"clipboard":{"date":datetime.now().strftime('%Y-%m-%d %H:%m'),"contents":clip_data}}})
                 tracker.update(SlotSet("clipboard",clip_data))
-            dispatcher.utter_message(response_text,attachment_buttons)
+            dispatcher.utter_message(response_text)
             return []    
         else:
             action_default(self,dispatcher,tracker,domain)
