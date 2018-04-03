@@ -156,7 +156,7 @@ class ActionConfirmPurchase(Action):
     def run(self,dispatcher,tracker,domain):
         intent_result = intent_classification_check(self, dispatcher, tracker, domain)
         if intent_result == 1 :
-            response_text = "Order places. It'll arrive within 5days."
+            response_text = "Order placed. It'll arrive within 5days."
             dispatcher.utter_message(response_text)
             return []
         else:
@@ -647,8 +647,8 @@ class ActionAskDevicePurchase(Action):
                 user_info = result[0]
                 health_info = result[0]['health_info']
                 remain_patch = 42 - health_info['weeks']
-                response_text = 'You need about '+ str(remain_patch) + 'more patches before birth. \n'
-                response_text += 'Shall I order '+ str(remain_patch) + 'using the same address ('+ user_info['user_info']['address']+') and '
+                response_text = 'You need about '+ str(remain_patch) + ' more patches before birth. \n'
+                response_text += 'Shall I order '+ str(remain_patch) + ' using the same address ('+ user_info['user_info']['address']+') and '
                 response_text += 'payment method? It\'s $20 including taxes and shipping.'
                 attachment_buttons = {'actions' :[{
                                             'name' : "confirm purchase",
