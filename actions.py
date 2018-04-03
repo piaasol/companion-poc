@@ -277,7 +277,18 @@ class ActionSymptomWorse(Action):
         intent_result = intent_classification_check(self, dispatcher, tracker, domain)
         if intent_result == 1 :
             response_text = "If the pain persists, You would be better go see your doctor."
-            dispatcher.utter_message(response_text)
+            response_text += "I found some remedies for hip pain. Would you like to see it?"
+            dispatcher.utter_message(response_text)attachment_buttons = {'actions' :[{
+                                                    'name' : "ask remedy",
+                                                    'text' : "Yes",
+                                                    'type' : "button",
+                                                    'value' : "",
+                                                    'style': "primary"},{
+                                                    'name' : "no thanks",
+                                                    'text' : "No",
+                                                    'type' : "button",
+                                                    'value' : ""}]}
+            dispatcher.utter_button_message(response_text,attachment_buttons)
             return []
         else:
             action_default(self,dispatcher,tracker,domain)
