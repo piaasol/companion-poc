@@ -16,7 +16,6 @@
 - cu
 - good by
 - cee you later
-- good night
 - bye
 - goodbye
 - have a nice day
@@ -435,6 +434,19 @@
 - asking pregnancy Q
 - asking for pregnancy Q
 - asking for pregnancy q
+## intent:start_good_night_trigger
+- night trigger start..
+- night trigger starts..
+- night trigger start now
+- night trigger start
+- night trigger starts
+- night trigger starts now
+## intent:play_prenatal_music
+- prenatal music
+- prenatal music play
+- prenatal
+- play prenatal music
+- playing prenatal music
 
 
 

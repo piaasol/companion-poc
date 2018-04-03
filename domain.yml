@@ -39,6 +39,8 @@ intents:
   - disagree_forward_doctor
   - ask_pregnancy_q
   - ask_book
+  - start_good_night_trigger
+  - play_prenatal_music
   
 
 entities:
@@ -86,6 +88,8 @@ actions:
   - actions.ActionDisagree
   - actions.ActionPregnancyQ
   - actions.ActionAskBook
+  - actions.ActionGoodNightTrigger
+  - actions.ActionPrenatalMusic
  
 slots:
    disease:

@@ -136,7 +136,19 @@ class ActionAskGeneralInfo(Action):
             return []
         else:
             action_default(self,dispatcher,tracker,domain)
-            return[] 
+            return[]
+class ActionPrenatalMusic(Action):
+    def name(self):
+        return "action_play_prenatal_music"
+    def run(self,dispatcher,tracker,domain):
+        intent_result = intent_classification_check(self, dispatcher, tracker, domain)
+        if intent_result == 1 :
+            response_text = "[Sweet Dreams] play" 
+            dispatcher.utter_message(response_text)
+            return []
+        else:
+            action_default(self,dispatcher,tracker,domain)
+            return[]             
 class ActionAskDevice(Action):
     def name(self):
         return "action_ask_device"
@@ -588,7 +600,7 @@ class ActionStartGreetTrigger(Action):
     def name(self):
         return 'action_start_greet_trigger'
     def run(self,dispatcher,tracker,domain):
-        trigger_time = '10:54'
+        trigger_time = '07:30'
         current_time = datetime.time(datetime.now()).strftime('%H:%M')
         print("action greet tirgger start......")
         if trigger_time == current_time :
@@ -799,7 +811,30 @@ class ActionProductRecommendationTrigger(Action):
                                             }]}
             dispatcher.utter_button_message(response_text,attachment_buttons)
             return [ReminderScheduled('action_product_recommendation_trigger', datetime.now()+ timedelta(days=1),kill_on_user_message=False)]
-        return [ReminderScheduled('action_product_recommendation_trigger', datetime.now()+ timedelta(minutes=1),kill_on_user_message=False)]    
+        return [ReminderScheduled('action_product_recommendation_trigger', datetime.now()+ timedelta(minutes=1),kill_on_user_message=False)] 
+class ActionGoodNightTrigger(Action):
+    @classmethod
+    def name(cls):
+        return 'action_good_night_trigger'
+    @classmethod
+    def run(cls,dispatcher,tracker,domain): 
+        trigger_time = '23:00'
+        current_time = datetime.time(datetime.now()).strftime('%H:%M')
+        if trigger_time == current_time :
+            response_text = 'Aren\'t you going to bed yet? It is recommended to have sufficient sleep during pregnancy. Shall I play prenatal music for you to help fall asleep?'                  
+            attachment_buttons = {'actions' :[{
+                                            'name' : "prenatal",
+                                            'text' : "Yes",
+                                            'type' : "button",
+                                            'value' : ""},{
+                                            'name' : "no thanks",
+                                            'text' : "No",
+                                            'type' : "button",
+                                            'value' : ""
+                                            }]}
+            dispatcher.utter_button_message(response_text,attachment_buttons)
+            return [ReminderScheduled('action_product_recommendation_trigger', datetime.now()+ timedelta(days=1),kill_on_user_message=False)]
+        return [ReminderScheduled('action_product_recommendation_trigger', datetime.now()+ timedelta(minutes=1),kill_on_user_message=False)]       
        
 def call_weather_api(location) :
     if location =='seoul' :
