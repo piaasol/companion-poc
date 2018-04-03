@@ -589,7 +589,7 @@ class ActionsAskExcerptInfo(Action):
             dispatcher.utter_message(reponse_text)
             return []
         else:
-            action_default(self,dispatcher,tracker,domain)
+            action_default(cls,dispatcher,tracker,domain)
             return[]             
 class ActionAskSymptomBloom(Action):
     def name(self):
