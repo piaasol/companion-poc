@@ -543,7 +543,43 @@ class ActionSetRemind(Action):
         else:
             action_default(self,dispatcher,tracker,domain)
             return[]   
-
+class ActionStartExceprtTrigger(Action):
+    def name(self):
+        return 'action_start_excerpt_trigger'
+    def run(self,dispatcher,tracker,domain):
+        trigger_time = '20:00'
+        current_time = datetime.time(datetime.now()).strftime('%H:%M')
+        if trigger_time == current_time :
+            health_info = result[0]['health_info']
+            reponse_text = 'Would you like today\'s excerpt?'
+            attachment_buttons = {'actions' :[{
+                                                'name' : "excerpt info",
+                                                'text' : "Yes",
+                                                'type' : "button",
+                                                'value' : "",
+                                                'style' : "primary"},{
+                                                'name' : "no thanks",
+                                                'text' : "No",
+                                                'type' : "button",
+                                                'value' : "",
+                                                'style' : "danger"}]}
+            dispatcher.utter_button_message(reponse_text,attachment_buttons)
+            return [ReminderScheduled('action_start_excerpt_trigger', datetime.now()+ timedelta(days=1),kill_on_user_message=False)]
+        else :  
+            return [ReminderScheduled('action_start_excerpt_trigger', datetime.now()+ timedelta(minutes=1),kill_on_user_message=False)]
+ 
+class ActionsAskExcerptInfo(Action):
+    def name(cls):
+        return 'action_ask_excerpt_info'
+    def run(cls,dispatcher,tracker,domain):
+        intent_result = intent_classification_check(cls, dispatcher, tracker, domain)
+        if intent_result == 1 :
+            reponse_text = 'Have you packed your hospital bag? As you approach your due date, you are sure to have a million different thoughts going around in your head. It\'s perfectly normal to be excited about finally meeting your little one, but also to be feeling nervous that labour time is approaching. '
+            dispatcher.utter_message(reponse_text)
+            return []
+        else:
+            action_default(self,dispatcher,tracker,domain)
+            return[]             
 class ActionAskSymptomBloom(Action):
     def name(self):
         return 'action_ask_symptom_bloom'

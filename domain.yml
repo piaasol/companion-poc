@@ -41,6 +41,8 @@ intents:
   - ask_book
   - start_good_night_trigger
   - play_prenatal_music
+  - start_excerpt_trigger
+  - ask_excerpt_info
   
 
 entities:
@@ -90,6 +92,8 @@ actions:
   - actions.ActionAskBook
   - actions.ActionGoodNightTrigger
   - actions.ActionPrenatalMusic
+  - actions.ActionStartExceprtTrigger
+  - actions.ActionsAskExcerptInfo
  
 slots:
    disease:

@@ -165,6 +165,9 @@ class SlackInput(HttpInputComponent):
         user_msg = UserMessage("night trigger", out_channel, user_id)
         on_new_message(user_msg)
         make_response()
+        user_msg = UserMessage("excerpt trigger", out_channel, user_id)
+        on_new_message(user_msg)
+        make_response()
 
     @staticmethod
     def device_trigger(self, on_new_message):

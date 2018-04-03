@@ -215,3 +215,8 @@
 ## prenatal music play 
 * play_prenatal_music
  - action_play_prenatal_music 
+## excerpt trigger
+* start_excerpt_trigger
+ - action_start_excerpt_trigger
+* ask_excerpt_info
+ - action_ask_excerpt_info  

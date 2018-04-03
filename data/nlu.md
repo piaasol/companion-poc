@@ -447,6 +447,21 @@
 - prenatal
 - play prenatal music
 - playing prenatal music
+## intent:start_excerpt_trigger
+- excerpt trigger
+- excerpt trigger start
+- excerpt trigger starts
+- start excerpt trigger
+- starting exceprt trigger
+- excerpt trigger start now
+## intent:ask_excerpt_info
+- ask excerpt info
+- todays excerpt info
+- today excerpt info
+- ask excerpt information
+- today excerpt information
+- want excerpt info
+- ask excerpt infos
 
 
 
