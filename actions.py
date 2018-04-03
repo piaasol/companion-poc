@@ -885,7 +885,7 @@ def call_weather_api(location) :
 def intent_classification_check(cls, dispatcher, tracker, domain):
     confidence_check = tracker.latest_message.intent['confidence']
     print("intent check===>",confidence_check)
-    if confidence_check >= 0.25:
+    if confidence_check >= 0.20:
         return 1
     else:
         return 2    
