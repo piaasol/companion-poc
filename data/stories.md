@@ -219,4 +219,8 @@
 * start_excerpt_trigger
  - action_start_excerpt_trigger
 * ask_excerpt_info
- - action_ask_excerpt_info  
+ - action_ask_excerpt_info 
+
+## forward info to doctor
+* ask_forward_doctor
+ - action_ask_forward_doctor    
