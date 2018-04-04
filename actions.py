@@ -44,6 +44,7 @@ class ActionHappy(Action):
                                                     'type' : "button",
                                                     'value' : ""}]}
             dispatcher.utter_button_message(response_text,attachment_buttons)
+            tracker.update(SlotSet("last_action",self.name()))
             return []
         else:
             action_default(self,dispatcher,tracker,domain)
@@ -80,6 +81,7 @@ class ActionNotBad(Action):
                                                     'type' : "button",
                                                     'value' : ""}]}
             dispatcher.utter_button_message(response_text,attachment_buttons)
+            tracker.update(SlotSet("last_action",self.name()))
             return []
         else:
             action_default(self,dispatcher,tracker,domain)
@@ -92,6 +94,7 @@ class ActionAskForwardDoctor(Action):
         if intent_result == 1 :
             response_text = "Okay. Your question about hip pain is posted.\n I'll let you know when i get an answer or chat request from a doctor."
             dispatcher.utter_message(response_text)
+            tracker.update(SlotSet("last_action",self.name()))
             return []
         else:
             action_default(self,dispatcher,tracker,domain)
@@ -104,6 +107,7 @@ class ActionGoodbye(Action):
         if intent_result == 1 :
             response_text = "Bye"
             dispatcher.utter_message(response_text)
+            tracker.update(SlotSet("last_action",self.name()))
             return []
         else:
             action_default(self,dispatcher,tracker,domain)
@@ -116,6 +120,7 @@ class ActionPlayMusic(Action):
         if intent_result == 1 :
             response_text = "Play music [April in Paris by Eddie Higgins Trio ]"
             dispatcher.utter_message(response_text)
+            tracker.update(SlotSet("last_action",self.name()))
             return []
         else:
             action_default(self,dispatcher,tracker,domain)
@@ -133,6 +138,7 @@ class ActionAskGeneralInfo(Action):
             response_text += "\nIn addition, I would like you to schedule a prenatal massage eases the pains and aches of pregnancy."
             response_text += "\nA prenatal massage not only relaxes your muscles and de-stresses you but also makes you feel better. \nGo to a trained therapist so that they know where the exact sore spots lie."
             dispatcher.utter_message(response_text)
+            tracker.update(SlotSet("last_action",self.name()))
             return []
         else:
             action_default(self,dispatcher,tracker,domain)
@@ -145,6 +151,7 @@ class ActionPrenatalMusic(Action):
         if intent_result == 1 :
             response_text = "[Sweet Dreams] play" 
             dispatcher.utter_message(response_text)
+            tracker.update(SlotSet("last_action",self.name()))
             return []
         else:
             action_default(self,dispatcher,tracker,domain)
@@ -157,6 +164,7 @@ class ActionAskDevice(Action):
         if intent_result == 1 :
             response_text = "You can use a patch up to about a week"
             dispatcher.utter_message(response_text)
+            tracker.update(SlotSet("last_action",self.name()))
             return []
         else:
             action_default(self,dispatcher,tracker,domain)
@@ -170,6 +178,7 @@ class ActionConfirmPurchase(Action):
         if intent_result == 1 :
             response_text = "Order placed. It'll arrive within 5days."
             dispatcher.utter_message(response_text)
+            tracker.update(SlotSet("last_action",self.name()))
             return []
         else:
             action_default(self,dispatcher,tracker,domain)
@@ -182,6 +191,7 @@ class ActionGreet(Action):
         if intent_result == 1 :
             response_text = "Hi, there"
             dispatcher.utter_message(response_text)
+            tracker.update(SlotSet("last_action",self.name()))
             return []
         else:
             action_default(self,dispatcher,tracker,domain)
@@ -195,6 +205,7 @@ class ActionAskRemedy(Action):
         if intent_result == 1 :
             response_text = "Practicing exercises that strengthen both the back muscles, as well as, your abdominal muscles will likely reduce hip pain. \nOne exercise that may provide relief is elevating your hips above chest level while lying on your back for a couple of minutes. \nTaking a warm bath or applying warm compresses to the sore area can reduce pain. In addition, a massage may ease soreness.\n As you get closer to your delivery date, make sure to sleep on your side and keep your legs and knees bent.\n Using pillows to support your abdomen and upper leg can alleviate uncomfortableness while sleeping. \nIf lying on your side worsens your hip pain, place a pillow or blanket at the small of your back and sleep leaning against it.\n This will reduce pressure on the hip you are sleeping on."
             dispatcher.utter_message(response_text)
+            tracker.update(SlotSet("last_action",self.name()))
             return []
         else:
             action_default(self,dispatcher,tracker,domain)
@@ -208,6 +219,7 @@ class ActionMakeDoctorsAppointment(Action):
         if intent_result == 1 :
             response_text = "When would you like to see your doctor?"
             dispatcher.utter_message(response_text)
+            tracker.update(SlotSet("last_action",self.name()))
             return []
         else:
             action_default(self,dispatcher,tracker,domain)
@@ -220,6 +232,7 @@ class ActionAlternativeAnswer(Action):
         if intent_result == 1 :
             response_text = "I'm afraid I don't have information on it yet.\n I recommend accessing internet for that.\n I'll let you know when I acquire the knowledge later."
             dispatcher.utter_message(response_text)
+            tracker.update(SlotSet("last_action",self.name()))
             return []
         else:
             action_default(self,dispatcher,tracker,domain)
@@ -243,6 +256,7 @@ class ActionAskMedicalAdvice(Action):
                                                     'type' : "button",
                                                     'value' : ""}]}
             dispatcher.utter_button_message(response_text,attachment_buttons)
+            tracker.update(SlotSet("last_action",self.name()))
             return []
         else:
             action_default(self,dispatcher,tracker,domain)
@@ -266,6 +280,7 @@ class ActionSymptomStillBad(Action):
                                                     'type' : "button",
                                                     'value' : ""}]}
             dispatcher.utter_button_message(response_text,attachment_buttons)
+            tracker.update(SlotSet("last_action",self.name()))
             return []
         else:
             action_default(self,dispatcher,tracker,domain)
@@ -289,6 +304,7 @@ class ActionSymptomWorse(Action):
                                                     'type' : "button",
                                                     'value' : ""}]}
             dispatcher.utter_button_message(response_text,attachment_buttons)
+            tracker.update(SlotSet("last_action",self.name()))
             return []
         else:
             action_default(self,dispatcher,tracker,domain)
@@ -301,6 +317,7 @@ class ActionDisagree(Action):
         if intent_result == 1 :
             response_text = "I am afraid I might not be able to get the exact anwer without these. Anyways when I get answer, I will tell you. "
             dispatcher.utter_message(response_text)
+            tracker.update(SlotSet("last_action",self.name()))
             return []
         else:
             action_default(self,dispatcher,tracker,domain)
@@ -324,6 +341,7 @@ class ActionAskDoctor(Action):
                                                     'value' : "",
                                                     'style' : "danger"}]}
             dispatcher.utter_button_message(response_text,attachment_buttons)
+            tracker.update(SlotSet("last_action",self.name()))
             return []
         else:
             action_default(self,dispatcher,tracker,domain)
@@ -359,6 +377,7 @@ class ActionAskBadMood(Action):
                                                     'type' : "button",
                                                     'value' : ""}]}
             dispatcher.utter_button_message(response_text,attachment_buttons)
+            tracker.update(SlotSet("last_action",self.name()))
             return []
         else:
             action_default(self,dispatcher,tracker,domain)
@@ -417,12 +436,15 @@ class ActionAskDoctorsAppointment(Action):
             if result :
                 if result[0]['schedule']['appointment'] :
                     recent_schedule = result[0]['schedule']['appointment'][0]
-                    print('recent_schedule check',recent_schedule)
+                    print('>>>>>> recent_schedule check :',recent_schedule)
                     dispatcher.utter_button_message('My record show that your next visit to ' + recent_schedule['doctor_name'] + ' is ' + recent_schedule['date'] + '. Do you want to reschedule?',attachment_buttons)
+                    tracker.update(SlotSet("last_action",self.name()))
                 else :
                     dispatcher.utter_button_message('You don\'t have any appointment. Do you like to make an appointment?',attachment_buttons)
+                    tracker.update(SlotSet("last_action",self.name()))
             else :
                 dispatcher.utter_button_message('You don\'t have any appointment. Do you like to make an appointment?',attachment_buttons)
+                tracker.update(SlotSet("last_action",self.name()))
             return []
         else:
             action_default(self,dispatcher,tracker,domain)
@@ -446,6 +468,7 @@ class ActionAskAdvice(Action):
                 db.user_data.update_one({"_id": 1}, {"$set": {"clipboard":{"date":datetime.now().strftime('%Y-%m-%d %H:%m'),"contents":clip_data}}})
                 tracker.update(SlotSet("clipboard",clip_data))
             dispatcher.utter_message(response_text)
+            tracker.update(SlotSet("last_action",self.name()))
             return []    
         else:
             action_default(self,dispatcher,tracker,domain)
@@ -459,6 +482,7 @@ class ActionFoodRecommendation(Action):
         if intent_result == 1 :
             reponse_text = 'Your weight is okay and you can eat whatever you want unless the doctor advised otherwise. Recommended calories are 2,200Kcal a day and try to avoid caffeine during pregnancy'
             dispatcher.utter_message(reponse_text)
+            tracker.update(SlotSet("last_action",self.name()))
             return []
         else:
             action_default(self,dispatcher,tracker,domain)
@@ -470,7 +494,6 @@ class ActionAskSymptom(Action):
     def run(self,dispatcher,tracker,domain):
         intent_result = intent_classification_check(self, dispatcher, tracker, domain)
         if intent_result == 1 :
-            print('KB Data ......')
             reponse_text = 'Bloating is probably one of your least favorite pregnancy symptoms, and it usually shows up around week 11.\n'
             reponse_text += 'The bad news? It typically lasts until delivery day. \nBut you don’t have to suffer through it.\n'
             reponse_text += 'There are plenty of things you can do to beat the bloat and start feeling like your old self again. \nWater will help keep things moving in your gastrointestinal tract, so you can avoid constipation and the inevitable bloat that goes along with it.\n In addition, smaller meals are easier for your body to digest. \nOverloading your digestive system will only lead to more gas and bloating. \nPlus, eating six small meals will help keep your body and your baby  well nourished.'
@@ -498,6 +521,7 @@ class ActionAskSymptom(Action):
                                                                 'value': "symptom worse"
                                                                 }]}]}
                     dispatcher.utter_button_message(reponse_text,attachment_buttons)
+                    tracker.update(SlotSet("last_action",self.name()))
             return []
         else:
             action_default(self,dispatcher,tracker,domain)
@@ -510,6 +534,7 @@ class ActionSymptomBetter(Action):
         if intent_result == 1 :
             response_text = 'Oh, great! Let me know if your symptoms worsen.'
             dispatcher.utter_message(response_text)
+            tracker.update(SlotSet("last_action",self.name()))
             return []  
         else:
             action_default(self,dispatcher,tracker,domain)
@@ -522,6 +547,7 @@ class ActionPregnancyQ(Action):
         if intent_result == 1 :
             response_text = 'Pegnancy Q'
             dispatcher.utter_message(response_text)
+            tracker.update(SlotSet("last_action",self.name()))
             return []  
         else:
             action_default(self,dispatcher,tracker,domain)
@@ -534,6 +560,7 @@ class ActionAskBook(Action):
         if intent_result == 1 :
             response_text = 'Book List [Happy Pregnancy Like]'
             dispatcher.utter_message(response_text)
+            tracker.update(SlotSet("last_action",self.name()))
             return []  
         else:
             action_default(self,dispatcher,tracker,domain)
@@ -544,13 +571,11 @@ class ActionSetRemind(Action):
     def run(cls,dispatcher,tracker,domain):
         intent_result = intent_classification_check(cls, dispatcher, tracker, domain)
         if intent_result == 1 :
-            action = 'action_ask_symptom'
-            print("latest_bot_utterance===>",tracker.latest_bot_utterance)
-            print("tracker.latest_message===>",tracker.latest_message)
-            print("latest_action===>",tracker.latest_action_name)
-            ReminderScheduled(action,datetime.now()+ timedelta(minutes=5))
+            clip_contents=tracker.get_slot('last_action')
+            print(">>>>>>> Reminded Action :",clip_contents)
             dispatcher.utter_message("Ok, I will let you know then.")
-            return []
+            return [ReminderScheduled(clip_contents, datetime.now()+ timedelta(minutes=10),kill_on_user_message=False)]
+ 
         else:
             action_default(self,dispatcher,tracker,domain)
             return[]   
@@ -558,6 +583,7 @@ class ActionStartExceprtTrigger(Action):
     def name(self):
         return 'action_start_excerpt_trigger'
     def run(self,dispatcher,tracker,domain):
+        print(">>>>>> excerpt trigger starts")
         trigger_time = '20:00'
         current_time = datetime.time(datetime.now()).strftime('%H:%M')
         if trigger_time == current_time :
@@ -575,6 +601,7 @@ class ActionStartExceprtTrigger(Action):
                                                 'value' : "",
                                                 'style' : "danger"}]}
             dispatcher.utter_button_message(reponse_text,attachment_buttons)
+            tracker.update(SlotSet("last_action",self.name()))
             return [ReminderScheduled('action_start_excerpt_trigger', datetime.now()+ timedelta(days=1),kill_on_user_message=False)]
         else :  
             return [ReminderScheduled('action_start_excerpt_trigger', datetime.now()+ timedelta(minutes=1),kill_on_user_message=False)]
@@ -587,6 +614,7 @@ class ActionsAskExcerptInfo(Action):
         if intent_result == 1 :
             reponse_text = 'Have you packed your hospital bag? As you approach your due date, you are sure to have a million different thoughts going around in your head. It\'s perfectly normal to be excited about finally meeting your little one, but also to be feeling nervous that labour time is approaching. '
             dispatcher.utter_message(reponse_text)
+            tracker.update(SlotSet("last_action",self.name()))
             return []
         else:
             action_default(cls,dispatcher,tracker,domain)
@@ -597,7 +625,6 @@ class ActionAskSymptomBloom(Action):
     def run(self,dispatcher,tracker,domain):
         intent_result = intent_classification_check(self, dispatcher, tracker, domain)
         if intent_result == 1 :
-            print('KB Data ......')
             reponse_text = 'Bloom Symptom KB'
             #dispatcher.utter_message(reponse_text)
             client = MongoClient('localhost',27017)
@@ -605,7 +632,7 @@ class ActionAskSymptomBloom(Action):
             result = db.user_data.find()   
             if result :
                 health_info = result[0]['health_info']
-                reponse_text += '\n You\'re in week'+ str(health_info['weeks']) + '. If they are not painful or regular, they may be Braxton Hicks contractions. You can try using Belli device. '
+                reponse_text = '\n You\'re in week'+ str(health_info['weeks']) + '. If they are not painful or regular, they may be Braxton Hicks contractions. You can try using Belli device. '
                 reponse_text += 'Do you want more info?' 
                 attachment_buttons = {'actions' :[{
                                                     'name' : "ask symptom more info",
@@ -619,6 +646,7 @@ class ActionAskSymptomBloom(Action):
                                                     'value' : "",
                                                     'style' : "danger"}]}
                 dispatcher.utter_button_message(reponse_text,attachment_buttons)
+                tracker.update(SlotSet("last_action",self.name()))
             return []
         else:
             action_default(self,dispatcher,tracker,domain)
@@ -639,6 +667,7 @@ class ActionAskMoreInfo(Action):
             db = client.user_database
             db.user_data.update_one({"_id": 1}, {"$set": {"clipboard":{"date":datetime.now().strftime('%Y-%m-%d %H:%m'),"contents":clip_data}}})
             dispatcher.utter_message(response_text)
+            tracker.update(SlotSet("last_action",self.name()))
             return []
         else:
             action_default(self,dispatcher,tracker,domain)
@@ -647,9 +676,9 @@ class ActionStartGreetTrigger(Action):
     def name(self):
         return 'action_start_greet_trigger'
     def run(self,dispatcher,tracker,domain):
+        print(">>>>>> greet trigger starts")
         trigger_time = '07:30'
         current_time = datetime.time(datetime.now()).strftime('%H:%M')
-        print("action greet tirgger start......")
         if trigger_time == current_time :
                 client = MongoClient('localhost',27017)
                 db = client.user_database
@@ -687,6 +716,7 @@ class ActionStartGreetTrigger(Action):
                         response_text += 'Temperature is between ' + temp['low'] + ' C° and '+ temp['high'] + ' C°.\n '
                     response_text += 'How are you feeling?'
                     dispatcher.utter_button_message(response_text,attachment_buttons)
+                    tracker.update(SlotSet("last_action",self.name()))
                     return [ReminderScheduled('action_start_greet_trigger', datetime.now()+ timedelta(days=1),kill_on_user_message=False)]
                         
         else :  
@@ -722,6 +752,7 @@ class ActionAskDevicePurchase(Action):
                                             'style' : "danger"
                                             }]}
                 dispatcher.utter_button_message(response_text,attachment_buttons)
+                tracker.update(SlotSet("last_action",self.name()))
             return [] 
         else:
             action_default(self,dispatcher,tracker,domain)
@@ -747,6 +778,7 @@ class ActionDeviceTrigger(Action):
                                         }]}
         tracker.update(SlotSet("disease","pre-eclampsia"))
         dispatcher.utter_button_message(response_text,attachment_buttons)
+        tracker.update(SlotSet("last_action",self.name()))
         return []  
 class ActionAskDisease(Action):
     def name(self):
@@ -774,6 +806,7 @@ class ActionAskDisease(Action):
                                             'value' : ""
                                             }]}
                 dispatcher.utter_button_message(response_text,attachment_buttons)
+                tracker.update(SlotSet("last_action",self.name()))
             return []  
         else :
             action_default(self,dispatcher,tracker,domain)
@@ -788,6 +821,7 @@ class ActionAskFood(Action):
             if disease :
                 response_text = 'I recommend food containg Ca, mineral, Fe. \nThey can help your blood circulations as well as High bp control. \nBesides, they are good for your baby\'s nutrition.'
                 dispatcher.utter_message(response_text)
+                tracker.update(SlotSet("last_action",self.name()))
             return []  
         else:
             action_default(self,dispatcher,tracker,domain)
@@ -804,6 +838,7 @@ class ActionAskSupplements(Action):
                 response_text = 'That is a good idea. However, you\'d beeter talk to your doctor first before purchaseing supplements.'
                 response_text += 'Besides, they are good for your baby\'s nutrition.'
                 dispatcher.utter_message(response_text)
+                tracker.update(SlotSet("last_action",self.name()))
             return []  
         else:
             action_default(self,dispatcher,tracker,domain)
@@ -816,6 +851,7 @@ class ActionDenial(Action):
         if intent_result == 1 :
             response_text = 'Okay. Ask me again anytime!'
             dispatcher.utter_message(response_text)
+            tracker.update(SlotSet("last_action",self.name()))
             return []  
         else:
             action_default(self,dispatcher,tracker,domain)
@@ -831,9 +867,9 @@ class ActionProductRecommendationTrigger(Action):
         return 'action_product_recommendation_trigger'
     @classmethod
     def run(cls,dispatcher,tracker,domain): 
+        print(">>>>>> product recommendation trigger starts")
         trigger_time = '19:00'
         current_time = datetime.time(datetime.now()).strftime('%H:%M')
-        print("action greet tirgger start......")
         if trigger_time == current_time :
             response_text = 'In 6 weeks, you will meet your baby, Silvia. \nThere must be lots of thinks to consider and be prepared.\n Do you want me to show some helpful information?'                  
             attachment_buttons = {'actions' :[{
@@ -857,6 +893,7 @@ class ActionProductRecommendationTrigger(Action):
                                             'value' : ""
                                             }]}
             dispatcher.utter_button_message(response_text,attachment_buttons)
+            tracker.update(SlotSet("last_action",self.name()))
             return [ReminderScheduled('action_product_recommendation_trigger', datetime.now()+ timedelta(days=1),kill_on_user_message=False)]
         return [ReminderScheduled('action_product_recommendation_trigger', datetime.now()+ timedelta(minutes=1),kill_on_user_message=False)] 
 class ActionGoodNightTrigger(Action):
@@ -864,7 +901,8 @@ class ActionGoodNightTrigger(Action):
     def name(cls):
         return 'action_good_night_trigger'
     @classmethod
-    def run(cls,dispatcher,tracker,domain): 
+    def run(cls,dispatcher,tracker,domain):
+        print(">>>>>> night trigger starts") 
         trigger_time = '23:00'
         current_time = datetime.time(datetime.now()).strftime('%H:%M')
         if trigger_time == current_time :
@@ -880,6 +918,7 @@ class ActionGoodNightTrigger(Action):
                                             'value' : ""
                                             }]}
             dispatcher.utter_button_message(response_text,attachment_buttons)
+            tracker.update(SlotSet("last_action",self.name()))
             return [ReminderScheduled('action_product_recommendation_trigger', datetime.now()+ timedelta(days=1),kill_on_user_message=False)]
         return [ReminderScheduled('action_product_recommendation_trigger', datetime.now()+ timedelta(minutes=1),kill_on_user_message=False)]       
        
@@ -894,13 +933,18 @@ def call_weather_api(location) :
         return data   
         
 def intent_classification_check(cls, dispatcher, tracker, domain):
-    confidence_check = tracker.latest_message.intent['confidence']
-    print("intent check===>",confidence_check)
-    if confidence_check >= 0.20:
-        return 1
+    if tracker.latest_message.text:
+        confidence_check = tracker.latest_message.intent['confidence']
+        print(">>>>>>> intent name : ",tracker.latest_message.intent['name'])
+        print(">>>>>>> intent confidence : ",tracker.latest_message.intent['confidence'])
+        print(">>>>>>> Date : ",datetime.now().strftime('%Y-%m-%d %H:%M'))
+        if confidence_check >= 0.20:
+            return 1
+        else:
+            return 2  
     else:
-        return 2    
-        
+        return 1      
+
 class UsertriggerPolicy(KerasPolicy):
     def _build_model(self, num_features, num_actions, max_history_len):
         """Build a keras model and return a compiled model.
