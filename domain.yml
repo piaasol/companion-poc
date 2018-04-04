@@ -101,6 +101,8 @@ slots:
    user:
       type: text 
    clipboard:
-      type: text     
+      type: text  
+   last_action: 
+      type: text      
 
   
