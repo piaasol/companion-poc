@@ -536,7 +536,7 @@ class ActionAskSymptom(Action):
             reponse_text += '• Drink water throughout the day and avoid caffeinated drinks\n'
             reponse_text += '• Try to avoid lying down following a meal. But if you’re totally pooped, at least prop up your upper body with some pillows when you lie down.'
             dispatcher.utter_message(reponse_text)
-            timer = threading.Timer(2.0, self.check_symptom_list)
+            timer = Timer(2.0, self.check_symptom_list)
             timer.start()
         
         else:
