@@ -365,14 +365,14 @@
 - good supplement?
 - supplement recommendation?
 ## intent:start_device_trigger
-- device trigger starts now..
-- device trigger start..
-- device trigger starting
-- starts device trigger action
-- start device trigger now
-- device trigger
-- device trigger now
-- launch device trigger
+- BP data received
+- BP measured
+- blood pressure data received
+- blood pressure measured
+- new blood pressure data received
+- new BP data received
+- new bp data received
+- new bp measured
 ## intent:ask_disease
 - i want to find more about this disease
 - i would like to know more about this disease
