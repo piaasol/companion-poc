@@ -597,25 +597,25 @@ class ActionStartExceprtTrigger(Action):
         print(">>>>>> excerpt trigger starts")
         trigger_time = '20:00'
         current_time = datetime.time(datetime.now()).strftime('%H:%M')
-        if trigger_time == current_time :
-            health_info = result[0]['health_info']
-            reponse_text = 'Would you like today\'s excerpt?'
-            attachment_buttons = {'actions' :[{
-                                                'name' : "excerpt info",
-                                                'text' : "Yes",
-                                                'type' : "button",
-                                                'value' : "",
-                                                'style' : "primary"},{
-                                                'name' : "no thanks",
-                                                'text' : "No",
-                                                'type' : "button",
-                                                'value' : "",
-                                                'style' : "danger"}]}
-            dispatcher.utter_button_message(reponse_text,attachment_buttons)
-            tracker.update(SlotSet("last_action",self.name()))
-            return [ReminderScheduled('action_start_excerpt_trigger', datetime.now()+ timedelta(days=1),kill_on_user_message=False)]
-        else :  
-            return [ReminderScheduled('action_start_excerpt_trigger', datetime.now()+ timedelta(minutes=1),kill_on_user_message=False)]
+        # if trigger_time == current_time :
+        health_info = result[0]['health_info']
+        reponse_text = 'Would you like today\'s excerpt?'
+        attachment_buttons = {'actions' :[{
+                                            'name' : "excerpt info",
+                                            'text' : "Yes",
+                                            'type' : "button",
+                                            'value' : "",
+                                            'style' : "primary"},{
+                                            'name' : "no thanks",
+                                            'text' : "No",
+                                            'type' : "button",
+                                            'value' : "",
+                                            'style' : "danger"}]}
+        dispatcher.utter_button_message(reponse_text,attachment_buttons)
+        tracker.update(SlotSet("last_action",self.name()))
+        return [ReminderScheduled('action_start_excerpt_trigger', datetime.now()+ timedelta(days=1),kill_on_user_message=False)]
+        # else :  
+        #     return [ReminderScheduled('action_start_excerpt_trigger', datetime.now()+ timedelta(minutes=1),kill_on_user_message=False)]
  
 class ActionsAskExcerptInfo(Action):
     def name(cls):
@@ -690,48 +690,48 @@ class ActionStartGreetTrigger(Action):
         print(">>>>>> greet trigger starts")
         trigger_time = '07:30'
         current_time = datetime.time(datetime.now()).strftime('%H:%M')
-        if trigger_time == current_time :
-                client = MongoClient('localhost',27017)
-                db = client.user_database
-                result = db.user_data.find()
-                attachment_buttons = {'actions' :[{
-                                                'name' : "great",
-                                                'text' : "Great",
-                                                'type' : "button",
-                                                'value' : "",
-                                                'style': "primary"},{
-                                                'name' : "not Bad",
-                                                'text' : "Not Bad",
-                                                'type' : "button",
-                                                'value' : ""},{
-                                                'name' : "bad mood",
-                                                'text' : "Bad",
-                                                'type' : "button",
-                                                'value' : "",
-                                                'style': "danger"}]}
-                if result :
-                    user_info = result[0]
-                    
-                    date_format = "%Y-%m-%d"
-                    a = datetime.strptime(datetime.now().strftime(date_format),date_format)
-                    b = datetime.strptime(user_info['health_info']['weight_date'], date_format+' %H:%M:%S')
-                    days_ago = a - b
-                    weeks =str(user_info['health_info']['weeks'])
-                    response_text ='Hello, '+user_info['user_info']['user_name']+'. \n'
-                    response_text += 'Here\'s a quick summary for you today.\n You\'re in week' + weeks +' '
-                    response_text += 'and your weight was '+str(user_info['health_info']['weight'])+'kg, '+str(days_ago.days)+'days ago. \n'
-                    weather_data = call_weather_api(result[0]['user_info']['address'])
-                    if weather_data :
-                        temp = weather_data['query']['results']['channel']['item']['forecast'][0]
-                        response_text += 'It\'s '+ temp['text'] + ' today. '
-                        response_text += 'Temperature is between ' + temp['low'] + ' C° and '+ temp['high'] + ' C°.\n '
-                        response_text += 'By the way, How are you feeling? (Please select the botton)'
-                    dispatcher.utter_button_message(response_text,attachment_buttons)
-                    tracker.update(SlotSet("last_action",self.name()))
-                    return [ReminderScheduled('action_start_greet_trigger', datetime.now()+ timedelta(days=1),kill_on_user_message=False)]
+        #if trigger_time == current_time :
+        client = MongoClient('localhost',27017)
+        db = client.user_database
+        result = db.user_data.find()
+        attachment_buttons = {'actions' :[{
+                                        'name' : "great",
+                                        'text' : "Great",
+                                        'type' : "button",
+                                        'value' : "",
+                                        'style': "primary"},{
+                                        'name' : "not Bad",
+                                        'text' : "Not Bad",
+                                        'type' : "button",
+                                        'value' : ""},{
+                                        'name' : "bad mood",
+                                        'text' : "Bad",
+                                        'type' : "button",
+                                        'value' : "",
+                                        'style': "danger"}]}
+        if result :
+            user_info = result[0]
+            
+            date_format = "%Y-%m-%d"
+            a = datetime.strptime(datetime.now().strftime(date_format),date_format)
+            b = datetime.strptime(user_info['health_info']['weight_date'], date_format+' %H:%M:%S')
+            days_ago = a - b
+            weeks =str(user_info['health_info']['weeks'])
+            response_text ='Hello, '+user_info['user_info']['user_name']+'. \n'
+            response_text += 'Here\'s a quick summary for you today.\n You\'re in week' + weeks +' '
+            response_text += 'and your weight was '+str(user_info['health_info']['weight'])+'kg, '+str(days_ago.days)+'days ago. \n'
+            weather_data = call_weather_api(result[0]['user_info']['address'])
+            if weather_data :
+                temp = weather_data['query']['results']['channel']['item']['forecast'][0]
+                response_text += 'It\'s '+ temp['text'] + ' today. '
+                response_text += 'Temperature is between ' + temp['low'] + ' C° and '+ temp['high'] + ' C°.\n '
+                response_text += 'By the way, How are you feeling? (Please select the botton)'
+            dispatcher.utter_button_message(response_text,attachment_buttons)
+            tracker.update(SlotSet("last_action",self.name()))
+            return [ReminderScheduled('action_start_greet_trigger', datetime.now()+ timedelta(days=1),kill_on_user_message=False)]
                         
-        else :  
-            return [ReminderScheduled('action_start_greet_trigger', datetime.now()+ timedelta(minutes=1),kill_on_user_message=False)]
+        #else :  
+            #return [ReminderScheduled('action_start_greet_trigger', datetime.now()+ timedelta(minutes=1),kill_on_user_message=False)]
  
   
 class ActionAskDevicePurchase(Action):
@@ -885,32 +885,32 @@ class ActionProductRecommendationTrigger(Action):
         print(">>>>>> product recommendation trigger starts")
         trigger_time = '19:00'
         current_time = datetime.time(datetime.now()).strftime('%H:%M')
-        if trigger_time == current_time :
-            response_text = 'In 6 weeks, you will meet your baby, Silvia. \nThere must be lots of thinks to consider and be prepared.\n Do you want me to show some helpful information?'                  
-            attachment_buttons = {'actions' :[{
-                                            'name' : "great",
-                                            'text' : "Devices-Owlet, TytoCare",
-                                            'type' : "button",
-                                            'value' : ""},{
-                                            'name' : "great",
-                                            'text' : "Insurance",
-                                            'type' : "button",
-                                            'value' : ""
-                                            },{
-                                            'name' : "great",
-                                            'text' : "Postpartum",
-                                            'type' : "button",
-                                            'value' : ""
-                                            },{
-                                            'name' : "remind me later",
-                                            'text' : "Not now",
-                                            'type' : "button",
-                                            'value' : ""
-                                            }]}
-            dispatcher.utter_button_message(response_text,attachment_buttons)
-            tracker.update(SlotSet("last_action",self.name()))
-            return [ReminderScheduled('action_product_recommendation_trigger', datetime.now()+ timedelta(days=1),kill_on_user_message=False)]
-        return [ReminderScheduled('action_product_recommendation_trigger', datetime.now()+ timedelta(minutes=1),kill_on_user_message=False)] 
+        # if trigger_time == current_time :
+        response_text = 'In 6 weeks, you will meet your baby, Silvia. \nThere must be lots of thinks to consider and be prepared.\n Do you want me to show some helpful information?'                  
+        attachment_buttons = {'actions' :[{
+                                        'name' : "great",
+                                        'text' : "Devices-Owlet, TytoCare",
+                                        'type' : "button",
+                                        'value' : ""},{
+                                        'name' : "great",
+                                        'text' : "Insurance",
+                                        'type' : "button",
+                                        'value' : ""
+                                        },{
+                                        'name' : "great",
+                                        'text' : "Postpartum",
+                                        'type' : "button",
+                                        'value' : ""
+                                        },{
+                                        'name' : "remind me later",
+                                        'text' : "Not now",
+                                        'type' : "button",
+                                        'value' : ""
+                                        }]}
+        dispatcher.utter_button_message(response_text,attachment_buttons)
+        tracker.update(SlotSet("last_action",self.name()))
+        return [ReminderScheduled('action_product_recommendation_trigger', datetime.now()+ timedelta(days=1),kill_on_user_message=False)]
+        # return [ReminderScheduled('action_product_recommendation_trigger', datetime.now()+ timedelta(minutes=1),kill_on_user_message=False)] 
 class ActionGoodNightTrigger(Action):
     @classmethod
     def name(cls):
@@ -920,22 +920,22 @@ class ActionGoodNightTrigger(Action):
         print(">>>>>> night trigger starts") 
         trigger_time = '23:00'
         current_time = datetime.time(datetime.now()).strftime('%H:%M')
-        if trigger_time == current_time :
-            response_text = 'Aren\'t you going to bed yet? It is recommended to have sufficient sleep during pregnancy. Shall I play prenatal music for you to help fall asleep?'                  
-            attachment_buttons = {'actions' :[{
-                                            'name' : "prenatal",
-                                            'text' : "Yes",
-                                            'type' : "button",
-                                            'value' : ""},{
-                                            'name' : "no thanks",
-                                            'text' : "No",
-                                            'type' : "button",
-                                            'value' : ""
-                                            }]}
-            dispatcher.utter_button_message(response_text,attachment_buttons)
-            tracker.update(SlotSet("last_action",self.name()))
-            return [ReminderScheduled('action_product_recommendation_trigger', datetime.now()+ timedelta(days=1),kill_on_user_message=False)]
-        return [ReminderScheduled('action_product_recommendation_trigger', datetime.now()+ timedelta(minutes=1),kill_on_user_message=False)]       
+        # if trigger_time == current_time :
+        response_text = 'Aren\'t you going to bed yet? It is recommended to have sufficient sleep during pregnancy. Shall I play prenatal music for you to help fall asleep?'                  
+        attachment_buttons = {'actions' :[{
+                                        'name' : "prenatal",
+                                        'text' : "Yes",
+                                        'type' : "button",
+                                        'value' : ""},{
+                                        'name' : "no thanks",
+                                        'text' : "No",
+                                        'type' : "button",
+                                        'value' : ""
+                                        }]}
+        dispatcher.utter_button_message(response_text,attachment_buttons)
+        tracker.update(SlotSet("last_action",self.name()))
+        return [ReminderScheduled('action_product_recommendation_trigger', datetime.now()+ timedelta(days=1),kill_on_user_message=False)]
+        # return [ReminderScheduled('action_product_recommendation_trigger', datetime.now()+ timedelta(minutes=1),kill_on_user_message=False)]       
        
 def call_weather_api(location) :
     if location =='seoul' :
