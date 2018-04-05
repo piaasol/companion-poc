@@ -498,8 +498,8 @@ class ActionFoodRecommendation(Action):
 
 class ActionAskSymptom(Action):
     def name(self):
-        return "action_ask_symptom"
-    def check_symptom_list():
+        return "action_ask_symptom" 
+    def check_symptom_list(self):
         client = MongoClient('localhost',27017)
         db = client.user_database
         result = db.user_data.find()
