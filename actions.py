@@ -598,7 +598,7 @@ class ActionStartExceprtTrigger(Action):
         trigger_time = '20:00'
         current_time = datetime.time(datetime.now()).strftime('%H:%M')
         # if trigger_time == current_time :
-        health_info = result[0]['health_info']
+        #health_info = result[0]['health_info']
         reponse_text = 'Would you like today\'s excerpt?'
         attachment_buttons = {'actions' :[{
                                             'name' : "excerpt info",
@@ -908,7 +908,7 @@ class ActionProductRecommendationTrigger(Action):
                                         'value' : ""
                                         }]}
         dispatcher.utter_button_message(response_text,attachment_buttons)
-        tracker.update(SlotSet("last_action",self.name()))
+        tracker.update(SlotSet("last_action","action_product_recommendation_trigger")
         return [ReminderScheduled('action_product_recommendation_trigger', datetime.now()+ timedelta(days=1),kill_on_user_message=False)]
         # return [ReminderScheduled('action_product_recommendation_trigger', datetime.now()+ timedelta(minutes=1),kill_on_user_message=False)] 
 class ActionGoodNightTrigger(Action):
@@ -933,7 +933,7 @@ class ActionGoodNightTrigger(Action):
                                         'value' : ""
                                         }]}
         dispatcher.utter_button_message(response_text,attachment_buttons)
-        tracker.update(SlotSet("last_action",self.name()))
+        tracker.update(SlotSet("last_action","action_product_recommendation_trigger"))
         return [ReminderScheduled('action_product_recommendation_trigger', datetime.now()+ timedelta(days=1),kill_on_user_message=False)]
         # return [ReminderScheduled('action_product_recommendation_trigger', datetime.now()+ timedelta(minutes=1),kill_on_user_message=False)]       
        
