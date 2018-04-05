@@ -19,7 +19,7 @@ class ActionHappy(Action):
     def run(self,dispatcher,tracker,domain):
         intent_result = intent_classification_check(self, dispatcher, tracker, domain)
         if intent_result == 1 :
-            response_text = "Great! I'm happy to hear that you are feeling good. Please let me know if you need any help."
+            response_text = "Cool! I'm happy to hear that you are feeling good. Please let me know if you need any help."
             attachment_buttons = {'actions' :[{
                                                     'name' : "ask advice",
                                                     'text' : "Advice",
@@ -203,7 +203,12 @@ class ActionAskRemedy(Action):
     def run(self,dispatcher,tracker,domain):
         intent_result = intent_classification_check(self, dispatcher, tracker, domain)
         if intent_result == 1 :
-            response_text = "Practicing exercises that strengthen both the back muscles, as well as, your abdominal muscles will likely reduce hip pain. \nOne exercise that may provide relief is elevating your hips above chest level while lying on your back for a couple of minutes. \nTaking a warm bath or applying warm compresses to the sore area can reduce pain. In addition, a massage may ease soreness.\n As you get closer to your delivery date, make sure to sleep on your side and keep your legs and knees bent.\n Using pillows to support your abdomen and upper leg can alleviate uncomfortableness while sleeping. \nIf lying on your side worsens your hip pain, place a pillow or blanket at the small of your back and sleep leaning against it.\n This will reduce pressure on the hip you are sleeping on."
+            response_text = "Here are my tips for you. I hope these can ease your pain.\n\n"
+            response_text += '"Practicing exercises" that strengthen both the back muscles, as well as, your abdominal muscles will likely reduce hip pain.\n'
+            response_text += 'One exercise that may provide relief is elevating your hips above chest level while lying on your back for a couple of minutes.\n'
+            response_text += '"Taking a warm bath" or "Applying warm compresses" to the sore area can reduce pain.\n'
+            response_text += 'In addition, a "massage" may ease soreness.\n'
+            response_text += 'As you get closer to your delivery date, make sure to "sleep on your side and keep your legs and knees bent". Using pillows to support your abdomen and upper leg can alleviate uncomfortableness while sleeping. If lying on your side worsens your hip pain, place a pillow or blanket at the small of your back and sleep leaning against it. This will reduce pressure on the hip you are sleeping on.'
             dispatcher.utter_message(response_text)
             tracker.update(SlotSet("last_action",self.name()))
             return []
@@ -267,8 +272,9 @@ class ActionSymptomStillBad(Action):
     def run(self,dispatcher,tracker,domain):
         intent_result = intent_classification_check(self, dispatcher, tracker, domain)
         if intent_result == 1 :
-            response_text = "It is not uncommon to have pain around hip area during pregnancy.\n This occurs because your body is preparing itself for labor. \nSoreness and pain are often felt the strongest on the side where the baby tends to lie in your uterus."
-            response_text += "I found some remedies for hip pain. Would you like to see it?"
+            response_text = "Don't worry, Silvia. It is not uncommon to have pain around hip area during pregnancy.\n"
+            response_text += "This occurs because your body is preparing itself for labor. Soreness and pain are often felt the strongest on the side where the baby tends to lie in your uterus."
+            response_text += "\n\nI found some remedies for hip pain. Would you like to see it?"
             attachment_buttons = {'actions' :[{
                                                     'name' : "ask remedy",
                                                     'text' : "Yes",
@@ -291,8 +297,9 @@ class ActionSymptomWorse(Action):
     def run(self,dispatcher,tracker,domain):
         intent_result = intent_classification_check(self, dispatcher, tracker, domain)
         if intent_result == 1 :
-            response_text = "If the pain persists, You would be better go see your doctor."
-            response_text += "I found some remedies for hip pain. Would you like to see it?"
+            response_text = "Don't worry too much, Silvia."
+            response_text += "\nHowever, if the pain persists, you would be better go see your doctor."
+            response_text += "\n\nI found some remedies for hip pain. Would you like to see it?"
             attachment_buttons = {'actions' :[{
                                                     'name' : "ask remedy",
                                                     'text' : "Yes",
@@ -352,7 +359,7 @@ class ActionAskBadMood(Action):
     def run(self,dispatcher,tracker,domain):
         intent_result = intent_classification_check(self, dispatcher, tracker, domain)
         if intent_result == 1 :
-            response_text = "Are you not feeling well regarding your pregnancy symptoms? Please let me know how I can help."
+            response_text = "Oh, are you not feeling well regarding your pregnancy symptoms? If so, please let me know how I can help."
             attachment_buttons = {'actions' :[{
                                                     'name' : "ask advice",
                                                     'text' : "Advice",
@@ -480,7 +487,7 @@ class ActionFoodRecommendation(Action):
     def run(self,dispatcher,tracker,domain):
         intent_result = intent_classification_check(self, dispatcher, tracker, domain)
         if intent_result == 1 :
-            reponse_text = 'Your weight is okay and you can eat whatever you want unless the doctor advised otherwise. Recommended calories are 2,200Kcal a day and try to avoid caffeine during pregnancy'
+            reponse_text = 'Your weight is okay and you can eat whatever you want unless the doctor advised otherwise. \n\nRecommended calories are 2,200Kcal a day and try to avoid caffeine during pregnancy'
             dispatcher.utter_message(reponse_text)
             tracker.update(SlotSet("last_action",self.name()))
             return []
@@ -494,9 +501,13 @@ class ActionAskSymptom(Action):
     def run(self,dispatcher,tracker,domain):
         intent_result = intent_classification_check(self, dispatcher, tracker, domain)
         if intent_result == 1 :
-            reponse_text = 'Bloating is probably one of your least favorite pregnancy symptoms, and it usually shows up around week 11.\n'
-            reponse_text += 'The bad news? It typically lasts until delivery day. \nBut you don’t have to suffer through it.\n'
-            reponse_text += 'There are plenty of things you can do to beat the bloat and start feeling like your old self again. \nWater will help keep things moving in your gastrointestinal tract, so you can avoid constipation and the inevitable bloat that goes along with it.\n In addition, smaller meals are easier for your body to digest. \nOverloading your digestive system will only lead to more gas and bloating. \nPlus, eating six small meals will help keep your body and your baby  well nourished.'
+            reponse_text = 'Oh, are you feeling bloated and gassy?\n\n'
+            reponse_text += 'Bloating is probably one of your least favorite pregnancy symptoms, and it usually shows up around week 11. The bad news? It typically lasts until delivery day.\n'
+            reponse_text += 'But you don’t have to suffer through it. There are plenty of tips you can do to beat the bloat and start feeling like your old self again.\n'
+            reponse_text += '• Eat several small meals throughout the day\n'
+            reponse_text += '• Pace yourself while eating and drink less during each meal\n'
+            reponse_text += '• Drink water throughout the day and avoid caffeinated drinks\n'
+            reponse_text += '• Try to avoid lying down following a meal. But if you’re totally pooped, at least prop up your upper body with some pillows when you lie down.'
             dispatcher.utter_message(reponse_text)
             client = MongoClient('localhost',27017)
             db = client.user_database
@@ -714,7 +725,7 @@ class ActionStartGreetTrigger(Action):
                         temp = weather_data['query']['results']['channel']['item']['forecast'][0]
                         response_text += 'It\'s '+ temp['text'] + ' today. '
                         response_text += 'Temperature is between ' + temp['low'] + ' C° and '+ temp['high'] + ' C°.\n '
-                    response_text += 'How are you feeling?'
+                        response_text += 'By the way, How are you feeling? (Please select the botton)'
                     dispatcher.utter_button_message(response_text,attachment_buttons)
                     tracker.update(SlotSet("last_action",self.name()))
                     return [ReminderScheduled('action_start_greet_trigger', datetime.now()+ timedelta(days=1),kill_on_user_message=False)]
@@ -762,8 +773,8 @@ class ActionDeviceTrigger(Action):
     def name(self):
         return 'action_device_trigger'
     def run(self, dispatcher,tracker,domain):
-        response_text = 'You have high blood pressure! It is 138/60. High BP could cause pre-eclampsia so you\'d better take extra caution'
-        response_text += 'Do you want to know more about pre-eclampsia?'
+        response_text = 'You have high blood pressure! It is 138/60. \nHigh BP could cause pre-eclampsia so you\'d better take extra caution'
+        response_text += '\n\nDo you want to know more about pre-eclampsia?'
         attachment_buttons = {'actions' :[{
                                         'name' : "more about the disease",
                                         'text' : "Yes",
