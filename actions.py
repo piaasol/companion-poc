@@ -503,9 +503,11 @@ class ActionAskSymptom(Action):
         client = MongoClient('localhost',27017)
         db = client.user_database
         result = db.user_data.find()
+        print(">>>>>>> symptom list search from chat history...")
         if result :
             symptom_list = result[0]['chat_info']['symptoms']
             if symptom_list :
+                print(">>>>>>> 1 result found : ",symptom_list[0]['name'])
                 reponse_text = 'How are you doing with your ' + symptom_list[0]['name'] + '?'
                 attachment_buttons = {'actions' :[{
                                                 'name' : "great",
@@ -732,7 +734,7 @@ class ActionStartGreetTrigger(Action):
                 temp = weather_data['query']['results']['channel']['item']['forecast'][0]
                 response_text += 'It\'s '+ temp['text'] + ' today. '
                 response_text += 'Temperature is between ' + temp['low'] + ' C° and '+ temp['high'] + ' C°.\n '
-                response_text += 'By the way, How are you feeling? (Please select the botton)'
+                response_text += 'By the way, How do you feel this morning? (Please select the botton)'
             dispatcher.utter_button_message(response_text,attachment_buttons)
             tracker.update(SlotSet("last_action",self.name()))
             return [ReminderScheduled('action_start_greet_trigger', datetime.now()+ timedelta(days=1),kill_on_user_message=False)]
