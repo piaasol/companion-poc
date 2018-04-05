@@ -700,7 +700,7 @@ class ActionStartGreetTrigger(Action):
                                         'type' : "button",
                                         'value' : "",
                                         'style': "primary"},{
-                                        'name' : "not Bad",
+                                        'name' : "not bad",
                                         'text' : "Not Bad",
                                         'type' : "button",
                                         'value' : ""},{
