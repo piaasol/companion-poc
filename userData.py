@@ -12,7 +12,7 @@ user_data = {
     "user_name" : "silvia",
     "birthday" : "1982-03-14",
     "gender" : "female",
-    "dudate" : "2018-03-21",
+    "dudate" : "2018-05-21",
     "height" : 163,
     "start_weight" : 58.4,
     "address" : "seoul",
@@ -28,10 +28,10 @@ user_data = {
       "blood_pressure_device_id" : "BP2017",
       "blood_pressure_high" : 138,
       "blood_pressure_low" : 60,
-      "blood_pressure_date" : "2018-02-10 20:33:00",
+      "blood_pressure_date" : "2018-04-03 20:33:00",
       "bloom_device_id" : "BM2017",
       "bloom" : "regular",
-      "bloom_date" : "2018-02-13 20:00:00"
+      "bloom_date" : "2018-04-03 20:00:00"
     },
     "chat_info" : {
       "trimester" : "",
@@ -39,7 +39,7 @@ user_data = {
       "weight" : "",
       "blood_pressure_high" : "",
       "blood_pressure_low" : "",
-      "mood_date" : "2018-02-17 08:30:00",
+      "mood_date" : "2018-04-04 08:30:00",
       "mood" : 0,
       "symptoms" : [
         { "name" : "hip_pain",
