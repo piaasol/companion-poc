@@ -773,6 +773,10 @@ class ActionDeviceTrigger(Action):
     def name(self):
         return 'action_device_trigger'
     def run(self, dispatcher,tracker,domain):
+        print(">>>>>>> intent name : ",tracker.latest_message.intent['name'])
+        print(">>>>>>> intent confidence : ",tracker.latest_message.intent['confidence'])
+        print(">>>>>>> Date : ",datetime.now().strftime('%Y-%m-%d %H:%M'))
+        print(">>>>>>> BP DATA : 136/60")
         response_text = 'You have high blood pressure! It is 138/60. \nHigh BP could cause pre-eclampsia so you\'d better take extra caution'
         response_text += '\n\nDo you want to know more about pre-eclampsia?'
         attachment_buttons = {'actions' :[{
