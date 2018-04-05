@@ -908,7 +908,7 @@ class ActionProductRecommendationTrigger(Action):
                                         'value' : ""
                                         }]}
         dispatcher.utter_button_message(response_text,attachment_buttons)
-        tracker.update(SlotSet("last_action","action_product_recommendation_trigger")
+        tracker.update(SlotSet("last_action", "action_product_recommendation_trigger"))
         return [ReminderScheduled('action_product_recommendation_trigger', datetime.now()+ timedelta(days=1),kill_on_user_message=False)]
         # return [ReminderScheduled('action_product_recommendation_trigger', datetime.now()+ timedelta(minutes=1),kill_on_user_message=False)] 
 class ActionGoodNightTrigger(Action):
