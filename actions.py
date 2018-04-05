@@ -501,29 +501,29 @@ class ActionAskSymptom(Action):
         return "action_ask_symptom"
     def check_symptom_list():
         client = MongoClient('localhost',27017)
-            db = client.user_database
-            result = db.user_data.find()
-            if result :
-                symptom_list = result[0]['chat_info']['symptoms']
-                if symptom_list :
-                    reponse_text = 'How are you doing with your ' + symptom_list[0]['name'] + '?'
-                    attachment_buttons = {'actions' :[{
-                                                    'name' : "great",
-                                                    'text' : "Choose...",
-                                                    'type' : "select",
-                                                    'options': [
-                                                                {
-                                                                'text': "Better",
-                                                                'value': "symptom better"
-                                                                },{
-                                                                'text': "Still there",
-                                                                'value': "symptom still bad"
-                                                                },{
-                                                                'text': "Worse",
-                                                                'value': "symptom worse"
-                                                                }]}]}
-                    dispatcher.utter_button_message(reponse_text,attachment_buttons)
-                    tracker.update(SlotSet("last_action",self.name()))
+        db = client.user_database
+        result = db.user_data.find()
+        if result :
+            symptom_list = result[0]['chat_info']['symptoms']
+            if symptom_list :
+                reponse_text = 'How are you doing with your ' + symptom_list[0]['name'] + '?'
+                attachment_buttons = {'actions' :[{
+                                                'name' : "great",
+                                                'text' : "Choose...",
+                                                'type' : "select",
+                                                'options': [
+                                                            {
+                                                            'text': "Better",
+                                                            'value': "symptom better"
+                                                            },{
+                                                            'text': "Still there",
+                                                            'value': "symptom still bad"
+                                                            },{
+                                                            'text': "Worse",
+                                                            'value': "symptom worse"
+                                                            }]}]}
+                dispatcher.utter_button_message(reponse_text,attachment_buttons)
+                tracker.update(SlotSet("last_action",self.name()))
                
     def run(self,dispatcher,tracker,domain):
         intent_result = intent_classification_check(self, dispatcher, tracker, domain)
