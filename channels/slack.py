@@ -164,8 +164,8 @@ class SlackInput(HttpInputComponent):
     def blueprint(self, on_new_message):
         slack_webhook = Blueprint('slack_webhook', __name__)
         app = Flask(__name__)
-        with app.app_context():
-            self.greet_trigger(self,on_new_message)
+        # with app.app_context():
+        #     self.greet_trigger(self,on_new_message)
          
         @slack_webhook.route("/", methods=['GET'])
         def health():
