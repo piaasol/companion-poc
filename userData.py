@@ -24,7 +24,7 @@ user_data = {
       "weeks" : 34,
       "weight" : 71,
       "weight_device_id" : "TNT01S",
-      "weight_date" : "2018-02-20 07:00:00",
+      "weight_date" : "2018-04-03 07:00:00",
       "blood_pressure_device_id" : "BP2017",
       "blood_pressure_high" : 138,
       "blood_pressure_low" : 60,
