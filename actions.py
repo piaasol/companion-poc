@@ -741,7 +741,6 @@ class ActionStartGreetTrigger(Action):
                         
         #else :  
             #return [ReminderScheduled('action_start_greet_trigger', datetime.now()+ timedelta(minutes=1),kill_on_user_message=False)]
- 
   
 class ActionAskDevicePurchase(Action):
     def name(self):
@@ -959,9 +958,9 @@ def call_weather_api(location) :
 def intent_classification_check(cls, dispatcher, tracker, domain):
     if tracker.latest_message.text:
         confidence_check = tracker.latest_message.intent['confidence']
-        print(">>>>>>> intent name : ",tracker.latest_message.intent['name'])
-        print(">>>>>>> intent confidence : ",tracker.latest_message.intent['confidence'])
-        print(">>>>>>> Date : ",datetime.now().strftime('%Y-%m-%d %H:%M'))
+        print(">>>>>>> \x1b[1;32mintent name\x1b[1;m : ",tracker.latest_message.intent['name'])
+        print(">>>>>>> \x1b[1;32mintent confidence\x1b[1;m : ",tracker.latest_message.intent['confidence'])
+        print(">>>>>>> \x1b[1;32mDate\x1b[1;m : ",datetime.now().strftime('%Y-%m-%d %H:%M'))
         if confidence_check >= 0.20:
             return 1
         else:
