@@ -26,13 +26,13 @@ class SlackBot(SlackClient, OutputChannel):
 
     def __init__(self, token):
         super(SlackBot, self).__init__(token)
-        print("SlackBot __init__")
+        #print("SlackBot __init__")
 
     def send_text_message(self, recipient_id, message):
         super(SlackBot, self).api_call("chat.postMessage",
                                        channel=recipient_id,
                                        as_user=True, text=message)
-        print("SlackBot.send_text_message")
+        #print("SlackBot.send_text_message")
 
     def send_image_url(self, recipient_id, image_url, message=""):
         image_attachment = [{"image_url": image_url,
@@ -48,7 +48,8 @@ class SlackBot(SlackClient, OutputChannel):
                  "type": "button"} for b in buttons]
 
     def send_text_with_buttons(self, recipient_id, message, buttons, **kwargs):
-        print("SlackBot.send_text_with_buttons",recipient_id)
+        
+        #print("SlackBot.send_text_with_buttons",recipient_id)
         if len(buttons) > 5:
             logger.warn("Slack API currently allows only up to 5 buttons. "
                         "If you add more, all will be ignored.")
@@ -181,7 +182,7 @@ class SlackInput(HttpInputComponent):
                             user_text = action_data[0]['selected_options'][0]['value']
                         elif action_type == 'button' :
                             user_text = action_data[0]['name']
-                            sender_id = "U98A5D231"
+                    sender_id = "U98A5D231"
                     #sender_id = json.loads(request_form_data['payload'][0]).get(
                                                                      #'user').get('id')
                 out_channel = SlackBot(self.slack_token)
@@ -199,7 +200,8 @@ class SlackInput(HttpInputComponent):
                                              {"content_type": "application/json"})
                     elif self._is_user_message(output):
                         text = output['event']['text']
-                        sender_id = output.get('event').get('user')
+                        sender_id = "U98A5D231"
+                        #sender_id = output.get('event').get('user')
                     else:
                         return make_response()
                 elif request.form:
