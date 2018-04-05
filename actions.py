@@ -12,6 +12,7 @@ from rasa_core.policies.keras_policy import KerasPolicy
 from rasa_core.events import  ReminderScheduled, SlotSet, ActionExecuted
 from datetime import datetime, timedelta
 import requests
+from threading import Timer
 
 class ActionHappy(Action):
     def name(self):
@@ -498,18 +499,8 @@ class ActionFoodRecommendation(Action):
 class ActionAskSymptom(Action):
     def name(self):
         return "action_ask_symptom"
-    def run(self,dispatcher,tracker,domain):
-        intent_result = intent_classification_check(self, dispatcher, tracker, domain)
-        if intent_result == 1 :
-            reponse_text = 'Oh, are you feeling bloated and gassy?\n\n'
-            reponse_text += 'Bloating is probably one of your least favorite pregnancy symptoms, and it usually shows up around week 11. The bad news? It typically lasts until delivery day.\n'
-            reponse_text += 'But you don’t have to suffer through it. There are plenty of tips you can do to beat the bloat and start feeling like your old self again.\n'
-            reponse_text += '• Eat several small meals throughout the day\n'
-            reponse_text += '• Pace yourself while eating and drink less during each meal\n'
-            reponse_text += '• Drink water throughout the day and avoid caffeinated drinks\n'
-            reponse_text += '• Try to avoid lying down following a meal. But if you’re totally pooped, at least prop up your upper body with some pillows when you lie down.'
-            dispatcher.utter_message(reponse_text)
-            client = MongoClient('localhost',27017)
+    def check_symptom_list():
+        client = MongoClient('localhost',27017)
             db = client.user_database
             result = db.user_data.find()
             if result :
@@ -533,10 +524,26 @@ class ActionAskSymptom(Action):
                                                                 }]}]}
                     dispatcher.utter_button_message(reponse_text,attachment_buttons)
                     tracker.update(SlotSet("last_action",self.name()))
-            return []
+               
+    def run(self,dispatcher,tracker,domain):
+        intent_result = intent_classification_check(self, dispatcher, tracker, domain)
+        if intent_result == 1 :
+            reponse_text = 'Oh, are you feeling bloated and gassy?\n\n'
+            reponse_text += 'Bloating is probably one of your least favorite pregnancy symptoms, and it usually shows up around week 11. The bad news? It typically lasts until delivery day.\n'
+            reponse_text += 'But you don’t have to suffer through it. There are plenty of tips you can do to beat the bloat and start feeling like your old self again.\n'
+            reponse_text += '• Eat several small meals throughout the day\n'
+            reponse_text += '• Pace yourself while eating and drink less during each meal\n'
+            reponse_text += '• Drink water throughout the day and avoid caffeinated drinks\n'
+            reponse_text += '• Try to avoid lying down following a meal. But if you’re totally pooped, at least prop up your upper body with some pillows when you lie down.'
+            dispatcher.utter_message(reponse_text)
+            timer = threading.Timer(2.0, self.check_symptom_list)
+            timer.start()
+        
         else:
-            action_default(self,dispatcher,tracker,domain)
-            return[]  
+            action_default(self,dispatcher,tracker,domain)     
+        return[] 
+            
+
 class ActionSymptomBetter(Action):
     def name(self):
         return 'action_symptom_better'  
