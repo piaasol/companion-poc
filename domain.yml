@@ -94,6 +94,7 @@ actions:
   - actions.ActionPrenatalMusic
   - actions.ActionStartExceprtTrigger
   - actions.ActionsAskExcerptInfo
+  - actions.ActionAfterRemind
  
 slots:
    disease:

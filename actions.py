@@ -171,8 +171,8 @@ class ActionAskDevice(Action):
                                                     'type' : "button",
                                                     'value' : "",
                                                     'style': "primary"},{
-                                                    'name' : "no thanks",
-                                                    'text' : "No",
+                                                    'name' : "remind me",
+                                                    'text' : "No thanks. Remind me later.",
                                                     'type' : "button",
                                                     'value' : ""}]}
             dispatcher.utter_button_message(response_text,attachment_buttons)
@@ -608,11 +608,30 @@ class ActionSetRemind(Action):
             clip_contents=tracker.get_slot('last_action')
             print("\x1b[1;33m>>>>>>> Reminded Action : ",clip_contents,"\x1b[1;m")
             dispatcher.utter_message("Ok, I will let you know then.")
-            return [ReminderScheduled(clip_contents, datetime.now()+ timedelta(minutes=10),kill_on_user_message=False)]
- 
+            return [ReminderScheduled("action_after_remind", datetime.now()+ timedelta(minutes=5),kill_on_user_message=False)]
         else:
             action_default(self,dispatcher,tracker,domain)
-            return[]   
+            return[]
+class ActionAfterRemind(Action):
+    def name(cls):
+        return 'action_after_remind'
+    def run(cls,dispatcher,tracker,domain):
+        response_text = "Is this good time to give you information on remedies for hip pain?"
+        attachment_buttons = {'actions' :[{
+                                            'name' : "ask remedy",
+                                            'text' : "Yes",
+                                            'type' : "button",
+                                            'value' : "",
+                                            'style' : "primary"},{
+                                            'name' : "no thanks",
+                                            'text' : "No",
+                                            'type' : "button",
+                                            'value' : "",
+                                            'style' : "danger"
+                                            }]}
+        dispatcher.utter_button_message(response_text,attachment_buttons)
+        return []
+
 class ActionStartExceprtTrigger(Action):
     def name(self):
         return 'action_start_excerpt_trigger'
@@ -675,7 +694,6 @@ class ActionAskSymptomBloom(Action):
                 reponse_text = 'You\'re in week '
                 reponse_text += str(health_info['weeks'])
                 reponse_text += ' and if they are not that painful or regular, they may be Braxton Hicks contractions. '
-                reponse_text += '\nIf you are confused, you can try using Belli device helping you to check contraction patterns.'
                 reponse_text += '\n\nDo you want me to tell more about "Braxton Hicks contractions"?' 
                 attachment_buttons = {'actions' :[{
                                                     'name' : "ask symptom more info",

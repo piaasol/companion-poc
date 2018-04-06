@@ -42,7 +42,7 @@ user_data = {
       "mood_date" : "2018-04-04 08:30:00",
       "mood" : 0,
       "symptoms" : [
-        { "name" : "hip_pain",
+        { "name" : "hip pain",
           "severity" : "medium",
           "frequency" : 4,
           "context" : "hypertension diagmosis"
