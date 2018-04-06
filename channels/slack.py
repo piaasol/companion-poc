@@ -48,7 +48,6 @@ class SlackBot(SlackClient, OutputChannel):
                  "type": "button"} for b in buttons]
 
     def send_text_with_buttons(self, recipient_id, message, buttons, **kwargs):
-        
         #print("SlackBot.send_text_with_buttons",recipient_id)
         if len(buttons) > 5:
             logger.warn("Slack API currently allows only up to 5 buttons. "
@@ -150,16 +149,19 @@ class SlackInput(HttpInputComponent):
         user_msg = UserMessage("greet trigger start now", out_channel, user_id)
         on_new_message(user_msg)
         make_response()
+        print(">>>>>> greet trigger starts")
         user_msg = UserMessage("product recommendation start...", out_channel, user_id)
         on_new_message(user_msg)
         make_response()
+        print(">>>>>> product recommendation trigger starts")
         user_msg = UserMessage("night trigger", out_channel, user_id)
         on_new_message(user_msg)
         make_response()
+        print(">>>>>> night trigger starts")
         user_msg = UserMessage("excerpt trigger", out_channel, user_id)
         on_new_message(user_msg)
         make_response()
-        
+        print(">>>>>> excerpt trigger starts")
         
     def blueprint(self, on_new_message):
         slack_webhook = Blueprint('slack_webhook', __name__)
@@ -182,9 +184,8 @@ class SlackInput(HttpInputComponent):
                             user_text = action_data[0]['selected_options'][0]['value']
                         elif action_type == 'button' :
                             user_text = action_data[0]['name']
-                    sender_id = "U98A5D231"
-                    #sender_id = json.loads(request_form_data['payload'][0]).get(
-                                                                     #'user').get('id')
+                    sender_id = json.loads(request_form_data['payload'][0]).get(
+                                                                     'user').get('id')
                 out_channel = SlackBot(self.slack_token)
                 user_msg = UserMessage(user_text, out_channel, sender_id)
                 on_new_message(user_msg)
@@ -200,17 +201,15 @@ class SlackInput(HttpInputComponent):
                                              {"content_type": "application/json"})
                     elif self._is_user_message(output):
                         text = output['event']['text']
-                        sender_id = "U98A5D231"
-                        #sender_id = output.get('event').get('user')
+                        sender_id = output.get('event').get('user')
                     else:
                         return make_response()
                 elif request.form:
                     output = dict(request.form)
                     if self._is_button_reply(output):
                         text = self._get_button_reply(output)
-                        sender_id = "U98A5D231"
-                        # sender_id = json.loads(output['payload'][0]).get(
-                        #     'user').get('id')
+                        sender_id = json.loads(output['payload'][0]).get(
+                            'user').get('id')
                     else:
                         return make_response()
                 else:

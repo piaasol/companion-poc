@@ -93,7 +93,7 @@ class ActionAskForwardDoctor(Action):
     def run(self,dispatcher,tracker,domain):
         intent_result = intent_classification_check(self, dispatcher, tracker, domain)
         if intent_result == 1 :
-            response_text = "Okay. Your question about hip pain is posted.\n I'll let you know when i get an answer or chat request from a doctor."
+            response_text = "Now your question about hip pain is posted. \nI'll let you know when I get an answer or chat request from a doctor."
             dispatcher.utter_message(response_text)
             tracker.update(SlotSet("last_action",self.name()))
             return []
@@ -163,8 +163,19 @@ class ActionAskDevice(Action):
     def run(self,dispatcher,tracker,domain):
         intent_result = intent_classification_check(self, dispatcher, tracker, domain)
         if intent_result == 1 :
-            response_text = "You can use a patch up to about a week"
-            dispatcher.utter_message(response_text)
+            response_text = "You can use a patch up to about a week."
+            response_text += '\n\nDo you need more information? '
+            attachment_buttons = {'actions' :[{
+                                                    'name' : "ask remedy",
+                                                    'text' : "Yes",
+                                                    'type' : "button",
+                                                    'value' : "",
+                                                    'style': "primary"},{
+                                                    'name' : "no thanks",
+                                                    'text' : "No",
+                                                    'type' : "button",
+                                                    'value' : ""}]}
+            dispatcher.utter_button_message(response_text,attachment_buttons)
             tracker.update(SlotSet("last_action",self.name()))
             return []
         else:
@@ -177,7 +188,7 @@ class ActionConfirmPurchase(Action):
     def run(self,dispatcher,tracker,domain):
         intent_result = intent_classification_check(self, dispatcher, tracker, domain)
         if intent_result == 1 :
-            response_text = "Order placed. It'll arrive within 5days."
+            response_text = "Order placed! \nI guess it'll arrive within 5 days."
             dispatcher.utter_message(response_text)
             tracker.update(SlotSet("last_action",self.name()))
             return []
@@ -250,7 +261,8 @@ class ActionAskMedicalAdvice(Action):
     def run(self,dispatcher,tracker,domain):
         intent_result = intent_classification_check(self, dispatcher, tracker, domain)
         if intent_result == 1 :
-            response_text = "I'm sorry, I can't give you specific answer but I can forward your question to a doctor or give you general info on the symptom"
+            response_text = "I'm sorry, I can't give you specific answer, but I can forward your question to a doctor or give you general information on the symptom."
+            response_text += "\n\nWould you let me know what you want?"
             attachment_buttons = {'actions' :[{
                                                     'name' : "ask doctor",
                                                     'text' : "To Doctor",
@@ -336,7 +348,9 @@ class ActionAskDoctor(Action):
     def run(self,dispatcher,tracker,domain):
         intent_result = intent_classification_check(self, dispatcher, tracker, domain)
         if intent_result == 1 :
-            response_text = "I will forward your basic information and your symptom to OBGYN doctors' forum and ask if anyone can answer.\n Do you agree passing the information? Your name, address and contact information weill not be shared by me."
+            response_text = 'Okay, I will forward your basic information and symptom to OBGYN doctors\' forum and ask if anyone can answer.'
+            response_text += '\n\nDo you agree to passing the information? '
+            response_text += 'Your name, address, and contact information will not be shared by me.'
             attachment_buttons = {'actions' :[{
                                                     'name' : "agree on sending info",
                                                     'text' : "Agree",
@@ -603,12 +617,14 @@ class ActionStartExceprtTrigger(Action):
     def name(self):
         return 'action_start_excerpt_trigger'
     def run(self,dispatcher,tracker,domain):
-        print(">>>>>> excerpt trigger starts")
+        print("\x1b[1;33m>>>>>>> trigger starts\x1b[1;m")
+        print("\x1b[1;33m>>>>>>> trigger name : action_start_excerpt_trigger\x1b[1;m")
+        print("\x1b[1;33m>>>>>>> trigger date : ",datetime.now().strftime('%Y-%m-%d %H:%M'),"\x1b[1;m")
         trigger_time = '20:00'
         current_time = datetime.time(datetime.now()).strftime('%H:%M')
         # if trigger_time == current_time :
         #health_info = result[0]['health_info']
-        reponse_text = 'Would you like today\'s excerpt?'
+        reponse_text = 'Would you like today\'s excerpt from pregnancy book?'
         attachment_buttons = {'actions' :[{
                                             'name' : "excerpt info",
                                             'text' : "Yes",
@@ -632,8 +648,12 @@ class ActionsAskExcerptInfo(Action):
     def run(cls,dispatcher,tracker,domain):
         intent_result = intent_classification_check(cls, dispatcher, tracker, domain)
         if intent_result == 1 :
-            reponse_text = 'Have you packed your hospital bag? As you approach your due date, you are sure to have a million different thoughts going around in your head. It\'s perfectly normal to be excited about finally meeting your little one, but also to be feeling nervous that labour time is approaching. '
-            dispatcher.utter_message(reponse_text)
+            response_text = '"Things to do this week" for you !'
+            response_text += '\n\nThis is a good time to familiarize yourself with the birthing process.'
+            response_text += '\nFirst, visit the labor and delivery section of the hospital or center where you’re planning to give birth. Also, learn where the emergency department is, just in case. Go ahead and fill out any pre-registration paperwork and talk with your doctor about pain management options for the big day. And if you have any questions about the delivery itself, make a list and go over them with your healthcare provider.'
+            response_text += '\n\nIf you’re planning a home birth, speak with your midwife or doctor about anything you may need to have on hand. '
+            response_text += '\nAlso, come up with a solid plan in case something happens that requires you to deliver in the hospital instead. Births are unpredictable. Preparing for every possible situation will help alleviate any extra stress in case something doesn’t go according to plan.'
+            dispatcher.utter_message(response_text)
             tracker.update(SlotSet("last_action",self.name()))
             return []
         else:
@@ -652,8 +672,11 @@ class ActionAskSymptomBloom(Action):
             result = db.user_data.find()   
             if result :
                 health_info = result[0]['health_info']
-                reponse_text = '\n You\'re in week'+ str(health_info['weeks']) + '. If they are not painful or regular, they may be Braxton Hicks contractions. You can try using Belli device. '
-                reponse_text += 'Do you want more info?' 
+                reponse_text = 'You\'re in week '
+                reponse_text += str(health_info['weeks'])
+                reponse_text += ' and if they are not that painful or regular, they may be Braxton Hicks contractions. '
+                reponse_text += '\nIf you are confused, you can try using Belli device helping you to check contraction patterns.'
+                reponse_text += '\n\nDo you want me to tell more about "Braxton Hicks contractions"?' 
                 attachment_buttons = {'actions' :[{
                                                     'name' : "ask symptom more info",
                                                     'text' : "Yes",
@@ -677,11 +700,15 @@ class ActionAskMoreInfo(Action):
     def run(self,dispatcher,tracker,domain):
         intent_result = intent_classification_check(self, dispatcher, tracker, domain)
         if intent_result == 1 :
-            response_text = "Before 'true' labor begins, you may have 'false' labor pains. These are also known as Braxton Hicks contractions. They are your body's way of getting ready for the real thing -- the day you give birth -- but they are not a sign that labor has begun or is getting ready to begin. I'll put more info on your Clipboard."  
+            response_text = 'Ok, I am going to tell you what it is.'
+            response_text += '\n\nBraxton Hicks contractions are a bit like a dress rehearsal.'
+            response_text += 'Your uterine muscles are flexing in preparation for the big job they\'ll have to do in the near future. Keep in mind that while they can be hard to distinguish from the real thing, they\'re not efficient enough to push your baby out just yet the way actual labor contractions are.'
+            response_text += '\n\nI\'ll put more info on your Clipboard.'
             clip_data = tracker.get_slot('clipboard')
             if clip_data is None :
                 clip_data = ''
-            clip_data += '\n\nbloom symptom : Before \'true\' labor begins, you may have \'false\' labor pains.'
+            clip_data += '\n\nBraxton Hicks contractions are a bit like a dress rehearsal.'
+            clip_data += 'Your uterine muscles are flexing in preparation for the big job they\'ll have to do in the near future. Keep in mind that while they can be hard to distinguish from the real thing, they\'re not efficient enough to push your baby out just yet the way actual labor contractions are.'
             tracker.update(SlotSet("clipboard",clip_data))
             client = MongoClient('localhost',27017)
             db = client.user_database
@@ -696,7 +723,9 @@ class ActionStartGreetTrigger(Action):
     def name(self):
         return 'action_start_greet_trigger'
     def run(self,dispatcher,tracker,domain):
-        print(">>>>>> greet trigger starts")
+        print("\x1b[1;33m>>>>>>> trigger starts\x1b[1;m")
+        print("\x1b[1;33m>>>>>>> trigger name : action_start_greet_trigger\x1b[1;m")
+        print("\x1b[1;33m>>>>>>> trigger date : ",datetime.now().strftime('%Y-%m-%d %H:%M'),"\x1b[1;m")
         trigger_time = '07:30'
         current_time = datetime.time(datetime.now()).strftime('%H:%M')
         #if trigger_time == current_time :
@@ -781,11 +810,11 @@ class ActionDeviceTrigger(Action):
     def name(self):
         return 'action_device_trigger'
     def run(self, dispatcher,tracker,domain):
-        print(">>>>>>> intent name : ",tracker.latest_message.intent['name'])
-        print(">>>>>>> intent confidence : ",tracker.latest_message.intent['confidence'])
-        print(">>>>>>> Date : ",datetime.now().strftime('%Y-%m-%d %H:%M'))
-        print(">>>>>>> BP DATA : 136/60")
-        response_text = 'You have high blood pressure! It is 138/60. \nHigh BP could cause pre-eclampsia so you\'d better take extra caution'
+        print("\x1b[1;33m>>>>>>> trigger starts\x1b[1;m")
+        print("\x1b[1;33m>>>>>>> trigger name : action_device_trigger\x1b[1;m")
+        print("\x1b[1;33m>>>>>>> trigger date : ",datetime.now().strftime('%Y-%m-%d %H:%M'),"\x1b[1;m")
+        print("\x1b[1;33m>>>>>>> BP DATA : 136/60\x1b[1;m")
+        response_text = 'It is 138/60. \nYou have high blood pressure! High BP could cause pre-eclampsia so you\'d better take extra caution'
         response_text += '\n\nDo you want to know more about pre-eclampsia?'
         attachment_buttons = {'actions' :[{
                                         'name' : "more about the disease",
@@ -811,7 +840,13 @@ class ActionAskDisease(Action):
         if intent_result == 1 :
             disease = tracker.get_slot('disease')   
             if disease :
-                response_text = 'Pre-eclampsia is when you have high blood pressure and protein in your urine during pregnancy. \nIt can happen at any point after the 20th week of pregnancy, though in some cases it occurs earlier. \nYou may also have low clotting factors (platelets) in your blood or indicators of kidney or liver trouble. \nThis condition is also called toxemia or pregnancy-induced hypertension (PIH). \nEclampsia is a severe complication of preeclampsia. Eclampsia includes high blood pressure resulting in seizures during pregnancy. \nApproximately 5 to 10 percent of all pregnant women get preeclampsia.'
+                response_text = 'Ok, I am going to tell you what it is.'
+                response_text += '\n\nPre-eclampsia is when you have high blood pressure and protein in your urine during pregnancy. '
+                response_text += '\nIt can happen at any point after the 20th week of pregnancy, though in some cases it occurs earlier. '
+                response_text += '\nYou may also have low clotting factors (platelets) in your blood or indicators of kidney or liver trouble. This condition is also called toxemia or pregnancy-induced hypertension (PIH). '
+                response_text += '\nEclampsia is a severe complication of preeclampsia. Eclampsia includes high blood pressure resulting in seizures during pregnancy. '
+                response_text += '\nApproximately 5 to 10 percent of all pregnant women get pre-eclampsia.'
+                response_text += '\n\nIf you\'d like to find details, please select the taps.'
                 attachment_buttons = {'actions' :[{
                                             'name' : "food for disease",
                                             'text' : "Food Recommendation",
@@ -842,7 +877,8 @@ class ActionAskFood(Action):
         if intent_result == 1 :
             disease = tracker.get_slot('disease') 
             if disease :
-                response_text = 'I recommend food containg Ca, mineral, Fe. \nThey can help your blood circulations as well as High bp control. \nBesides, they are good for your baby\'s nutrition.'
+                response_text = 'I recommend food containg Ca, mineral, Fe such as seaweed, mackerel and beans. Especially, they can help your blood circulations as well as High BP control.'
+                response_text += '\nI\'m sure that they are also good for your lovely baby\'s nutrition.'
                 dispatcher.utter_message(response_text)
                 tracker.update(SlotSet("last_action",self.name()))
             return []  
@@ -890,11 +926,15 @@ class ActionProductRecommendationTrigger(Action):
         return 'action_product_recommendation_trigger'
     @classmethod
     def run(cls,dispatcher,tracker,domain): 
-        print(">>>>>> product recommendation trigger starts")
+        print("\x1b[1;33m>>>>>>> trigger starts\x1b[1;m")
+        print("\x1b[1;33m>>>>>>> trigger name : action_product_recommendation_trigger\x1b[1;m")
+        print("\x1b[1;33m>>>>>>> trigger date : ",datetime.now().strftime('%Y-%m-%d %H:%M'),"\x1b[1;m")
         trigger_time = '19:00'
         current_time = datetime.time(datetime.now()).strftime('%H:%M')
         # if trigger_time == current_time :
-        response_text = 'In 6 weeks, you will meet your baby, Silvia. \nThere must be lots of thinks to consider and be prepared.\n Do you want me to show some helpful information?'                  
+        response_text = 'In 6 weeks, you will meet your lovely baby, Siliva. '
+        response_text += '\nThere must be lots of things to consider and be prepared.'
+        response_text += '\n\nI have some helpful information for you. Would you like to see them? '
         attachment_buttons = {'actions' :[{
                                         'name' : "great",
                                         'text' : "Devices-Owlet, TytoCare",
@@ -911,7 +951,7 @@ class ActionProductRecommendationTrigger(Action):
                                         'value' : ""
                                         },{
                                         'name' : "remind me later",
-                                        'text' : "Not now",
+                                        'text' : "No,thanks.remaind me later",
                                         'type' : "button",
                                         'value' : ""
                                         }]}
@@ -925,11 +965,15 @@ class ActionGoodNightTrigger(Action):
         return 'action_good_night_trigger'
     @classmethod
     def run(cls,dispatcher,tracker,domain):
-        print(">>>>>> night trigger starts") 
+        print("\x1b[1;33m>>>>>>> trigger starts\x1b[1;m")
+        print("\x1b[1;33m>>>>>>> trigger name : action_good_night_trigger\x1b[1;m")
+        print("\x1b[1;33m>>>>>>> trigger date : ",datetime.now().strftime('%Y-%m-%d %H:%M'),"\x1b[1;m")
         trigger_time = '23:00'
         current_time = datetime.time(datetime.now()).strftime('%H:%M')
         # if trigger_time == current_time :
-        response_text = 'Aren\'t you going to bed yet? It is recommended to have sufficient sleep during pregnancy. Shall I play prenatal music for you to help fall asleep?'                  
+        response_text = 'Aren\'t you going to bed yet? '
+        response_text += '\nIt is recommended to have sufficient sleep during pregnancy.'
+        response_text += '\n\nShall I play prenatal music for you to help fall asleep?'
         attachment_buttons = {'actions' :[{
                                         'name' : "prenatal",
                                         'text' : "Yes",
@@ -958,16 +1002,18 @@ def call_weather_api(location) :
 def intent_classification_check(cls, dispatcher, tracker, domain):
     if tracker.latest_message.text:
         confidence_check = tracker.latest_message.intent['confidence']
-        print(">>>>>>> \x1b[1;32mintent name\x1b[1;m : ",tracker.latest_message.intent['name'])
-        print(">>>>>>> \x1b[1;32mintent confidence\x1b[1;m : ",tracker.latest_message.intent['confidence'])
-        print(">>>>>>> \x1b[1;32mDate\x1b[1;m : ",datetime.now().strftime('%Y-%m-%d %H:%M'))
+        print("\x1b[1;33m>>>>>>> intent name : ",tracker.latest_message.intent['name'],"\x1b[1;m")
+        print("\x1b[1;33m>>>>>>> intent confidence : ",tracker.latest_message.intent['confidence'],"\x1b[1;m")
+        print("\x1b[1;33m>>>>>>> Date : ",datetime.now().strftime('%Y-%m-%d %H:%M'),"\x1b[1;m")
+        
         if confidence_check >= 0.20:
             return 1
         else:
             return 2  
     else:
         return 1      
-
+def timeout_check():
+    print('time out check')
 class UsertriggerPolicy(KerasPolicy):
     def _build_model(self, num_features, num_actions, max_history_len):
         """Build a keras model and return a compiled model.

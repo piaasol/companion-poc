@@ -9,7 +9,7 @@ user_data = {
   "_id": 1,
   "user_info" : {
     "email" : "grace_silvia@gmail.com",
-    "user_name" : "silvia",
+    "user_name" : "Siliva",
     "birthday" : "1982-03-14",
     "gender" : "female",
     "dudate" : "2018-05-21",
