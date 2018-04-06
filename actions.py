@@ -171,8 +171,8 @@ class ActionAskDevice(Action):
                                                     'type' : "button",
                                                     'value' : "",
                                                     'style': "primary"},{
-                                                    'name' : "remind me",
-                                                    'text' : "No thanks. Remind me later.",
+                                                    'name' : "not now",
+                                                    'text' : "No",
                                                     'type' : "button",
                                                     'value' : ""}]}
             dispatcher.utter_button_message(response_text,attachment_buttons)
@@ -294,7 +294,7 @@ class ActionSymptomStillBad(Action):
                                                     'type' : "button",
                                                     'value' : "",
                                                     'style': "primary"},{
-                                                    'name' : "no thanks",
+                                                    'name' : "remind me",
                                                     'text' : "No",
                                                     'type' : "button",
                                                     'value' : ""}]}
@@ -319,7 +319,7 @@ class ActionSymptomWorse(Action):
                                                     'type' : "button",
                                                     'value' : "",
                                                     'style': "primary"},{
-                                                    'name' : "no thanks",
+                                                    'name' : "remind me",
                                                     'text' : "No",
                                                     'type' : "button",
                                                     'value' : ""}]}
