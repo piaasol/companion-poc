@@ -295,7 +295,7 @@ class ActionSymptomStillBad(Action):
                                                     'value' : "",
                                                     'style': "primary"},{
                                                     'name' : "remind me",
-                                                    'text' : "No",
+                                                    'text' : "No thanks. Remind me later",
                                                     'type' : "button",
                                                     'value' : ""}]}
             dispatcher.utter_button_message(response_text,attachment_buttons)
@@ -320,7 +320,7 @@ class ActionSymptomWorse(Action):
                                                     'value' : "",
                                                     'style': "primary"},{
                                                     'name' : "remind me",
-                                                    'text' : "No",
+                                                    'text' : "No thanks. Remind me later",
                                                     'type' : "button",
                                                     'value' : ""}]}
             dispatcher.utter_button_message(response_text,attachment_buttons)
