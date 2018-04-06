@@ -458,7 +458,7 @@ class ActionAskDoctorsAppointment(Action):
             if result :
                 if result[0]['schedule']['appointment'] :
                     recent_schedule = result[0]['schedule']['appointment'][0]
-                    print('>>>>>> recent_schedule check :',recent_schedule)
+                    print("\x1b[1;33m>>>>>>> recent_schedule check : ",recent_schedule,"\x1b[1;m")
                     dispatcher.utter_button_message('My record show that your next visit to ' + recent_schedule['doctor_name'] + ' is ' + recent_schedule['date'] + '. Do you want to reschedule?',attachment_buttons)
                     tracker.update(SlotSet("last_action",self.name()))
                 else :
@@ -517,11 +517,11 @@ class ActionAskSymptom(Action):
         client = MongoClient('localhost',27017)
         db = client.user_database
         result = db.user_data.find()
-        print(">>>>>>> symptom list search from chat history...")
+        print("\x1b[1;33m>>>>>>> symptom list search from chat history...\x1b[1;m")
         if result :
             symptom_list = result[0]['chat_info']['symptoms']
             if symptom_list :
-                print(">>>>>>> 1 result found : ",symptom_list[0]['name'])
+                print("\x1b[1;33m>>>>>>> 1 result found : ",symptom_list[0]['name'],"\x1b[1;m")
                 reponse_text = 'How are you doing with your ' + symptom_list[0]['name'] + '?'
                 attachment_buttons = {'actions' :[{
                                                 'name' : "great",
@@ -606,7 +606,7 @@ class ActionSetRemind(Action):
         intent_result = intent_classification_check(cls, dispatcher, tracker, domain)
         if intent_result == 1 :
             clip_contents=tracker.get_slot('last_action')
-            print(">>>>>>> Reminded Action :",clip_contents)
+            print("\x1b[1;33m>>>>>>> Reminded Action : ",clip_contents,"\x1b[1;m")
             dispatcher.utter_message("Ok, I will let you know then.")
             return [ReminderScheduled(clip_contents, datetime.now()+ timedelta(minutes=10),kill_on_user_message=False)]
  
@@ -1013,7 +1013,7 @@ def intent_classification_check(cls, dispatcher, tracker, domain):
     else:
         return 1      
 def timeout_check():
-    print('time out check')
+    print('')
 class UsertriggerPolicy(KerasPolicy):
     def _build_model(self, num_features, num_actions, max_history_len):
         """Build a keras model and return a compiled model.
