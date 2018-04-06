@@ -637,7 +637,7 @@ class ActionStartExceprtTrigger(Action):
                                             'value' : "",
                                             'style' : "danger"}]}
         dispatcher.utter_button_message(reponse_text,attachment_buttons)
-        tracker.update(SlotSet("last_action",self.name()))
+        tracker.update(SlotSet("last_action","action_start_excerpt_trigger"))
         return [ReminderScheduled('action_start_excerpt_trigger', datetime.now()+ timedelta(days=1),kill_on_user_message=False)]
         # else :  
         #     return [ReminderScheduled('action_start_excerpt_trigger', datetime.now()+ timedelta(minutes=1),kill_on_user_message=False)]
@@ -766,7 +766,8 @@ class ActionStartGreetTrigger(Action):
                 response_text += 'By the way, how do you feel this morning? (Please select the botton)'
             dispatcher.utter_button_message(response_text,attachment_buttons)
             tracker.update(SlotSet("last_action",self.name()))
-            return [ReminderScheduled('action_start_greet_trigger', datetime.now()+ timedelta(days=1),kill_on_user_message=False)]
+            return []
+            #return [ReminderScheduled('action_start_greet_trigger', datetime.now()+ timedelta(days=1),kill_on_user_message=False)]
                         
         #else :  
             #return [ReminderScheduled('action_start_greet_trigger', datetime.now()+ timedelta(minutes=1),kill_on_user_message=False)]

@@ -66,8 +66,6 @@
   - action_greet
 
 ## flow 11-12-1              
-* start_greet_trigger              
-  - action_start_greet_trigger
 * ask_bad_mood <!-- user utterance, in format _intent[entities] -->
   - action_ask_bad_mood
 * ask_advice
@@ -77,14 +75,13 @@
 ## flow 11-12-2
 * start_greet_trigger
  - action_start_greet_trigger
+## flow 11-12-2
 * ask_bad_mood <!-- user utterance, in format _intent[entities] -->
  - action_ask_bad_mood
 * ask_music
  - action_play_music
 
 ## flow 11-12-3
-* start_greet_trigger
- - action_start_greet_trigger
 * ask_bad_mood <!-- user utterance, in format _intent[entities] -->
  - action_ask_bad_mood
 * mood_great
