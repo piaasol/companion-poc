@@ -201,13 +201,7 @@ class ActionGreet(Action):
     def run(self,dispatcher,tracker,domain):
         intent_result = intent_classification_check(self, dispatcher, tracker, domain)
         if intent_result == 1 :
-            response_text = "CHATBOT POC\nCHATBOT POC\nCHATBOT POC\nCHATBOT POC\nCHATBOT POC\nCHATBOT POC\n"
-            response_text += "CHATBOT POC\nCHATBOT POC\nCHATBOT POC\nCHATBOT POC\nCHATBOT POC\nCHATBOT POC\n"
-            response_text += "CHATBOT POC\nCHATBOT POC\nCHATBOT POC\nCHATBOT POC\nCHATBOT POC\nCHATBOT POC\n"
-            response_text += "CHATBOT POC\nCHATBOT POC\nCHATBOT POC\nCHATBOT POC\nCHATBOT POC\nCHATBOT POC\n"
-            response_text += "CHATBOT POC\nCHATBOT POC\nCHATBOT POC\nCHATBOT POC\nCHATBOT POC\nCHATBOT POC\n"
-            response_text += "CHATBOT POC\nCHATBOT POC\nCHATBOT POC\nCHATBOT POC\nCHATBOT POC\nCHATBOT POC\n"
-            response_text += "CHATBOT POC\nCHATBOT POC\nCHATBOT POC\nCHATBOT POC\nCHATBOT POC\nCHATBOT POC\n"
+            response_text = "Hi,there"
             dispatcher.utter_message(response_text)
             tracker.update(SlotSet("last_action",self.name()))
             return []
