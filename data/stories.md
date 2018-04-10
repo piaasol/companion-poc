@@ -55,6 +55,10 @@
 * ask_remedy
   - action_ask_remedy
 
+## flow 7-1-1
+* ask_symptom_still_bad
+  - action_symptom_still_bad  
+
 ## flow 7-2
 * ask_bad_symptom
   - action_ask_symptom
@@ -94,6 +98,7 @@
 ## set reminder
 * user_set_reminder
  - action_set_remind
+ 
 ## play music path
 * ask_music
  - action_play_music

@@ -141,27 +141,27 @@ class SlackInput(HttpInputComponent):
     def _get_button_reply(slack_event):
         return json.loads(slack_event['payload'][0])['actions'][0]['name']
     
-    @staticmethod
-    def greet_trigger(self, on_new_message):
+    # @staticmethod
+    # def greet_trigger(self, on_new_message):
         
-        user_id = "U98A5D231"
-        out_channel = SlackBot(self.slack_token)
-        user_msg = UserMessage("greet trigger start now", out_channel, user_id)
-        on_new_message(user_msg)
-        make_response()
-        print(">>>>>> greet trigger starts")
-        user_msg = UserMessage("product recommendation start...", out_channel, user_id)
-        on_new_message(user_msg)
-        make_response()
-        print(">>>>>> product recommendation trigger starts")
-        user_msg = UserMessage("night trigger", out_channel, user_id)
-        on_new_message(user_msg)
-        make_response()
-        print(">>>>>> night trigger starts")
-        user_msg = UserMessage("excerpt trigger", out_channel, user_id)
-        on_new_message(user_msg)
-        make_response()
-        print(">>>>>> excerpt trigger starts")
+    #     user_id = "U98A5D231"
+    #     out_channel = SlackBot(self.slack_token)
+    #     user_msg = UserMessage("greet trigger start now", out_channel, user_id)
+    #     on_new_message(user_msg)
+    #     make_response()
+    #     print(">>>>>> greet trigger starts")
+    #     user_msg = UserMessage("product recommendation start...", out_channel, user_id)
+    #     on_new_message(user_msg)
+    #     make_response()
+    #     print(">>>>>> product recommendation trigger starts")
+    #     user_msg = UserMessage("night trigger", out_channel, user_id)
+    #     on_new_message(user_msg)
+    #     make_response()
+    #     print(">>>>>> night trigger starts")
+    #     user_msg = UserMessage("excerpt trigger", out_channel, user_id)
+    #     on_new_message(user_msg)
+    #     make_response()
+    #     print(">>>>>> excerpt trigger starts")
         
     def blueprint(self, on_new_message):
         slack_webhook = Blueprint('slack_webhook', __name__)

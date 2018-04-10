@@ -45,7 +45,7 @@ class ActionHappy(Action):
                                                     'type' : "button",
                                                     'value' : ""}]}
             dispatcher.utter_button_message(response_text,attachment_buttons)
-            tracker.update(SlotSet("last_action",self.name()))
+            tracker.update(SlotSet("last_action","action_happy"))
             return []
         else:
             action_default(self,dispatcher,tracker,domain)
@@ -82,7 +82,7 @@ class ActionNotBad(Action):
                                                     'type' : "button",
                                                     'value' : ""}]}
             dispatcher.utter_button_message(response_text,attachment_buttons)
-            tracker.update(SlotSet("last_action",self.name()))
+            tracker.update(SlotSet("last_action","action_not_bad"))
             return []
         else:
             action_default(self,dispatcher,tracker,domain)
@@ -201,7 +201,13 @@ class ActionGreet(Action):
     def run(self,dispatcher,tracker,domain):
         intent_result = intent_classification_check(self, dispatcher, tracker, domain)
         if intent_result == 1 :
-            response_text = "Hi, there"
+            response_text = "CHATBOT POC\nCHATBOT POC\nCHATBOT POC\nCHATBOT POC\nCHATBOT POC\nCHATBOT POC\n"
+            response_text += "CHATBOT POC\nCHATBOT POC\nCHATBOT POC\nCHATBOT POC\nCHATBOT POC\nCHATBOT POC\n"
+            response_text += "CHATBOT POC\nCHATBOT POC\nCHATBOT POC\nCHATBOT POC\nCHATBOT POC\nCHATBOT POC\n"
+            response_text += "CHATBOT POC\nCHATBOT POC\nCHATBOT POC\nCHATBOT POC\nCHATBOT POC\nCHATBOT POC\n"
+            response_text += "CHATBOT POC\nCHATBOT POC\nCHATBOT POC\nCHATBOT POC\nCHATBOT POC\nCHATBOT POC\n"
+            response_text += "CHATBOT POC\nCHATBOT POC\nCHATBOT POC\nCHATBOT POC\nCHATBOT POC\nCHATBOT POC\n"
+            response_text += "CHATBOT POC\nCHATBOT POC\nCHATBOT POC\nCHATBOT POC\nCHATBOT POC\nCHATBOT POC\n"
             dispatcher.utter_message(response_text)
             tracker.update(SlotSet("last_action",self.name()))
             return []
@@ -607,6 +613,7 @@ class ActionSetRemind(Action):
         if intent_result == 1 :
             clip_contents=tracker.get_slot('last_action')
             print("\x1b[1;33m>>>>>>> Reminded Action : ",clip_contents,"\x1b[1;m")
+            print("\x1b[1;33m>>>>>>> Trigger Schedule : ",(datetime.now()+timedelta(minutes=5)).strftime('%Y-%m-%d %H:%M'),"\x1b[1;m")
             dispatcher.utter_message("Ok, I will let you know then.")
             return [ReminderScheduled("action_after_remind", datetime.now()+ timedelta(minutes=5),kill_on_user_message=False)]
         else:
@@ -616,6 +623,9 @@ class ActionAfterRemind(Action):
     def name(cls):
         return 'action_after_remind'
     def run(cls,dispatcher,tracker,domain):
+        print("\x1b[1;33m>>>>>>> trigger starts\x1b[1;m")
+        print("\x1b[1;33m>>>>>>> trigger name : remind_trigger\x1b[1;m")
+        print("\x1b[1;33m>>>>>>> trigger date : ",datetime.now().strftime('%Y-%m-%d %H:%M'),"\x1b[1;m")
         response_text = "Is this good time to give you information on remedies for hip pain?"
         attachment_buttons = {'actions' :[{
                                             'name' : "ask remedy",
@@ -673,7 +683,7 @@ class ActionsAskExcerptInfo(Action):
             response_text += '\n\nIf you’re planning a home birth, speak with your midwife or doctor about anything you may need to have on hand. '
             response_text += '\nAlso, come up with a solid plan in case something happens that requires you to deliver in the hospital instead. Births are unpredictable. Preparing for every possible situation will help alleviate any extra stress in case something doesn’t go according to plan.'
             dispatcher.utter_message(response_text)
-            tracker.update(SlotSet("last_action",self.name()))
+            tracker.update(SlotSet("last_action","action_start_excerpt_trigger"))
             return []
         else:
             action_default(cls,dispatcher,tracker,domain)
@@ -785,6 +795,7 @@ class ActionStartGreetTrigger(Action):
             dispatcher.utter_button_message(response_text,attachment_buttons)
             tracker.update(SlotSet("last_action",self.name()))
             return []
+        return []    
             #return [ReminderScheduled('action_start_greet_trigger', datetime.now()+ timedelta(days=1),kill_on_user_message=False)]
                         
         #else :  
