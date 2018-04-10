@@ -822,7 +822,7 @@ class ActionAskDevicePurchase(Action):
                                             }]}
                 dispatcher.utter_button_message(response_text,attachment_buttons)
                 tracker.update(SlotSet("last_action",self.name()))
-        return [] 
+            return [] 
         else:
             action_default(self,dispatcher,tracker,domain)
             return[]   
