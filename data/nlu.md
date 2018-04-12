@@ -78,6 +78,16 @@
 - I feel more pain on my hips. I need medical advice.
 - Medical advice for my hip pain
 - hip pain medical advice
+- feel more hip pain i need medical advice
+- felt more hip pain i need medical advice
+- i have more hip pain i need medical advice
+- i feel more hip pain i need medical advice
+- i want hip pain advice
+- feel more hip pain. i need medical advice
+- felt more hip pain. i need medical advice
+- i have more hip pain. i need medical advice
+- i feel more hip pain. i need medical advice
+- i want hip pain medical advice
 ## intent:ask_food_recommendation
 - Tell me what to eat
 - What should I eat?
